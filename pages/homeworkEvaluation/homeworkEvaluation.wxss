@@ -1,0 +1,537 @@
+page {
+  background: var(--theme-background);
+}
+
+
+/* =========================
+   主题
+========================= */
+
+.theme-1 {
+  --main: #765B91;
+  --main-light: #EEE9F4;
+  --main-soft: #F4F1F7;
+
+  --background: #F7F5FA;
+
+  --title: #332D3A;
+  --text: #35313D;
+  --subtext: #8D8798;
+
+  --border: #E9E4EF;
+
+  --card: #FFFFFF;
+
+  --input-bg: #F8F6FA;
+  --tag-bg: #F5F1FA;
+
+  --shadow-card: rgba(45,32,70,0.055);
+  --shadow-main: rgba(118,91,145,0.22);
+
+  --tag-text: #675E70;
+  --empty-text: #AAA2B0;
+}
+
+
+.theme-2 {
+  --main: #7D86C9;
+  --main-light: #EEF0FA;
+  --main-soft: #F3F4F9;
+
+  --background: #F6F7FB;
+
+  --title: #343844;
+  --text: #343844;
+  --subtext: #858B9D;
+
+  --border: #E5E8F0;
+
+  --card: #FFFFFF;
+
+  --input-bg: #F5F6FA;
+  --tag-bg: #F1F2F8;
+
+  --shadow-card: rgba(52,56,68,0.055);
+  --shadow-main: rgba(125,134,201,0.22);
+
+  --tag-text: #62687A;
+  --empty-text: #9DA2B2;
+}
+
+
+/* =========================
+   页面
+========================= */
+
+.page {
+
+  min-height: 100vh;
+
+  padding: 0 30rpx 70rpx;
+
+  box-sizing: border-box;
+
+  background: var(--theme-background);
+
+}
+
+
+/* =========================
+   顶部
+========================= */
+
+.topbar {
+
+  height: 108rpx;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+}
+
+
+.back-button {
+
+  width: 64rpx;
+
+  height: 64rpx;
+
+  border-radius: 20rpx;
+
+  background: var(--card);
+
+  color: var(--main);
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  font-size: 44rpx;
+
+  box-shadow:
+
+    0 6rpx 20rpx
+
+    var(--shadow-card);
+
+}
+
+
+.topbar-title {
+
+  font-size: 32rpx;
+
+  font-weight: 700;
+
+  color: var(--title);
+
+}
+
+
+.topbar-placeholder {
+
+  width: 64rpx;
+
+  height: 64rpx;
+
+}
+
+
+/* =========================
+   学生
+========================= */
+
+.student-card {
+
+  margin-top: 30rpx;
+
+  border-radius: 30rpx;
+
+  padding: 28rpx;
+
+  display: flex;
+
+  align-items: center;
+
+  box-shadow:
+
+    0 14rpx 35rpx
+
+    var(--shadow-main);
+
+}
+
+
+/* 模式1学生卡片 */
+
+.theme-1 .student-card {
+
+  background: linear-gradient(
+    135deg,
+    #765B91 0%,
+    #806A9A 55%,
+    #9180A8 100%
+  );
+
+}
+
+
+/* 模式2学生卡片 */
+
+.theme-2 .student-card {
+
+  background: linear-gradient(
+    135deg,
+    #7D86C9 0%,
+    #8885C4 55%,
+    #9A8FC7 100%
+  );
+
+}
+
+
+.student-avatar {
+
+  width: 82rpx;
+
+  height: 82rpx;
+
+  border-radius: 26rpx;
+
+  background:
+
+    rgba(255,255,255,0.18);
+
+  color: #ffffff;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  font-size: 34rpx;
+
+  font-weight: 700;
+
+}
+
+
+.student-info {
+
+  margin-left: 20rpx;
+
+}
+
+
+.student-name {
+
+  font-size: 32rpx;
+
+  color: #ffffff;
+
+  font-weight: 700;
+
+}
+
+
+.student-grade {
+
+  margin-top: 7rpx;
+
+  font-size: 23rpx;
+
+  color:
+
+    rgba(255,255,255,0.75);
+
+}
+
+
+/* =========================
+   卡片
+========================= */
+
+.section-card {
+
+  margin-top: 24rpx;
+
+  padding: 28rpx;
+
+  background: var(--card);
+
+  border-radius: 28rpx;
+
+  box-sizing: border-box;
+
+  box-shadow:
+
+    0 8rpx 28rpx
+
+    var(--shadow-card);
+
+}
+
+
+.section-title {
+
+  font-size: 30rpx;
+
+  font-weight: 700;
+
+  color: var(--title);
+
+  margin-bottom: 20rpx;
+
+}
+
+
+/* =========================
+   作业
+========================= */
+
+.homework-box {
+
+  padding: 22rpx;
+
+  border-radius: 20rpx;
+
+  background: var(--input-bg);
+
+  font-size: 26rpx;
+
+  line-height: 1.7;
+
+  color: var(--text);
+
+}
+
+
+.empty-homework {
+
+  padding: 28rpx;
+
+  text-align: center;
+
+  background: var(--input-bg);
+
+  border-radius: 20rpx;
+
+  color: var(--empty-text);
+
+  font-size: 24rpx;
+
+}
+
+
+/* =========================
+   成绩
+========================= */
+
+.score-row {
+
+  display: flex;
+
+  align-items: center;
+
+}
+
+
+.score-input {
+
+  width: 100%;
+
+  height: 82rpx;
+
+  padding: 0 24rpx;
+
+  box-sizing: border-box;
+
+  background: var(--input-bg);
+
+  border-radius: 20rpx;
+
+  font-size: 30rpx;
+
+  color: var(--text);
+
+}
+
+
+.score-unit {
+
+  margin-left: 16rpx;
+
+  font-size: 26rpx;
+
+  color: var(--subtext);
+
+}
+
+
+/* =========================
+   快速评价
+========================= */
+
+.evaluation-list {
+
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 16rpx;
+
+}
+
+
+.evaluation-tag {
+
+  padding: 16rpx 20rpx;
+
+  border-radius: 18rpx;
+
+  background: var(--tag-bg);
+
+  color: var(--tag-text);
+
+  font-size: 23rpx;
+
+}
+
+
+.evaluation-active {
+
+  color: #ffffff;
+
+}
+
+
+/* 模式1选中 */
+
+.theme-1 .evaluation-active {
+
+  background: #765B91;
+
+}
+
+
+/* 模式2选中 */
+
+.theme-2 .evaluation-active {
+
+  background: #7D86C9;
+
+}
+
+
+/* =========================
+   教师评价
+========================= */
+
+.evaluation-input {
+
+  width: 100%;
+
+  min-height: 220rpx;
+
+  padding: 22rpx;
+
+  box-sizing: border-box;
+
+  background: var(--input-bg);
+
+  border-radius: 20rpx;
+
+  font-size: 26rpx;
+
+  line-height: 1.7;
+
+  color: var(--text);
+
+}
+
+
+/* =========================
+   保存
+========================= */
+
+.save-button {
+
+  width: 100%;
+
+  height: 88rpx;
+
+  line-height: 88rpx;
+
+  margin-top: 28rpx;
+
+  border-radius: 24rpx;
+
+  text-align: center;
+
+  color: #ffffff;
+
+  font-size: 29rpx;
+
+  font-weight: 600;
+
+  box-shadow:
+
+    0 12rpx 28rpx
+
+    var(--shadow-main);
+
+}
+
+
+/* 模式1 */
+
+.theme-1 .save-button {
+
+  background: linear-gradient(
+    135deg,
+    #765B91 0%,
+    #806A9A 55%,
+    #9180A8 100%
+  );
+
+}
+
+
+/* 模式2 */
+
+.theme-2 .save-button {
+
+  background: linear-gradient(
+    135deg,
+    #7D86C9 0%,
+    #8885C4 55%,
+    #9A8FC7 100%
+  );
+
+}
+
+
+.save-button:active {
+
+  opacity: 0.85;
+
+}
+
+
+.bottom-tip {
+
+  text-align: center;
+
+  margin-top: 20rpx;
+
+  font-size: 21rpx;
+
+  color: var(--empty-text);
+
+}

@@ -1,0 +1,446 @@
+/* =========================================================
+   炫记 · 我的
+   仅统一首页主题颜色
+========================================================= */
+
+
+/* =========================================================
+   页面
+========================================================= */
+
+.page {
+  min-height: 100vh;
+
+  background: var(--background);
+
+  padding-bottom: 140rpx;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   主题变量
+========================================================= */
+
+
+/* 模式1：经典紫色 */
+
+.theme-1 {
+  --background: #F7F5FA;
+
+  --main: #765B91;
+  --main-light: #EEE9F4;
+  --main-soft: #F4F1F7;
+
+  --title: #332D3A;
+  --text: #35313D;
+  --subtext: #8D8798;
+
+  --border: #E9E4EF;
+
+  --card: #FFFFFF;
+
+  --icon-bg: #EEE9F4;
+  --icon-color: #765B91;
+
+  --number: #765B91;
+
+  --arrow: #A29AA9;
+
+  --quick-text: #665F75;
+
+  --tab-icon: #918898;
+  --tab-text: #A29AA9;
+
+  --tab-active: #765B91;
+
+  --shadow-card: rgba(45, 32, 70, 0.05);
+  --shadow-overview: rgba(70, 50, 110, 0.06);
+  --shadow-main: rgba(118, 91, 145, 0.22);
+}
+
+
+/* 模式2：蓝紫色 */
+
+.theme-2 {
+  --background: #F6F7FB;
+
+  --main: #7D86C9;
+  --main-light: #EEF0FA;
+  --main-soft: #F3F4F9;
+
+  --title: #343844;
+  --text: #343844;
+  --subtext: #858B9D;
+
+  --border: #E5E8F0;
+
+  --card: #FFFFFF;
+
+  --icon-bg: #EEF0FA;
+  --icon-color: #7D86C9;
+
+  --number: #7D86C9;
+
+  --arrow: #A0A5B5;
+
+  --quick-text: #62687A;
+
+  --tab-icon: #969BAA;
+  --tab-text: #A0A5B5;
+
+  --tab-active: #7D86C9;
+
+  --shadow-card: rgba(52, 56, 68, 0.05);
+  --shadow-overview: rgba(52, 56, 68, 0.06);
+  --shadow-main: rgba(125, 134, 201, 0.22);
+}
+
+
+/* =========================================================
+   顶部
+========================================================= */
+
+.header {
+
+  padding: 60rpx 40rpx 40rpx;
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+}
+
+.header-left {
+
+  flex: 1;
+
+}
+
+.welcome {
+
+  font-size: 26rpx;
+
+  color: var(--subtext);
+
+  margin-bottom: 12rpx;
+
+}
+
+.title {
+
+  font-size: 48rpx;
+
+  font-weight: bold;
+
+  color: var(--title);
+
+}
+
+.desc {
+
+  margin-top: 10rpx;
+
+  font-size: 25rpx;
+
+  color: var(--subtext);
+
+}
+
+.logo {
+
+  flex-shrink: 0;
+
+  margin-left: 20rpx;
+
+  font-size: 20rpx;
+
+  font-weight: 600;
+
+  color: var(--main);
+
+  letter-spacing: 3rpx;
+
+}
+
+
+
+
+/* =========================================================
+   数据概览
+========================================================= */
+
+.overview {
+
+  margin: 0 30rpx 35rpx;
+
+  background: var(--card);
+
+  border-radius: 28rpx;
+
+  padding: 30rpx 10rpx;
+
+  display: flex;
+
+  align-items: center;
+
+  box-shadow:
+    0 8rpx 30rpx
+    var(--shadow-overview);
+
+}
+
+.overview-item {
+
+  flex: 1;
+
+  text-align: center;
+
+}
+
+.number {
+
+  font-size: 38rpx;
+
+  font-weight: bold;
+
+  color: var(--number);
+
+}
+
+.label {
+
+  margin-top: 8rpx;
+
+  font-size: 23rpx;
+
+  color: var(--subtext);
+
+}
+
+.line {
+
+  width: 1rpx;
+
+  height: 60rpx;
+
+  background: var(--border);
+
+}
+
+
+/* =========================================================
+   内容
+========================================================= */
+
+.section {
+
+  margin: 0 30rpx 35rpx;
+
+}
+
+.section-title {
+
+  font-size: 30rpx;
+
+  font-weight: bold;
+
+  color: var(--title);
+
+  margin-bottom: 18rpx;
+
+}
+
+
+/* =========================================================
+   功能卡片
+========================================================= */
+
+.menu-card {
+
+  background: var(--card);
+
+  border-radius: 24rpx;
+
+  padding: 28rpx;
+
+  margin-bottom: 18rpx;
+
+  display: flex;
+
+  align-items: center;
+
+  box-shadow:
+    0 6rpx 25rpx
+    var(--shadow-card);
+
+}
+
+.menu-icon {
+
+  width: 76rpx;
+
+  height: 76rpx;
+
+  border-radius: 22rpx;
+
+  background: var(--icon-bg);
+
+  color: var(--icon-color);
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  font-size: 30rpx;
+
+  font-weight: bold;
+
+  flex-shrink: 0;
+
+}
+
+.menu-content {
+
+  flex: 1;
+
+  margin-left: 22rpx;
+
+}
+
+.menu-title {
+
+  font-size: 29rpx;
+
+  font-weight: bold;
+
+  color: var(--title);
+
+}
+
+.menu-desc {
+
+  margin-top: 7rpx;
+
+  font-size: 23rpx;
+
+  color: var(--subtext);
+
+}
+
+.menu-arrow {
+
+  font-size: 38rpx;
+
+  color: var(--arrow);
+
+  margin-left: 15rpx;
+
+}
+
+
+/* =========================================================
+   快捷入口
+========================================================= */
+
+.quick-card {
+
+  background: var(--card);
+
+  border-radius: 24rpx;
+
+  padding: 30rpx 15rpx;
+
+  display: flex;
+
+  box-shadow:
+    0 6rpx 25rpx
+    var(--shadow-card);
+
+}
+
+.quick-item {
+
+  flex: 1;
+
+  text-align: center;
+
+}
+
+.quick-item-hover {
+
+  transform: scale(0.94);
+
+  opacity: 0.78;
+
+}
+
+.quick-icon {
+
+  width: 65rpx;
+
+  height: 65rpx;
+
+  margin: 0 auto 10rpx;
+
+  border-radius: 20rpx;
+
+  background: var(--icon-bg);
+
+  color: var(--icon-color);
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  font-size: 26rpx;
+
+  font-weight: bold;
+
+}
+
+.quick-text {
+
+  font-size: 23rpx;
+
+  color: var(--quick-text);
+
+}
+
+
+
+
+/* =========================================================
+   防止底部内容被导航遮住
+========================================================= */
+
+.page::after {
+
+  content: "";
+
+  display: block;
+
+  height: 20rpx;
+
+}
+
+
+/* =========================================================
+   Icon System — 容器内图标尺寸
+========================================================= */
+
+.menu-icon .icon,
+.quick-icon .icon {
+
+  width: 34rpx;
+
+  height: 34rpx;
+
+}

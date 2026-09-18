@@ -1,0 +1,91 @@
+<view class="page {{themeClass}}">
+
+  <!-- 记录不存在 -->
+  <view wx:if="{{!hasRecord}}" class="empty">
+    <view class="empty-icon">
+      <view class="icon icon-book-open"></view>
+    </view>
+    <view class="empty-title">Learning record not found</view>
+    <view class="empty-desc">This record may have been deleted</view>
+  </view>
+
+
+  <!-- ===================== 查看模式 ===================== -->
+  <block wx:if="{{hasRecord && !isEditing}}">
+
+    <view class="card">
+
+      <view class="head">
+        <view class="type-tag">{{record.typeText || 'Uncategorized'}}</view>
+        <view class="minutes">{{record.minutes}} min</view>
+      </view>
+
+      <view class="date-row" wx:if="{{record.date || record.time}}">
+        <text wx:if="{{record.date}}" class="date-text">{{record.displayDate}}</text>
+        <text wx:if="{{record.time}}" class="time-text">{{record.time}}</text>
+      </view>
+
+      <view class="field-block" wx:if="{{record.topic && record.topic !== record.type}}">
+        <view class="field-label">Topic</view>
+        <view class="field-value">{{record.topic}}</view>
+      </view>
+
+      <view class="field-block" wx:if="{{record.projectName}}">
+        <view class="field-label">Project</view>
+        <view class="field-value">{{record.projectName}}</view>
+      </view>
+
+      <view class="field-block" wx:if="{{record.content}}">
+        <view class="field-label">Content</view>
+        <view class="field-value">{{record.content}}</view>
+      </view>
+
+    </view>
+
+    <view class="action-bar">
+      <view class="action-btn edit" bindtap="openEdit">Edit</view>
+      <view class="action-btn danger" bindtap="deleteRecord">Delete</view>
+    </view>
+
+  </block>
+
+
+  <!-- ===================== 编辑模式 ===================== -->
+  <block wx:if="{{hasRecord && isEditing}}">
+
+    <view class="card">
+
+      <view class="field">
+        <view class="field-label">Study Type</view>
+        <picker range="{{typeDisplayOptions}}" value="{{editTypeIndex}}" bindchange="changeType">
+          <view class="picker-value">{{typeDisplayOptions[editTypeIndex]}} ›</view>
+        </picker>
+      </view>
+
+      <view class="field">
+        <view class="field-label">Duration (min)</view>
+        <input class="field-input" type="number" value="{{editMinutes}}" placeholder="Enter duration" bindinput="inputMinutes" />
+      </view>
+
+      <view class="field">
+        <view class="field-label">Content</view>
+        <textarea class="field-textarea" value="{{editContent}}" placeholder="Add content (optional)" bindinput="inputContent" />
+      </view>
+
+      <view class="field field-last">
+        <view class="field-label">Project</view>
+        <picker range="{{projectPickerList}}" value="{{editProjectIndex}}" bindchange="changeProject">
+          <view class="picker-value">{{projectPickerList[editProjectIndex]}} ›</view>
+        </picker>
+      </view>
+
+    </view>
+
+    <view class="action-bar">
+      <view class="action-btn cancel" bindtap="closeEdit">Cancel</view>
+      <view class="action-btn save" bindtap="saveRecord">Save</view>
+    </view>
+
+  </block>
+
+</view>

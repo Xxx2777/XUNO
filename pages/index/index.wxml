@@ -1,0 +1,287 @@
+<view class="page {{themeClass}}">
+
+<!-- 顶部问候 -->
+<view class="header">
+  <view class="header-main">
+    <view class="greeting">{{greeting}}</view>
+    <view class="today-text">{{todayText}}</view>
+  </view>
+  <view class="header-brand">XUNO</view>
+</view>
+
+<!-- 顶部滑动卡片 -->
+<swiper
+  class="top-swiper"
+  indicator-dots="true"
+  autoplay="false"
+  circular="false"
+>
+
+  <!-- 第1页：Study Today -->
+  <swiper-item>
+    <view class="purple-card" hover-class="card-hover" hover-stay-time="80">
+      <view class="card-top-row">
+        <view>
+          <view class="purple-label">Study Today</view>
+          <view class="purple-number">{{studyMinutes}}<text> min</text></view>
+        </view>
+        <view class="purple-icon">
+          <view class="icon icon-book-open"></view>
+        </view>
+      </view>
+
+      <view class="study-progress">
+        <view class="study-progress-bg">
+          <view class="study-progress-inner progress-{{studyProgressLevel}}"></view>
+        </view>
+        <view class="study-progress-bottom">
+          <text>Goal {{studyTarget}} min</text>
+          <text>{{studyPercent}}%</text>
+        </view>
+      </view>
+
+      <view class="study-card-bottom">
+        <text>{{studyType}}</text>
+        <text>Small steps every day</text>
+      </view>
+    </view>
+  </swiper-item>
+
+  <!-- 第2页：Today -->
+  <swiper-item>
+    <view class="purple-card overview-card" hover-class="card-hover" hover-stay-time="80">
+      <view class="card-top-row">
+        <view>
+          <view class="purple-label">Today</view>
+          <view class="overview-title">Stay on track today</view>
+        </view>
+        <view class="purple-icon">
+          <view class="icon icon-chart"></view>
+        </view>
+      </view>
+
+      <view class="overview-stats">
+        <view class="overview-stat">
+          <view class="overview-number">{{courseCount}}</view>
+          <view class="overview-label">Courses</view>
+        </view>
+        <view class="overview-divider"></view>
+        <view class="overview-stat">
+          <view class="overview-number">{{taskTotal}}</view>
+          <view class="overview-label">Tasks</view>
+        </view>
+        <view class="overview-divider"></view>
+        <view class="overview-stat">
+          <view class="overview-number">{{studyPercent}}%</view>
+          <view class="overview-label">Progress</view>
+        </view>
+      </view>
+
+      <view class="overview-bottom">
+        <text>{{todayText}}</text>
+        <text>Swipe for more</text>
+      </view>
+    </view>
+  </swiper-item>
+
+</swiper>
+
+<!-- Next -->
+<view class="section" wx:if="{{nextItem}}">
+  <view class="section-title">Next</view>
+  <view class="next-card" bindtap="tapNext" hover-class="next-card-hover" hover-stay-time="80">
+    <view class="next-icon">
+      <view class="icon icon-book" wx:if="{{nextItem.icon === 'course'}}"></view>
+      <view class="icon icon-check-square" wx:elif="{{nextItem.icon === 'task'}}"></view>
+      <view class="icon icon-folder" wx:elif="{{nextItem.icon === 'project'}}"></view>
+      <view class="icon icon-message" wx:elif="{{nextItem.icon === 'feedback'}}"></view>
+    </view>
+    <view class="next-content">
+      <view class="next-title">{{nextItem.title}}</view>
+      <view class="next-desc">{{nextItem.desc}}</view>
+    </view>
+    <view class="next-arrow"><view class="icon icon-chevron-right"></view></view>
+  </view>
+</view>
+
+<!-- Courses -->
+<view class="section">
+  <view class="section-header">
+    <view class="section-title">Courses</view>
+    <view class="section-more" bindtap="goCalendar" wx:if="{{courseCount > 3}}">{{courseCount}} ›</view>
+  </view>
+
+  <block wx:if="{{hasTodayCourses}}">
+    <block wx:for="{{todayCourses}}" wx:key="id" wx:for-item="item" wx:for-index="index">
+
+      <view class="course-swipe-wrap">
+        <view class="course-delete-button" catchtap="deleteCourse" data-index="{{index}}">Delete</view>
+
+        <view
+          class="course-card {{swipeIndex === index ? 'course-card-open' : ''}}"
+          bindtouchstart="touchStart"
+          bindtouchmove="touchMove"
+          bindtouchend="touchEnd"
+          bindtap="openCourse"
+          data-index="{{index}}"
+        >
+          <view class="course-time">
+            <view class="course-time-start">{{item.startTime || item.time || "TBD"}}</view>
+            <view class="course-time-end" wx:if="{{item.endTime}}">{{item.endTime}}</view>
+          </view>
+
+          <view class="course-info">
+            <view class="course-student">{{item.student || "No student"}}</view>
+            <view class="course-topic">{{item.topic || item.lesson || "No topic"}}</view>
+            <view class="course-meta">
+              <text wx:if="{{item.grade}}">{{item.grade}}</text>
+              <text wx:if="{{item.grade && item.statusText}}"> · </text>
+              <text>{{item.statusText || "Upcoming"}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+
+    </block>
+  </block>
+
+  <view wx:else class="empty-card">
+    <view class="empty-icon">
+      <view class="icon icon-book"></view>
+    </view>
+    <view class="empty-title">No courses today</view>
+    <view class="empty-desc">Schedule your next course</view>
+  </view>
+</view>
+
+<!-- Tasks -->
+<view class="section">
+  <view class="section-header">
+    <view class="section-title">Tasks</view>
+    <view class="section-more" bindtap="goTodo" wx:if="{{taskTotal > 0}}">Manage ›</view>
+  </view>
+
+  <block wx:if="{{taskList.length > 0}}">
+    <view class="task-list">
+      <block wx:for="{{taskList}}" wx:key="id" wx:for-item="item">
+        <view class="task-item">
+          <view class="task-check {{item.completed ? 'active' : ''}}" bindtap="toggleTask" data-id="{{item.id}}"></view>
+          <view class="task-main">
+            <view class="task-text {{item.completed ? 'completed' : ''}}">{{item.text}}</view>
+            <view class="task-meta" wx:if="{{item.priority || item.deadline || item.overdue}}">
+              <text wx:if="{{item.priority}}" class="tag priority-tag priority-{{item.priorityClass}}">{{item.priority}}</text>
+              <text wx:if="{{item.deadline}}" class="tag deadline-tag {{item.overdue ? 'overdue' : ''}}">{{item.deadline}}</text>
+              <text wx:if="{{item.overdue}}" class="tag overdue-tag">Overdue</text>
+            </view>
+          </view>
+        </view>
+      </block>
+    </view>
+  </block>
+
+  <view wx:else class="empty-card">
+    <view class="empty-icon">
+      <view class="icon icon-check-square"></view>
+    </view>
+    <view class="empty-title">No tasks for today</view>
+    <view class="empty-desc">Add a task to plan your day</view>
+  </view>
+</view>
+
+<!-- Study Today -->
+<view class="section">
+  <view class="section-header">
+    <view class="section-title">Study Today</view>
+    <view class="section-more" bindtap="goStudy">Log study ›</view>
+  </view>
+
+  <view wx:if="{{studyTypeList.length > 0}}" class="learning-records">
+    <view wx:for="{{studyTypeList}}" wx:key="name" class="learning-record-item">
+      <view class="learning-record-type">{{item.name}}</view>
+      <view class="learning-record-minutes">{{item.minutes}} min</view>
+    </view>
+  </view>
+
+  <view wx:else class="empty-card">
+    <view class="empty-icon">
+      <view class="icon icon-book-open"></view>
+    </view>
+    <view class="empty-title">No study logged today</view>
+    <view class="empty-desc">Log your study time</view>
+  </view>
+</view>
+
+<!-- Notes -->
+<view class="section">
+  <view class="section-header">
+    <view class="section-title">Notes</view>
+    <view class="section-more" bindtap="goNotes">{{todayNoteCount > 0 ? "View all ›" : "Log ›"}}</view>
+  </view>
+
+  <block wx:if="{{todayNotes.length > 0}}">
+    <view class="note-list">
+      <view
+        wx:for="{{todayNotes}}"
+        wx:key="id"
+        wx:for-item="item"
+        class="note-item"
+        bindtap="openNote"
+        data-id="{{item.id}}"
+      >
+        <view class="note-title">{{item.title}}</view>
+        <view class="note-type" wx:if="{{item.type}}">{{item.type}}</view>
+      </view>
+    </view>
+  </block>
+
+  <view wx:else class="empty-card">
+    <view class="empty-icon">
+      <view class="icon icon-file-text"></view>
+    </view>
+    <view class="empty-title">No notes today</view>
+    <view class="empty-desc">Capture a note today</view>
+  </view>
+</view>
+
+<!-- 待反馈 -->
+<view class="section" wx:if="{{hasUnwrittenFeedback}}">
+  <view class="feedback-card" bindtap="goFeedbackList" hover-class="next-card-hover" hover-stay-time="80">
+    <view class="feedback-icon">
+      <view class="icon icon-message"></view>
+    </view>
+    <view class="feedback-content">
+      <view class="feedback-title">{{unwrittenCount}} courses pending feedback</view>
+      <view class="feedback-desc">Complete feedback after each class</view>
+    </view>
+    <view class="feedback-arrow"><view class="icon icon-chevron-right"></view></view>
+  </view>
+</view>
+
+<!-- 快捷操作 -->
+<view class="section">
+  <view class="quick-grid">
+    <view class="quick-item" bindtap="goCreate" hover-class="quick-item-hover" hover-stay-time="80">
+      <view class="quick-icon">
+        <view class="icon icon-book"></view>
+      </view>
+      <view class="quick-text">New Course</view>
+    </view>
+    <view class="quick-item" bindtap="goStudy" hover-class="quick-item-hover" hover-stay-time="80">
+      <view class="quick-icon">
+        <view class="icon icon-book-open"></view>
+      </view>
+      <view class="quick-text">Log Study</view>
+    </view>
+    <view class="quick-item" bindtap="goTodo" hover-class="quick-item-hover" hover-stay-time="80">
+      <view class="quick-icon">
+        <view class="icon icon-check-square"></view>
+      </view>
+      <view class="quick-text">Add Task</view>
+    </view>
+  </view>
+</view>
+
+<!-- 底部导航 -->
+<tab-bar active="today" />
+
+</view>

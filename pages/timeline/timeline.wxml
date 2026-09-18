@@ -1,0 +1,68 @@
+<view class="page {{themeClass}}">
+
+  <!-- 顶部说明 -->
+  <view class="header">
+    <view class="header-title">Timeline</view>
+    <view class="header-desc">Track your recent activity</view>
+  </view>
+
+  <!-- 筛选 -->
+  <scroll-view class="filter-bar" scroll-x="true">
+    <view
+      wx:for="{{filterOptions}}"
+      wx:key="*this"
+      wx:for-index="index"
+      class="filter-item {{filter === filterValues[index] ? 'active' : ''}}"
+      bindtap="changeFilter"
+      data-index="{{index}}"
+    >{{item}}</view>
+  </scroll-view>
+
+  <!-- 时间线 -->
+  <block wx:if="{{hasTimeline}}">
+    <view
+      wx:for="{{timelineGroups}}"
+      wx:key="date"
+      wx:for-item="group"
+      class="group"
+    >
+      <view class="group-date">{{group.dateText}}</view>
+
+      <view
+        wx:for="{{group.items}}"
+        wx:key="id"
+        wx:for-item="item"
+        class="tl-item"
+        bindtap="openItem"
+        data-type="{{item.type}}"
+        data-source-id="{{item.sourceId}}"
+      >
+        <view class="tl-time">{{item.timeText}}</view>
+
+        <view class="tl-axis">
+          <view class="tl-dot"></view>
+          <view class="tl-line"></view>
+        </view>
+
+        <view class="tl-content">
+          <view class="tl-title">{{item.title}}</view>
+          <view class="tl-desc" wx:if="{{item.description}}">{{item.description}}</view>
+          <view class="tl-meta">
+            <text class="tl-type">{{item.typeText}}</text>
+            <text wx:if="{{item.projectName}}" class="tl-project">{{item.projectName}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </block>
+
+  <!-- 空状态 -->
+  <view wx:else class="empty">
+    <view class="empty-icon">
+      <view class="icon icon-clock"></view>
+    </view>
+    <view class="empty-title">No timeline activity yet</view>
+    <view class="empty-desc">Your learning, tasks, and teaching will appear here.</view>
+  </view>
+
+</view>

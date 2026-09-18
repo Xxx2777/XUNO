@@ -1,0 +1,1898 @@
+page {
+  background: var(--theme-background);
+}
+
+.page {
+  min-height: 100vh;
+  padding: 0 30rpx 90rpx;
+  box-sizing: border-box;
+}
+
+
+/* =========================
+   主题
+========================= */
+
+.theme-1 {
+
+  --main: #765B91;
+
+  --main-light: #EEE9F4;
+
+  --main-soft: #F4F1F7;
+
+  --background: #F7F5FA;
+
+  --text: #35313D;
+
+  --title: #332D3A;
+
+  --subtext: #8D8798;
+
+  --border: #E9E4EF;
+
+  --card: #FFFFFF;
+
+  --shadow-card: rgba(45,32,70,0.06);
+
+  --shadow-main: rgba(118,91,145,0.22);
+
+  --tag-text: #625B6D;
+
+  --selected-text: #766A89;
+
+  --input-bg: #F8F6FA;
+
+  --soft-bg: #F4F1F7;
+
+  --modal-mask: rgba(36,30,48,0.42);
+
+}
+
+.theme-2 {
+
+  --main: #7D86C9;
+
+  --main-light: #EEF0FA;
+
+  --main-soft: #F3F4F9;
+
+  --background: #F6F7FB;
+
+  --text: #343844;
+
+  --title: #343844;
+
+  --subtext: #858B9D;
+
+  --border: #E5E8F0;
+
+  --card: #FFFFFF;
+
+  --shadow-card: rgba(52,56,68,0.06);
+
+  --shadow-main: rgba(125,134,201,0.22);
+
+  --tag-text: #62687A;
+
+  --selected-text: #69708A;
+
+  --input-bg: #F5F6FA;
+
+  --soft-bg: #F3F4F9;
+
+  --modal-mask: rgba(38,42,58,0.42);
+
+}
+
+
+/* =========================
+   顶部
+========================= */
+
+.header {
+
+  height: 125rpx;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  position: relative;
+
+}
+
+.back {
+
+  width: 70rpx;
+
+  height: 70rpx;
+
+  line-height: 64rpx;
+
+  text-align: center;
+
+  font-size: 58rpx;
+
+  color: var(--text);
+
+}
+
+.header-title {
+
+  position: absolute;
+
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  font-size: 34rpx;
+
+  font-weight: 700;
+
+  color: var(--title);
+
+}
+
+.history-entry {
+
+  flex-shrink: 0;
+
+  padding: 13rpx 22rpx;
+
+  border-radius: 22rpx;
+
+  background: var(--card);
+
+  color: var(--main);
+
+  font-size: 24rpx;
+
+  box-shadow: 0 8rpx 25rpx var(--shadow-card);
+
+}
+
+
+/* =========================
+   当前学生
+========================= */
+
+.student-card {
+
+  display: flex;
+
+  align-items: center;
+
+  padding: 30rpx;
+
+  background: var(--card);
+
+  border-radius: 30rpx;
+
+  box-shadow: 0 10rpx 30rpx var(--shadow-card);
+
+  /* 与页面顶部保持一点距离 */
+
+  margin-top: 24rpx;
+
+  /* 给右侧操作区域预留空间 */
+
+  position: relative;
+
+  padding-right: 150rpx;
+
+}
+
+.student-avatar {
+
+  width: 100rpx;
+
+  height: 100rpx;
+
+  line-height: 100rpx;
+
+  text-align: center;
+
+  border-radius: 30rpx;
+
+  background: var(--main-light);
+
+  color: var(--main);
+
+  font-size: 40rpx;
+
+  font-weight: 700;
+
+}
+
+.student-info {
+
+  flex: 1;
+
+  margin-left: 24rpx;
+
+  box-sizing: border-box;
+
+  min-width: 0;
+
+}
+
+.student-label {
+
+  margin-bottom: 8rpx;
+
+  font-size: 22rpx;
+
+  color: var(--subtext);
+
+}
+
+.student-name-row {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+}
+
+.student-name {
+
+  font-size: 36rpx;
+
+  font-weight: 700;
+
+  color: var(--text);
+
+  /* 只调整学生姓名的视觉位置 */
+
+  position: relative;
+
+  top: 6rpx;
+
+}
+
+.student-arrow {
+
+  padding: 8rpx 18rpx;
+
+  border-radius: 18rpx;
+
+  background: var(--main-soft);
+
+  color: var(--main);
+
+  font-size: 22rpx;
+
+}
+
+.student-grade {
+
+  display: flex;
+
+  align-items: center;
+
+  flex-wrap: nowrap;
+
+  white-space: nowrap;
+
+  margin-top: 7rpx;
+
+  font-size: 24rpx;
+
+  color: var(--subtext);
+
+}
+
+.student-grade text {
+
+  white-space: nowrap;
+
+  display: inline;
+
+}
+
+
+/* =========================
+   历史反馈
+   右上角
+========================= */
+
+.student-history-entry {
+  position: absolute;
+  top: 24rpx;
+  right: 24rpx;
+  margin-left: 0;
+  padding: 13rpx 21rpx;
+  border-radius: 20rpx;
+  background: var(--main-light);
+  color: var(--main);
+  font-size: 23rpx;
+}
+
+
+/* =========================
+   学生选择
+   右下角
+========================= */
+
+.student-select-entry {
+
+  position: absolute;
+
+  right: 30rpx;
+
+  bottom: 25rpx;
+
+  color: var(--main);
+
+  font-size: 24rpx;
+
+}
+
+
+/* =========================
+   学生选择
+========================= */
+
+.student-picker {
+
+  margin-top: 20rpx;
+
+  padding: 25rpx;
+
+  background: var(--card);
+
+  border-radius: 28rpx;
+
+  box-shadow: 0 10rpx 30rpx var(--shadow-card);
+
+}
+
+.picker-header {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  margin-bottom: 18rpx;
+
+}
+
+.picker-title {
+
+  font-size: 29rpx;
+
+  font-weight: 700;
+
+  color: var(--title);
+
+}
+
+.picker-tip {
+
+  margin-top: 6rpx;
+
+  font-size: 22rpx;
+
+  color: var(--subtext);
+
+}
+
+.picker-close-top {
+
+  padding: 10rpx 18rpx;
+
+  border-radius: 18rpx;
+
+  background: var(--main-light);
+
+  color: var(--main);
+
+  font-size: 22rpx;
+
+}
+
+.student-option {
+
+  display: flex;
+
+  align-items: center;
+
+  padding: 20rpx 15rpx;
+
+  border-radius: 22rpx;
+
+  margin-top: 10rpx;
+
+}
+
+.student-option-active {
+
+  background: var(--main-soft);
+
+}
+
+.option-avatar {
+
+  width: 72rpx;
+
+  height: 72rpx;
+
+  line-height: 72rpx;
+
+  text-align: center;
+
+  border-radius: 22rpx;
+
+  background: var(--main-light);
+
+  color: var(--main);
+
+  font-size: 29rpx;
+
+  font-weight: 700;
+
+}
+
+.option-info {
+
+  flex: 1;
+
+  margin-left: 18rpx;
+
+}
+
+.option-name {
+
+  font-size: 27rpx;
+
+  font-weight: 600;
+
+  color: var(--text);
+
+}
+
+.option-grade {
+
+  margin-top: 6rpx;
+
+  font-size: 22rpx;
+
+  color: var(--subtext);
+
+}
+
+.option-selected {
+
+  width: 42rpx;
+
+  height: 42rpx;
+
+  line-height: 42rpx;
+
+  text-align: center;
+
+  border-radius: 50%;
+
+  background: var(--main);
+
+  color: #ffffff;
+
+  font-size: 24rpx;
+
+}
+
+
+/* =========================
+   当前课程
+========================= */
+
+.course-section {
+
+  margin-top: 22rpx;
+
+}
+
+.course-select-card {
+
+  background: var(--card);
+
+  border-radius: 28rpx;
+
+  box-shadow: 0 10rpx 30rpx var(--shadow-card);
+
+  overflow: hidden;
+
+}
+
+.course-select-main {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  padding: 30rpx;
+
+}
+
+.course-select-left {
+
+  flex: 1;
+
+  min-width: 0;
+
+  box-sizing: border-box;
+
+}
+
+.course-select-label {
+
+  font-size: 22rpx;
+
+  color: var(--subtext);
+
+  margin-bottom: 8rpx;
+
+}
+
+.course-select-title {
+
+  font-size: 31rpx;
+
+  font-weight: 600;
+
+  color: var(--subtext);
+
+  /* 只调整课程内容的视觉位置 */
+
+  position: relative;
+
+  top: 6rpx;
+
+}
+
+.course-select-info {
+
+  display: flex;
+
+  align-items: center;
+
+  flex-wrap: nowrap;
+
+  white-space: nowrap;
+
+  margin-top: 9rpx;
+
+  font-size: 23rpx;
+
+  color: var(--subtext);
+
+}
+
+.course-select-info text {
+
+  white-space: nowrap;
+
+  display: inline;
+
+}
+
+.course-change {
+
+  flex-shrink: 0;
+
+  margin-left: 20rpx;
+
+  padding: 13rpx 21rpx;
+
+  border-radius: 20rpx;
+
+  background: var(--main-light);
+
+  color: var(--main);
+
+  font-size: 23rpx;
+
+}
+
+
+/* =========================
+   课程选择弹窗
+========================= */
+
+.course-modal-mask {
+
+  position: fixed;
+
+  z-index: 1000;
+
+  left: 0;
+
+  right: 0;
+
+  top: 0;
+
+  bottom: 0;
+
+  background: var(--modal-mask);
+
+  display: flex;
+
+  align-items: flex-end;
+
+  justify-content: center;
+
+}
+
+.course-modal {
+
+  width: 100%;
+
+  max-height: 82vh;
+
+  background: var(--card);
+
+  border-radius: 38rpx 38rpx 0 0;
+
+  overflow: hidden;
+
+}
+
+.course-modal-header {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  padding: 30rpx 32rpx 22rpx;
+
+}
+
+.course-modal-title {
+
+  font-size: 35rpx;
+
+  font-weight: 700;
+
+  color: var(--title);
+
+}
+
+.course-modal-close {
+
+  width: 55rpx;
+
+  height: 55rpx;
+
+  line-height: 50rpx;
+
+  text-align: center;
+
+  border-radius: 50%;
+
+  background: var(--main-soft);
+
+  color: var(--subtext);
+
+  font-size: 38rpx;
+
+}
+
+.course-modal-student {
+
+  display: flex;
+
+  align-items: center;
+
+  margin: 0 30rpx;
+
+  padding: 20rpx;
+
+  border-radius: 24rpx;
+
+  background: var(--main-soft);
+
+}
+
+.modal-student-avatar {
+
+  width: 68rpx;
+
+  height: 68rpx;
+
+  line-height: 68rpx;
+
+  text-align: center;
+
+  border-radius: 21rpx;
+
+  background: var(--main-light);
+
+  color: var(--main);
+
+  font-size: 27rpx;
+
+  font-weight: 700;
+
+}
+
+.modal-student-info {
+
+  flex: 1;
+
+  margin-left: 17rpx;
+
+}
+
+.modal-student-name {
+
+  font-size: 27rpx;
+
+  font-weight: 600;
+
+  color: var(--text);
+
+}
+
+.modal-student-sub {
+
+  margin-top: 5rpx;
+
+  font-size: 21rpx;
+
+  color: var(--subtext);
+
+}
+
+.course-count {
+
+  padding: 9rpx 16rpx;
+
+  border-radius: 18rpx;
+
+  background: var(--main-light);
+
+  color: var(--main);
+
+  font-size: 21rpx;
+
+}
+
+.course-modal-tip {
+
+  padding: 20rpx 32rpx 10rpx;
+
+  font-size: 22rpx;
+
+  color: var(--subtext);
+
+}
+
+.course-modal-list {
+
+  max-height: 48vh;
+
+  padding: 8rpx 30rpx 18rpx;
+
+  box-sizing: border-box;
+
+}
+
+.course-option {
+
+  display: flex;
+
+  align-items: center;
+
+  padding: 20rpx;
+
+  margin-bottom: 13rpx;
+
+  border: 2rpx solid var(--border);
+
+  border-radius: 24rpx;
+
+  box-sizing: border-box;
+
+}
+
+.course-option-active {
+
+  border-color: var(--main);
+
+  background: var(--main-soft);
+
+}
+
+.course-date-box {
+
+  width: 92rpx;
+
+  height: 88rpx;
+
+  flex-shrink: 0;
+
+  text-align: center;
+
+  border-radius: 20rpx;
+
+  background: var(--main-light);
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+
+}
+
+.course-date-day {
+
+  font-size: 30rpx;
+
+  font-weight: 700;
+
+  color: var(--main);
+
+}
+
+.course-date-month {
+
+  margin-top: 3rpx;
+
+  font-size: 17rpx;
+
+  color: var(--subtext);
+
+}
+
+.course-option-content {
+
+  flex: 1;
+
+  min-width: 0;
+
+  margin-left: 20rpx;
+
+}
+
+.course-option-topic {
+
+  font-size: 27rpx;
+
+  font-weight: 600;
+
+  color: var(--subtext);
+
+  white-space: nowrap;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+
+}
+
+
+/* 让开始时间和结束时间保持在同一行 */
+
+.course-option-time {
+
+  margin-top: 8rpx;
+
+  font-size: 21rpx;
+
+  color: var(--subtext);
+
+  white-space: nowrap;
+
+}
+
+.course-selected {
+
+  width: 44rpx;
+
+  height: 44rpx;
+
+  line-height: 44rpx;
+
+  text-align: center;
+
+  border-radius: 50%;
+
+  background: var(--main);
+
+  color: #ffffff;
+
+  font-size: 24rpx;
+
+}
+
+.course-modal-footer {
+
+  padding: 18rpx 30rpx 30rpx;
+
+  border-top: 2rpx solid var(--border);
+
+}
+
+.course-confirm-btn {
+
+  height: 82rpx;
+
+  line-height: 82rpx;
+
+  text-align: center;
+
+  border-radius: 42rpx;
+
+  background: var(--main);
+
+  color: #ffffff;
+
+  font-size: 28rpx;
+
+  font-weight: 600;
+
+}
+
+
+/* =========================
+   无课程
+========================= */
+
+.empty-course-card {
+
+  margin-top: 22rpx;
+
+  padding: 55rpx 35rpx 48rpx;
+
+  background: var(--card);
+
+  border-radius: 30rpx;
+
+  text-align: center;
+
+  box-shadow: 0 10rpx 30rpx var(--shadow-card);
+
+}
+
+.empty-course-icon {
+
+  width: 92rpx;
+
+  height: 92rpx;
+
+  line-height: 87rpx;
+
+  margin: 0 auto 22rpx;
+
+  border: 2rpx solid var(--border);
+
+  border-radius: 50%;
+
+  color: var(--main);
+
+  font-size: 46rpx;
+
+  font-weight: 300;
+
+}
+
+.empty-course-title {
+
+  font-size: 31rpx;
+
+  font-weight: 700;
+
+  color: var(--title);
+
+}
+
+.empty-course-desc {
+
+  margin-top: 13rpx;
+
+  padding: 0 20rpx;
+
+  line-height: 1.7;
+
+  font-size: 24rpx;
+
+  color: var(--text);
+
+}
+
+.empty-course-tip {
+
+  margin-top: 7rpx;
+
+  font-size: 22rpx;
+
+  color: var(--subtext);
+
+}
+
+.empty-course-btn {
+
+  display: block;
+
+  margin: 28rpx auto 0;
+
+  width: 270rpx;
+
+  height: 76rpx;
+
+  line-height: 76rpx;
+
+  border-radius: 40rpx;
+
+  background: var(--main);
+
+  color: #ffffff;
+
+  font-size: 25rpx;
+
+  text-align: center;
+
+}
+
+
+/* =========================
+   选择卡片
+========================= */
+
+.select-card {
+
+  margin-top: 20rpx;
+
+  padding: 28rpx;
+
+  background: var(--card);
+
+  border-radius: 28rpx;
+
+  box-shadow: 0 8rpx 25rpx var(--shadow-card);
+
+}
+
+.card-title {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+}
+
+.card-title-left {
+
+  display: flex;
+
+  align-items: center;
+
+}
+
+.card-index {
+
+  width: 48rpx;
+
+  height: 48rpx;
+
+  line-height: 48rpx;
+
+  text-align: center;
+
+  margin-right: 15rpx;
+
+  border-radius: 15rpx;
+
+  background: var(--main-light);
+
+  color: var(--main);
+
+  font-size: 18rpx;
+
+  font-weight: 700;
+
+}
+
+.card-title-main {
+
+  font-size: 28rpx;
+
+  font-weight: 700;
+
+  color: var(--title);
+
+}
+
+.card-title-sub {
+
+  margin-top: 4rpx;
+
+  font-size: 20rpx;
+
+  color: var(--subtext);
+
+}
+
+.card-action {
+
+  color: var(--main);
+
+  font-size: 22rpx;
+
+}
+
+.selected-show {
+
+  margin-top: 20rpx;
+
+  padding: 17rpx 20rpx;
+
+  border-radius: 18rpx;
+
+  background: var(--main-soft);
+
+  color: var(--selected-text);
+
+  font-size: 23rpx;
+
+  line-height: 1.6;
+
+}
+
+
+/* =========================
+   标签
+========================= */
+
+.tag-list {
+
+  display: flex;
+
+  flex-wrap: wrap;
+
+  margin-top: 20rpx;
+
+}
+
+.tag {
+
+  margin-right: 14rpx;
+
+  margin-bottom: 14rpx;
+
+  padding: 14rpx 21rpx;
+
+  border: 2rpx solid var(--border);
+
+  border-radius: 20rpx;
+
+  background: var(--card);
+
+  color: var(--tag-text);
+
+  font-size: 23rpx;
+
+  box-sizing: border-box;
+
+}
+
+.tag-active {
+
+  border-color: var(--main);
+
+  background: var(--main-light);
+
+  color: var(--main);
+
+  font-weight: 600;
+
+}
+
+.recommend-empty {
+
+  margin-top: 18rpx;
+
+  padding: 18rpx;
+
+  border-radius: 18rpx;
+
+  background: var(--main-soft);
+
+  color: var(--subtext);
+
+  text-align: center;
+
+  font-size: 22rpx;
+
+}
+
+
+/* =========================
+   教师补充
+========================= */
+
+.note-input {
+
+  width: 100%;
+
+  min-height: 190rpx;
+
+  margin-top: 20rpx;
+
+  padding: 22rpx;
+
+  box-sizing: border-box;
+
+  border-radius: 22rpx;
+
+  background: var(--input-bg);
+
+  color: var(--text);
+
+  font-size: 24rpx;
+
+  line-height: 1.7;
+
+}
+
+
+/* =========================
+   生成按钮
+========================= */
+
+.generate-btn {
+
+  height: 88rpx;
+
+  line-height: 88rpx;
+
+  margin-top: 28rpx;
+
+  border-radius: 46rpx;
+
+  background: linear-gradient(
+
+    135deg,
+
+    var(--main) 0%,
+
+    #806A9A 55%,
+
+    #9180A8 100%
+
+  );
+
+  color: #ffffff;
+
+  text-align: center;
+
+  font-size: 28rpx;
+
+  font-weight: 600;
+
+  box-shadow: 0 10rpx 25rpx var(--shadow-main);
+
+}
+
+.theme-2 .generate-btn {
+
+  background: linear-gradient(
+
+    135deg,
+
+    #7D86C9 0%,
+
+    #8885C4 55%,
+
+    #9A8FC7 100%
+
+  );
+
+}
+
+
+/* =========================
+   反馈结果
+========================= */
+
+.result-card {
+
+  margin-top: 25rpx;
+
+  padding: 30rpx;
+
+  background: var(--card);
+
+  border-radius: 30rpx;
+
+  box-shadow: 0 10rpx 30rpx var(--shadow-card);
+
+}
+
+
+/* =========================
+   结果顶部
+========================= */
+
+.result-header {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+}
+
+.result-title {
+
+  font-size: 30rpx;
+
+  font-weight: 700;
+
+  color: var(--title);
+
+}
+
+.result-subtitle {
+
+  margin-top: 6rpx;
+
+  font-size: 21rpx;
+
+  color: var(--subtext);
+
+}
+
+.result-status {
+
+  padding: 9rpx 16rpx;
+
+  border-radius: 18rpx;
+
+  background: var(--main-light);
+
+  color: var(--main);
+
+  font-size: 20rpx;
+
+}
+
+
+/* =========================
+   基本信息
+========================= */
+
+.feedback-info {
+
+  margin-top: 26rpx;
+
+  padding: 4rpx 0;
+
+}
+
+.feedback-info-row {
+
+  display: flex;
+
+  align-items: flex-start;
+
+  margin-bottom: 22rpx;
+
+}
+
+.feedback-info-row:last-child {
+
+  margin-bottom: 0;
+
+}
+
+.feedback-info-label {
+
+  width: 125rpx;
+
+  flex-shrink: 0;
+
+  font-size: 24rpx;
+
+  line-height: 1.6;
+
+  color: var(--subtext);
+
+}
+
+.feedback-info-value {
+
+  flex: 1;
+
+  min-width: 0;
+
+  font-size: 26rpx;
+
+  line-height: 1.6;
+
+  color: var(--text);
+
+  font-weight: 600;
+
+}
+
+
+/* =========================
+   分隔线
+========================= */
+
+.feedback-divider {
+
+  width: 100%;
+
+  height: 1rpx;
+
+  margin: 28rpx 0;
+
+  background: var(--border);
+
+}
+
+
+/* =========================
+   教师评价标题
+========================= */
+
+.evaluation-heading {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+}
+
+.evaluation-heading-left {
+
+  display: flex;
+
+  align-items: center;
+
+}
+
+.evaluation-dot {
+
+  width: 12rpx;
+
+  height: 12rpx;
+
+  margin-right: 12rpx;
+
+  border-radius: 50%;
+
+  background: var(--main);
+
+}
+
+.evaluation-title {
+
+  font-size: 27rpx;
+
+  font-weight: 700;
+
+  color: var(--title);
+
+}
+
+.evaluation-tip {
+
+  font-size: 21rpx;
+
+  color: var(--subtext);
+
+}
+
+
+/* =========================
+   反馈正文
+========================= */
+
+.result-content {
+
+  margin-top: 18rpx;
+
+  padding: 25rpx;
+
+  border-radius: 22rpx;
+
+  background: var(--input-bg);
+
+  color: var(--tag-text);
+
+  font-size: 25rpx;
+
+  line-height: 1.85;
+
+  white-space: pre-wrap;
+
+  box-sizing: border-box;
+
+}
+
+
+/* =========================
+   操作按钮
+========================= */
+
+.result-actions {
+
+  display: flex;
+
+  margin-top: 20rpx;
+
+}
+
+.copy-btn,
+
+.save-btn {
+
+  flex: 1;
+
+  height: 72rpx;
+
+  line-height: 72rpx;
+
+  text-align: center;
+
+  border-radius: 36rpx;
+
+  font-size: 24rpx;
+
+  box-sizing: border-box;
+
+}
+
+.copy-btn {
+
+  margin-right: 12rpx;
+
+  background: var(--main-light);
+
+  color: var(--main);
+
+}
+
+.save-btn {
+
+  background: var(--main);
+
+  color: #ffffff;
+
+}
+
+/* =========================================================
+   本节课知识点
+   教材 → 章节 → 小节
+========================================================= */
+
+.knowledge-card {
+  overflow: hidden;
+}
+
+
+/* =========================
+   已选择知识点汇总
+========================= */
+
+.selected-summary {
+  margin-top: 20rpx;
+  padding: 20rpx 22rpx;
+  border-radius: 20rpx;
+  background: var(--main-soft);
+  box-sizing: border-box;
+}
+
+.selected-summary-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.selected-summary-title {
+  font-size: 23rpx;
+  font-weight: 600;
+  color: var(--main);
+}
+
+.selected-summary-count {
+  width: 34rpx;
+  height: 34rpx;
+  line-height: 34rpx;
+  text-align: center;
+  border-radius: 50%;
+  background: var(--main);
+  color: #ffffff;
+  font-size: 20rpx;
+}
+
+.selected-summary-text {
+  margin-top: 9rpx;
+  font-size: 22rpx;
+  line-height: 1.6;
+  color: var(--selected-text);
+}
+
+
+/* =========================
+   知识选择区域
+========================= */
+
+.knowledge-selector {
+  margin-top: 24rpx;
+}
+
+
+/* =========================
+   每一步
+========================= */
+
+.knowledge-step {
+  margin-top: 22rpx;
+}
+
+.knowledge-step:first-child {
+  margin-top: 0;
+}
+
+.knowledge-step-label {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12rpx;
+}
+
+.knowledge-step-number {
+  width: 38rpx;
+  height: 38rpx;
+  line-height: 38rpx;
+  text-align: center;
+  margin-right: 12rpx;
+  border-radius: 50%;
+  background: var(--main-light);
+  color: var(--main);
+  font-size: 20rpx;
+  font-weight: 700;
+}
+
+.knowledge-step-title {
+  font-size: 24rpx;
+  font-weight: 600;
+  color: var(--text);
+}
+
+
+/* =========================
+   教材 / 章节选择框
+========================= */
+
+.knowledge-select-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 82rpx;
+  padding: 18rpx 20rpx;
+  border: 2rpx solid var(--border);
+  border-radius: 20rpx;
+  background: var(--card);
+  box-sizing: border-box;
+}
+
+.knowledge-select-left {
+  flex: 1;
+  min-width: 0;
+}
+
+.knowledge-select-label {
+  font-size: 19rpx;
+  color: var(--subtext);
+}
+
+.knowledge-select-value {
+  margin-top: 5rpx;
+  font-size: 25rpx;
+  line-height: 1.45;
+  font-weight: 600;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.knowledge-select-arrow {
+  flex-shrink: 0;
+  width: 40rpx;
+  height: 40rpx;
+  line-height: 37rpx;
+  text-align: center;
+  margin-left: 15rpx;
+  color: var(--main);
+  font-size: 34rpx;
+}
+
+
+/* =========================
+   教材 / 章节下拉列表
+========================= */
+
+.knowledge-option-list {
+  margin-top: 10rpx;
+  padding: 8rpx;
+  border-radius: 20rpx;
+  background: var(--main-soft);
+  box-sizing: border-box;
+}
+
+.knowledge-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 76rpx;
+  padding: 15rpx 16rpx;
+  margin-bottom: 6rpx;
+  border-radius: 17rpx;
+  box-sizing: border-box;
+}
+
+.knowledge-option:last-child {
+  margin-bottom: 0;
+}
+
+.knowledge-option-active {
+  background: var(--card);
+  box-shadow: 0 5rpx 16rpx var(--shadow-card);
+}
+
+.knowledge-option-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.knowledge-option-title {
+  font-size: 24rpx;
+  line-height: 1.45;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.knowledge-option-sub {
+  margin-top: 4rpx;
+  font-size: 19rpx;
+  color: var(--subtext);
+}
+
+.knowledge-option-check {
+  flex-shrink: 0;
+  width: 38rpx;
+  height: 38rpx;
+  line-height: 38rpx;
+  margin-left: 12rpx;
+  border-radius: 50%;
+  text-align: center;
+  background: var(--main);
+  color: #ffffff;
+  font-size: 20rpx;
+}
+
+
+/* =========================
+   小节提示
+========================= */
+
+.knowledge-section-tip {
+  margin-left: 50rpx;
+  margin-top: -5rpx;
+  margin-bottom: 12rpx;
+  font-size: 19rpx;
+  color: var(--subtext);
+}
+
+
+/* =========================
+   小节列表
+========================= */
+
+.section-list {
+  padding: 8rpx;
+  border-radius: 20rpx;
+  background: var(--main-soft);
+  box-sizing: border-box;
+}
+
+.section-option {
+  display: flex;
+  align-items: center;
+  min-height: 76rpx;
+  padding: 16rpx 15rpx;
+  margin-bottom: 7rpx;
+  border: 2rpx solid transparent;
+  border-radius: 17rpx;
+  background: var(--card);
+  box-sizing: border-box;
+}
+
+.section-option:last-child {
+  margin-bottom: 0;
+}
+
+.section-option-active {
+  border-color: var(--main);
+  background: var(--main-light);
+}
+
+
+/* =========================
+   小节选择框
+========================= */
+
+.section-check {
+  width: 38rpx;
+  height: 38rpx;
+  flex-shrink: 0;
+  margin-right: 14rpx;
+  border: 2rpx solid var(--border);
+  border-radius: 50%;
+  box-sizing: border-box;
+  background: var(--card);
+}
+
+.section-check-active {
+  width: 38rpx;
+  height: 38rpx;
+  line-height: 38rpx;
+  text-align: center;
+  border-radius: 50%;
+  background: var(--main);
+  color: #ffffff;
+  font-size: 20rpx;
+  font-weight: 600;
+}
+
+.section-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.section-name {
+  font-size: 24rpx;
+  line-height: 1.5;
+  color: var(--tag-text);
+}
+
+.section-option-active .section-name {
+  color: var(--main);
+  font-weight: 600;
+}
+
+
+/* =========================
+   空状态
+========================= */
+
+.knowledge-empty {
+  padding: 28rpx 20rpx;
+  border-radius: 18rpx;
+  background: var(--main-soft);
+  text-align: center;
+  color: var(--subtext);
+  font-size: 22rpx;
+}

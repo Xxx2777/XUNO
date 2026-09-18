@@ -1,0 +1,309 @@
+<view class="page theme-{{themeMode}}">
+
+<!-- 顶部 -->
+<view class="header">
+
+  <view class="header-title">
+    Settings
+  </view>
+
+  <view class="header-desc">
+    Manage preferences and data
+  </view>
+
+</view>
+
+
+<!-- Preferences -->
+<view class="section">
+
+  <view class="section-title">
+    Preferences
+  </view>
+
+
+  <view
+    class="setting-card"
+    bindtap="goProfile"
+    hover-class="setting-hover"
+    hover-stay-time="80"
+  >
+
+    <view class="setting-icon">
+      <view class="icon icon-user"></view>
+    </view>
+
+    <view class="setting-content">
+
+      <view class="setting-title">
+        Profile
+      </view>
+
+      <view class="setting-desc">
+        Manage your profile
+      </view>
+
+    </view>
+
+    <view class="setting-arrow">
+      <view class="icon icon-chevron-right"></view>
+    </view>
+
+  </view>
+
+
+  <view
+    class="setting-card"
+    bindtap="goTheme"
+    hover-class="setting-hover"
+    hover-stay-time="80"
+  >
+
+    <view class="setting-icon">
+      <view class="icon icon-palette"></view>
+    </view>
+
+    <view class="setting-content">
+
+      <view class="setting-title">
+        Theme
+      </view>
+
+      <view class="setting-desc">
+        Current: {{themeName}}
+      </view>
+
+    </view>
+
+    <view class="setting-arrow">
+      <view class="icon icon-chevron-right"></view>
+    </view>
+
+  </view>
+
+</view>
+
+
+<!-- Data Management -->
+<view class="section">
+
+  <view class="section-title">
+    Data Management
+  </view>
+
+
+  <!-- 最近备份 -->
+  <view class="backup-info" wx:if="{{lastBackupText}}">
+    Last backup: {{lastBackupText}}
+  </view>
+
+
+  <!-- Backup Data -->
+  <view
+    class="setting-card"
+    bindtap="exportData"
+    hover-class="setting-hover"
+    hover-stay-time="80"
+  >
+
+    <view class="setting-icon">
+      <view class="icon icon-download"></view>
+    </view>
+
+    <view class="setting-content">
+
+      <view class="setting-title">
+        Backup Data
+      </view>
+
+      <view class="setting-desc">
+        Export all data to clipboard
+      </view>
+
+    </view>
+
+    <view class="setting-arrow">
+      <view class="icon icon-chevron-right"></view>
+    </view>
+
+  </view>
+
+
+  <!-- Restore Data -->
+  <view
+    class="setting-card"
+    bindtap="openImport"
+    hover-class="setting-hover"
+    hover-stay-time="80"
+  >
+
+    <view class="setting-icon">
+      <view class="icon icon-upload"></view>
+    </view>
+
+    <view class="setting-content">
+
+      <view class="setting-title">
+        Restore Data
+      </view>
+
+      <view class="setting-desc">
+        Paste a backup to restore
+      </view>
+
+    </view>
+
+    <view class="setting-arrow">
+      <view class="icon icon-chevron-right"></view>
+    </view>
+
+  </view>
+
+
+  <view
+    class="setting-card"
+    bindtap="clearCache"
+    hover-class="setting-hover"
+    hover-stay-time="80"
+  >
+
+    <view class="setting-icon">
+      <view class="icon icon-trash"></view>
+    </view>
+
+    <view class="setting-content">
+
+      <view class="setting-title">
+        Clear Cache
+      </view>
+
+      <view class="setting-desc">
+        Clear temporary data
+      </view>
+
+    </view>
+
+    <view class="setting-arrow">
+      <view class="icon icon-chevron-right"></view>
+    </view>
+
+  </view>
+
+</view>
+
+
+<!-- About -->
+<view class="section">
+
+  <view class="section-title">
+    About
+  </view>
+
+
+  <view
+    class="setting-card"
+    bindtap="goAbout"
+    hover-class="setting-hover"
+    hover-stay-time="80"
+  >
+
+    <view class="setting-icon">
+      <view class="icon icon-info"></view>
+    </view>
+
+    <view class="setting-content">
+
+      <view class="setting-title">
+        About XUNO
+      </view>
+
+      <view class="setting-desc">
+        App information
+      </view>
+
+    </view>
+
+    <view class="setting-arrow">
+      <view class="icon icon-chevron-right"></view>
+    </view>
+
+  </view>
+
+</view>
+
+
+<!-- 版本 -->
+<view class="version">
+  XUNO · Version 1.0.0
+</view>
+
+
+<!-- 导入面板 -->
+<view class="import-mask" wx:if="{{showImport}}" bindtap="closeImport">
+  <view class="import-panel" catchtap="noop">
+
+    <view class="import-title">
+      Restore Data
+    </view>
+
+    <view class="import-warn">
+      Restoring will overwrite all data
+    </view>
+
+    <textarea
+      class="import-textarea"
+      placeholder="Paste backup JSON"
+      value="{{importText}}"
+      bindinput="inputImport"
+    ></textarea>
+
+    <view class="import-actions">
+      <view class="import-btn" bindtap="closeImport">Cancel</view>
+      <view class="import-btn import-btn-primary" bindtap="confirmImport">Restore</view>
+    </view>
+
+  </view>
+</view>
+
+
+<!-- Profile编辑面板 -->
+<view class="import-mask" wx:if="{{showProfile}}" bindtap="closeProfile">
+  <view class="import-panel" catchtap="noop">
+
+    <view class="import-title">
+      Profile
+    </view>
+
+    <view class="profile-field">
+      <view class="profile-label">Nickname</view>
+      <input
+        class="profile-input"
+        value="{{profileNickname}}"
+        placeholder="Enter a nickname"
+        bindinput="inputNickname"
+      />
+    </view>
+
+    <view class="profile-field">
+      <view class="profile-label">Daily Study Target</view>
+      <view class="profile-target-row">
+        <input
+          class="profile-input profile-input-target"
+          type="number"
+          value="{{profileStudyTarget}}"
+          placeholder="60"
+          bindinput="inputStudyTarget"
+        />
+        <view class="profile-unit">min</view>
+      </view>
+    </view>
+
+    <view class="import-actions">
+      <view class="import-btn" bindtap="closeProfile">Cancel</view>
+      <view class="import-btn import-btn-primary" bindtap="saveProfile">Save</view>
+    </view>
+
+  </view>
+</view>
+
+</view>

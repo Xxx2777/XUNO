@@ -1,0 +1,842 @@
+<view class="page {{themeClass}}">
+
+
+<!-- =========================
+     课程主卡片
+========================= -->
+
+<view class="course-hero">
+
+  <view class="hero-top">
+
+    <view class="hero-avatar">
+      {{course.student ? course.student.substring(0,1) : "S"}}
+    </view>
+
+    <view class="hero-info">
+
+      <view class="hero-name">
+        {{course.student || "Student"}}
+      </view>
+
+      <view class="hero-grade">
+        {{gradeText || "Student"}} · {{subjectText || "Chemistry"}}
+      </view>
+
+    </view>
+
+    <view
+      class="status-badge"
+      bindtap="openStatusPanel"
+    >
+      {{courseStatus}}
+    </view>
+
+  </view>
+
+
+  <view class="hero-divider"></view>
+
+
+  <!-- =========================
+       日期 + 时间
+  ========================== -->
+
+  <view class="course-info-grid">
+
+    <view class="info-item">
+
+      <view class="info-label">
+        Class Date
+      </view>
+
+      <view class="info-value">
+        {{courseDateText}}
+      </view>
+
+    </view>
+
+
+    <view class="info-item">
+
+      <view class="info-label">
+        Class Time
+      </view>
+
+      <view class="time-row">
+
+        <view class="time-value">
+
+          {{courseStartTime || course.time || "TBD"}}
+
+          <text wx:if="{{courseEndTime}}">- {{courseEndTime}}
+          </text>
+
+        </view>
+
+        <view
+          class="time-edit-link"
+          bindtap="openTimeEditor"
+        >
+          Adjust Time
+        </view>
+
+      </view>
+
+    </view>
+
+  </view>
+
+</view>
+
+
+<!-- =========================
+     时间编辑
+========================= -->
+
+<view
+  wx:if="{{showTimeEditor}}"
+  class="time-editor-card"
+>
+
+  <view class="time-editor-header">
+
+    <view>
+
+      <view class="time-editor-title">
+        Adjust Class Time
+      </view>
+
+      <view class="time-editor-desc">
+        Changes will sync to Today, Calendar, and records
+      </view>
+
+    </view>
+
+  </view>
+
+
+  <view class="time-picker-row">
+
+    <view class="time-picker-item">
+
+      <view class="time-picker-label">
+        Start Time
+      </view>
+
+      <picker
+        mode="time"
+        value="{{editStartTime}}"
+        bindchange="changeStartTime"
+      >
+
+        <view class="time-picker-box">
+
+          <text>
+            {{editStartTime}}
+          </text>
+
+          <text class="time-picker-arrow">
+            ›
+          </text>
+
+        </view>
+
+      </picker>
+
+    </view>
+
+
+    <view class="time-separator">
+      -
+    </view>
+
+
+    <view class="time-picker-item">
+
+      <view class="time-picker-label">
+        End Time
+      </view>
+
+      <picker
+        mode="time"
+        value="{{editEndTime}}"
+        bindchange="changeEndTime"
+      >
+
+        <view class="time-picker-box">
+
+          <text>
+            {{editEndTime}}
+          </text>
+
+          <text class="time-picker-arrow">
+            ›
+          </text>
+
+        </view>
+
+      </picker>
+
+    </view>
+
+  </view>
+
+
+  <view class="time-editor-buttons">
+
+    <view
+      class="time-cancel-button"
+      bindtap="closeTimeEditor"
+    >
+      Cancel
+    </view>
+
+    <view
+      class="time-save-button"
+      bindtap="saveCourseTime"
+    >
+      Save Time
+    </view>
+
+  </view>
+
+</view>
+
+
+<!-- =========================
+     状态管理
+========================= -->
+
+<view class="status-manage-card">
+
+  <view class="status-manage-left">
+
+    <view class="status-manage-title">
+      Class Status
+    </view>
+
+    <view class="status-manage-desc">
+      Current: {{courseStatus}}
+    </view>
+
+  </view>
+
+
+  <view
+    class="status-change-button"
+    bindtap="openStatusPanel"
+  >
+    Change Status
+  </view>
+
+</view>
+
+
+<!-- =========================
+     状态选择面板
+========================= -->
+
+<view
+  wx:if="{{showStatusPanel}}"
+  class="status-panel"
+>
+
+  <view class="status-panel-title">
+    Select Class Status
+  </view>
+
+  <view class="status-panel-desc">
+    Changes will sync to your records
+  </view>
+
+
+  <view
+    class="status-option"
+    bindtap="selectStatus"
+    data-status="待开始"
+  >
+
+    <view class="status-option-icon waiting">
+      <view class="icon icon-clock"></view>
+    </view>
+
+    <view class="status-option-content">
+
+      <view class="status-option-title">
+        Upcoming
+      </view>
+
+      <view class="status-option-desc">
+        The lesson has not started yet
+      </view>
+
+    </view>
+
+    <view
+      wx:if="{{courseStatus === 'Upcoming'}}"
+      class="status-selected"
+    >
+      <view class="icon icon-check"></view>
+    </view>
+
+  </view>
+
+
+  <view
+    class="status-option"
+    bindtap="selectStatus"
+    data-status="已完成"
+  >
+
+    <view class="status-option-icon completed">
+      <view class="icon icon-check-circle"></view>
+    </view>
+
+    <view class="status-option-content">
+
+      <view class="status-option-title">
+        Completed
+      </view>
+
+      <view class="status-option-desc">
+        This lesson has been completed
+      </view>
+
+    </view>
+
+    <view
+      wx:if="{{courseStatus === 'Completed'}}"
+      class="status-selected"
+    >
+      <view class="icon icon-check"></view>
+    </view>
+
+  </view>
+
+
+  <view
+    class="status-option"
+    bindtap="selectStatus"
+    data-status="学生请假"
+  >
+
+    <view class="status-option-icon leave">
+      <view class="icon icon-alert"></view>
+    </view>
+
+    <view class="status-option-content">
+
+      <view class="status-option-title">
+        On Leave
+      </view>
+
+      <view class="status-option-desc">
+        The student cannot attend this lesson
+      </view>
+
+    </view>
+
+    <view
+      wx:if="{{courseStatus === 'On Leave'}}"
+      class="status-selected"
+    >
+      <view class="icon icon-check"></view>
+    </view>
+
+  </view>
+
+
+  <view
+    class="status-option"
+    bindtap="selectStatus"
+    data-status="已取消"
+  >
+
+    <view class="status-option-icon cancel">
+      <view class="icon icon-x-circle"></view>
+    </view>
+
+    <view class="status-option-content">
+
+      <view class="status-option-title">
+        Cancelled
+      </view>
+
+      <view class="status-option-desc">
+        This lesson has been cancelled
+      </view>
+
+    </view>
+
+    <view
+      wx:if="{{courseStatus === 'Cancelled'}}"
+      class="status-selected"
+    >
+      <view class="icon icon-check"></view>
+    </view>
+
+  </view>
+
+
+  <view
+    class="status-close-button"
+    bindtap="closeStatusPanel"
+  >
+    Cancel
+  </view>
+
+</view>
+
+
+<!-- =========================
+     Leave Reason
+========================= -->
+
+<view
+  wx:if="{{showLeaveReason}}"
+  class="leave-card"
+>
+
+  <view class="leave-title">
+    On Leave
+  </view>
+
+  <view class="leave-desc">
+    Add a reason for this leave
+  </view>
+
+  <textarea
+    class="leave-input"
+    placeholder="e.g. Student is unwell, school event, etc."
+    value="{{leaveReason}}"
+    bindinput="inputLeaveReason"
+  ></textarea>
+
+  <view class="leave-buttons">
+
+    <view
+      class="leave-cancel"
+      bindtap="cancelLeaveReason"
+    >
+      Cancel
+    </view>
+
+    <view
+      class="leave-save"
+      bindtap="saveLeaveReason"
+    >
+      Save Leave
+    </view>
+
+  </view>
+
+</view>
+
+
+<!-- =========================
+     请假信息
+========================= -->
+
+<view
+  wx:if="{{courseStatus === 'On Leave' && leaveReason}}"
+  class="leave-info-card"
+>
+
+  <view class="leave-info-icon">
+    <view class="icon icon-alert"></view>
+  </view>
+
+  <view class="leave-info-content">
+
+    <view class="leave-info-title">
+      Leave Reason
+    </view>
+
+    <view class="leave-info-text">
+      {{leaveReason}}
+    </view>
+
+  </view>
+
+</view>
+
+
+<!-- =========================
+     This Lesson
+========================= -->
+
+<view class="section-card">
+
+  <view class="section-title-row">
+
+    <view class="section-title">
+      This Lesson
+    </view>
+
+    <view class="section-title-actions">
+
+      <view class="subject-tag">
+        Chemistry
+      </view>
+
+      <view
+        class="section-edit-button"
+        bindtap="openTopicEditor"
+      >
+        Edit Content
+      </view>
+
+    </view>
+
+  </view>
+
+
+  <view class="topic-box">
+
+    <view class="topic-label">
+      Lesson Content
+    </view>
+
+
+    <view
+      wx:if="{{!showTopicEditor}}"
+      class="topic-display"
+    >
+
+      <view class="topic-text">
+        {{course.topic || "No lesson content yet"}}
+      </view>
+
+    </view>
+
+
+    <view
+      wx:if="{{showTopicEditor}}"
+      class="topic-editor"
+    >
+
+      <textarea
+        class="topic-input"
+        placeholder="Enter the lesson content"
+        value="{{courseTopic}}"
+        bindinput="inputCourseTopic"
+      ></textarea>
+
+
+      <view class="topic-editor-buttons">
+
+        <view
+          class="topic-cancel"
+          bindtap="closeTopicEditor"
+        >
+          Cancel
+        </view>
+
+        <view
+          class="topic-save"
+          bindtap="saveCourseTopic"
+        >
+          Save Content
+        </view>
+
+      </view>
+
+    </view>
+
+  </view>
+
+
+  <view
+    wx:if="{{course.repeat}}"
+    class="repeat-info"
+  >
+
+    <view class="repeat-icon">
+      <view class="icon icon-refresh"></view>
+    </view>
+
+    <view>
+      Recurring Lesson
+    </view>
+
+  </view>
+
+</view>
+
+
+<!-- =========================
+     Class Notes
+========================= -->
+
+<view class="section-card">
+
+  <view class="section-title-row">
+
+    <view class="section-title">
+      Class Notes
+    </view>
+
+    <view
+      wx:if="{{courseNote}}"
+      class="saved-label"
+    >
+      Recorded
+    </view>
+
+  </view>
+
+
+  <view
+    wx:if="{{courseNote && !showNoteEditor}}"
+    class="note-content"
+  >
+
+    <view class="note-text">
+      {{courseNote}}
+    </view>
+
+    <view
+      class="outline-button"
+      bindtap="openNoteEditor"
+    >
+      Edit Notes
+    </view>
+
+  </view>
+
+
+  <view
+    wx:if="{{!courseNote && !showNoteEditor}}"
+    class="empty-note"
+  >
+
+    <view class="empty-note-icon">
+      <view class="icon icon-file-text"></view>
+    </view>
+
+    <view class="empty-note-title">
+      No class notes yet
+    </view>
+
+    <view class="empty-note-desc">
+      Add any special notes from class
+    </view>
+
+    <view
+      class="primary-small-button"
+      bindtap="openNoteEditor"
+    >
+      Add Notes
+    </view>
+
+  </view>
+
+
+  <view
+    wx:if="{{showNoteEditor}}"
+    class="note-editor"
+  >
+
+    <textarea
+      class="note-input"
+      placeholder="e.g. Focused on redox reactions today"
+      value="{{courseNote}}"
+      bindinput="inputCourseNote"
+    ></textarea>
+
+
+    <view class="note-editor-buttons">
+
+      <view
+        class="note-cancel"
+        bindtap="closeNoteEditor"
+      >
+        Cancel
+      </view>
+
+      <view
+        class="primary-small-button note-save"
+        bindtap="saveCourseNote"
+      >
+        Save Notes
+      </view>
+
+    </view>
+
+  </view>
+
+</view>
+
+
+<!-- =========================
+     作业
+========================= -->
+
+<view class="section-card">
+
+  <view class="section-title-row">
+
+    <view class="section-title">
+      Homework
+    </view>
+
+    <view
+      wx:if="{{homeworkSaved}}"
+      class="saved-label"
+    >
+      Saved
+    </view>
+
+  </view>
+
+
+  <view
+    wx:if="{{homeworkSaved && !showHomework}}"
+    class="homework-content"
+  >
+
+    <view class="homework-text">
+      {{homework}}
+    </view>
+
+    <view
+      class="outline-button"
+      bindtap="editHomework"
+    >
+      Edit Homework
+    </view>
+
+  </view>
+
+
+  <view
+    wx:if="{{!homeworkSaved && !showHomework}}"
+    class="empty-homework"
+  >
+
+    <view class="homework-empty-icon">
+      <view class="icon icon-clipboard"></view>
+    </view>
+
+    <view class="empty-homework-title">
+      No homework assigned yet
+    </view>
+
+    <view class="empty-homework-desc">
+      Record the homework for this lesson
+    </view>
+
+    <view
+      class="primary-small-button"
+      bindtap="startHomework"
+    >
+      Add Homework
+    </view>
+
+  </view>
+
+
+  <view
+    wx:if="{{showHomework}}"
+    class="homework-editor"
+  >
+
+    <textarea
+      class="homework-input"
+      placeholder="Enter the homework content"
+      value="{{homework}}"
+      bindinput="inputHomework"
+    ></textarea>
+
+
+    <view
+      class="primary-small-button"
+      bindtap="saveHomework"
+    >
+      Save Homework
+    </view>
+
+  </view>
+
+</view>
+
+
+<!-- =========================
+     Teaching Record
+========================= -->
+
+<view class="section-card">
+
+  <view class="section-title">
+    Teaching Record
+  </view>
+
+
+  <view
+    class="action-card"
+    bindtap="goFeedback"
+  >
+
+    <view class="action-icon feedback-icon">
+      <view class="icon icon-message"></view>
+    </view>
+
+    <view class="action-content">
+
+      <view class="action-title">
+        Class Feedback
+      </view>
+
+      <view class="action-desc">
+        Record performance and generate feedback
+      </view>
+
+    </view>
+
+    <view class="action-arrow">
+      <view class="icon icon-chevron-right"></view>
+    </view>
+
+  </view>
+
+
+  <view
+    class="action-card"
+    bindtap="goHomeworkEvaluation"
+  >
+
+    <view class="action-icon homework-icon">
+      <view class="icon icon-clipboard"></view>
+    </view>
+
+    <view class="action-content">
+
+      <view class="action-title">
+        Homework Review
+      </view>
+
+      <view class="action-desc">
+        Record homework completion and review
+      </view>
+
+    </view>
+
+    <view class="action-arrow">
+      <view class="icon icon-chevron-right"></view>
+    </view>
+
+  </view>
+
+</view>
+
+
+<!-- =========================
+     底部
+========================= -->
+
+<view class="bottom-tip">
+  XUNO · Course Management
+</view>
+
+</view>

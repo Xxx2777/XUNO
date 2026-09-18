@@ -1,0 +1,561 @@
+page {
+  background: var(--theme-background);
+}
+
+.page {
+  min-height: 100vh;
+  padding: 30rpx 32rpx 80rpx;
+  box-sizing: border-box;
+  background: var(--theme-background);
+}
+
+
+/* 卡片 */
+
+.card {
+  padding: 28rpx 26rpx;
+  margin-bottom: 22rpx;
+  border-radius: 24rpx;
+  background: #FFFFFF;
+  box-shadow: 0 8rpx 24rpx rgba(50, 38, 70, 0.05);
+  box-sizing: border-box;
+}
+
+.card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.card-title {
+  flex: 1;
+  min-width: 0;
+  font-size: 32rpx;
+  font-weight: 700;
+  color: #332D3A;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.tag {
+  flex-shrink: 0;
+  margin-left: 16rpx;
+  padding: 4rpx 14rpx;
+  border-radius: 999rpx;
+  font-size: 21rpx;
+}
+
+.type-tag {
+  background: #EEE9F4;
+  color: #765B91;
+}
+
+.card-desc {
+  margin-top: 12rpx;
+  font-size: 24rpx;
+  color: #9B93A2;
+  line-height: 1.5;
+}
+
+
+/* 元信息 */
+
+.meta-row {
+  margin-top: 24rpx;
+  display: flex;
+}
+
+.meta-item {
+  flex: 1;
+}
+
+.meta-label {
+  font-size: 20rpx;
+  color: #9B93A2;
+}
+
+.meta-value {
+  margin-top: 8rpx;
+  font-size: 25rpx;
+  font-weight: 600;
+  color: #4A4251;
+}
+
+.meta-value.status-active {
+  color: #765B91;
+}
+
+.meta-value.status-done {
+  color: #6F9B7A;
+}
+
+.meta-value.status-paused {
+  color: #9B93A2;
+}
+
+
+/* 进度 */
+
+.progress-block {
+  padding: 6rpx 0;
+}
+
+.progress-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.progress-label {
+  font-size: 23rpx;
+  color: #6E6678;
+}
+
+.progress-value {
+  font-size: 25rpx;
+  font-weight: 700;
+  color: #765B91;
+}
+
+.progress-bg {
+  height: 14rpx;
+  margin-top: 14rpx;
+  border-radius: 20rpx;
+  background: #EEE9F4;
+  overflow: hidden;
+}
+
+.progress-inner {
+  height: 100%;
+  border-radius: 20rpx;
+  background: #765B91;
+  transition: width 0.3s ease;
+}
+
+.divider {
+  height: 1rpx;
+  margin: 24rpx 0;
+  background: #F1EEF4;
+}
+
+
+/* 统计 */
+
+.stats-card {
+  display: flex;
+  align-items: center;
+}
+
+.stat-item {
+  flex: 1;
+  text-align: center;
+}
+
+.stat-number {
+  font-size: 30rpx;
+  font-weight: 700;
+  color: #4A4251;
+}
+
+.stat-label {
+  margin-top: 6rpx;
+  font-size: 21rpx;
+  color: #9B93A2;
+}
+
+
+/* 区块 */
+
+.section {
+  margin-top: 38rpx;
+}
+
+.section-title {
+  font-size: 30rpx;
+  font-weight: 700;
+  color: #342E3B;
+  margin-bottom: 18rpx;
+}
+
+
+/* 任务列表 */
+
+.task-list {
+  border-radius: 24rpx;
+  background: #FFFFFF;
+  box-shadow: 0 6rpx 20rpx rgba(50, 38, 70, 0.04);
+  overflow: hidden;
+}
+
+.task-item {
+  display: flex;
+  align-items: center;
+  min-height: 88rpx;
+  padding: 18rpx 22rpx;
+  box-sizing: border-box;
+  border-bottom: 1rpx solid #F1EEF4;
+}
+
+.task-item:last-child {
+  border-bottom: none;
+}
+
+.task-check {
+  flex: none;
+  width: 38rpx;
+  height: 38rpx;
+  margin-right: 18rpx;
+  border: 3rpx solid #D8D1DD;
+  border-radius: 50%;
+  box-sizing: border-box;
+}
+
+.task-check.active {
+  background: linear-gradient(135deg, #765B91, #9180A8);
+  border-color: #765B91;
+}
+
+.task-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.task-text {
+  color: #4A4251;
+  font-size: 26rpx;
+  line-height: 1.5;
+  word-break: break-all;
+}
+
+.task-text.completed {
+  color: #AAA3AE;
+  text-decoration: line-through;
+}
+
+.task-meta {
+  margin-top: 8rpx;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.priority-high {
+  background: #F7ECEE;
+  color: #B96B73;
+}
+
+.priority-medium {
+  background: #F8F1E5;
+  color: #B98A4E;
+}
+
+.priority-low {
+  background: #EAF1EC;
+  color: #5E8668;
+}
+
+.deadline-tag {
+  background: #EEE9F4;
+  color: #765B91;
+}
+
+.deadline-tag.overdue {
+  background: #F7ECEE;
+  color: #B96B73;
+}
+
+.overdue-tag {
+  background: #B96B73;
+  color: #FFFFFF;
+}
+
+
+/* 学习列表 */
+
+.learning-list {
+  border-radius: 24rpx;
+  background: #FFFFFF;
+  box-shadow: 0 6rpx 20rpx rgba(50, 38, 70, 0.04);
+  overflow: hidden;
+}
+
+.learning-item {
+  padding: 20rpx 24rpx;
+  border-bottom: 1rpx solid #F1EEF4;
+}
+
+.learning-item:last-child {
+  border-bottom: none;
+}
+
+.learning-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.learning-type {
+  font-size: 26rpx;
+  font-weight: 600;
+  color: #4A4251;
+}
+
+.learning-minutes {
+  font-size: 24rpx;
+  font-weight: 700;
+  color: #765B91;
+}
+
+.learning-date {
+  margin-top: 8rpx;
+  font-size: 20rpx;
+  color: #A19AA8;
+}
+
+.learning-topic {
+  margin-top: 6rpx;
+  font-size: 23rpx;
+  color: #6E6678;
+}
+
+.learning-content {
+  margin-top: 6rpx;
+  font-size: 21rpx;
+  color: #9B93A2;
+  line-height: 1.5;
+}
+
+
+/* 空状态 */
+
+.mini-empty {
+  padding: 40rpx 20rpx;
+  text-align: center;
+  font-size: 23rpx;
+  color: #A19AA8;
+  border-radius: 24rpx;
+  background: #FFFFFF;
+  box-shadow: 0 6rpx 20rpx rgba(50, 38, 70, 0.04);
+}
+
+
+/* 操作按钮 */
+
+.action-bar {
+  margin-top: 40rpx;
+  display: flex;
+}
+
+.action-btn {
+  flex: 1;
+  height: 84rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 24rpx;
+  font-size: 27rpx;
+  font-weight: 600;
+}
+
+.action-btn.edit {
+  background: #765B91;
+  color: #FFFFFF;
+}
+
+.action-btn.danger {
+  margin-left: 20rpx;
+  background: #F7ECEE;
+  color: #B96B73;
+}
+
+
+/* 页面空状态 */
+
+.empty {
+  margin-top: 100rpx;
+  text-align: center;
+}
+
+.empty-icon {
+  width: 88rpx;
+  height: 88rpx;
+  margin: 0 auto 20rpx;
+  border-radius: 24rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #EEE9F4;
+  color: #765B91;
+  font-size: 32rpx;
+  font-weight: 700;
+}
+
+.empty-title {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #403849;
+}
+
+.empty-desc {
+  margin-top: 10rpx;
+  font-size: 23rpx;
+  color: #9B93A2;
+}
+
+.empty-btn {
+  margin: 30rpx auto 0;
+  width: 240rpx;
+  padding: 18rpx 0;
+  border-radius: 24rpx;
+  background: #765B91;
+  color: #FFFFFF;
+  font-size: 26rpx;
+  font-weight: 600;
+}
+
+
+/* 编辑面板 */
+
+.mask {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(30, 22, 40, 0.45);
+  display: flex;
+  align-items: flex-end;
+  z-index: 200;
+}
+
+.editor {
+  width: 100%;
+  max-height: 85vh;
+  padding: 30rpx 32rpx 40rpx;
+  border-radius: 30rpx 30rpx 0 0;
+  background: #FFFFFF;
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+
+.editor-title {
+  text-align: center;
+  font-size: 30rpx;
+  font-weight: 700;
+  color: #332D3A;
+  margin-bottom: 24rpx;
+}
+
+.field {
+  margin-bottom: 22rpx;
+}
+
+.field-label {
+  font-size: 23rpx;
+  color: #6E6678;
+  margin-bottom: 10rpx;
+}
+
+.field-input {
+  height: 78rpx;
+  padding: 0 20rpx;
+  border-radius: 16rpx;
+  background: #F5F2F8;
+  font-size: 26rpx;
+  color: #332D3A;
+}
+
+.field-textarea {
+  width: 100%;
+  height: 120rpx;
+  padding: 16rpx 20rpx;
+  border-radius: 16rpx;
+  background: #F5F2F8;
+  font-size: 25rpx;
+  color: #332D3A;
+  box-sizing: border-box;
+}
+
+.field-row {
+  display: flex;
+}
+
+.field.half {
+  flex: 1;
+}
+
+.field.half + .field.half {
+  margin-left: 20rpx;
+}
+
+.picker-value {
+  height: 78rpx;
+  padding: 0 20rpx;
+  border-radius: 16rpx;
+  background: #F5F2F8;
+  font-size: 26rpx;
+  color: #332D3A;
+  line-height: 78rpx;
+}
+
+.editor-actions {
+  margin-top: 30rpx;
+  display: flex;
+}
+
+.editor-btn {
+  flex: 1;
+  height: 80rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20rpx;
+  font-size: 27rpx;
+  font-weight: 600;
+}
+
+.editor-btn.cancel {
+  background: #F0EDF4;
+  color: #6E6678;
+}
+
+.editor-btn.save {
+  margin-left: 20rpx;
+  background: #765B91;
+  color: #FFFFFF;
+}
+
+
+/* 主题 2 */
+
+.theme-2 {
+  background: #F6F7FB;
+}
+
+.theme-2 .type-tag,
+.theme-2 .progress-value,
+.theme-2 .learning-minutes,
+.theme-2 .meta-value.status-active {
+  color: #7D86C9;
+}
+
+.theme-2 .type-tag,
+.theme-2 .deadline-tag {
+  background: #EEF0FA;
+}
+
+.theme-2 .progress-bg {
+  background: #EEF0FA;
+}
+
+.theme-2 .progress-inner,
+.theme-2 .action-btn.edit,
+.theme-2 .editor-btn.save,
+.theme-2 .empty-btn {
+  background: #7D86C9;
+}
+
+.theme-2 .empty-icon {
+  background: #EEF0FA;
+  color: #7D86C9;
+}

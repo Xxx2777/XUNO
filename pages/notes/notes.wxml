@@ -1,0 +1,62 @@
+<view class="page {{themeClass}}">
+
+  <!-- 搜索 + 新建 -->
+  <view class="search-row">
+    <view class="search-card">
+      <input
+        class="search-input"
+        value="{{keyword}}"
+        placeholder="Search titles or content"
+        bindinput="inputKeyword"
+        confirm-type="search"
+      />
+      <view wx:if="{{keyword}}" class="search-clear" bindtap="clearKeyword"><view class="icon icon-x"></view></view>
+    </view>
+    <view class="create-link" bindtap="openCreate">+ New</view>
+  </view>
+
+  <!-- 类型筛选 -->
+  <scroll-view class="filter-bar" scroll-x="true">
+    <view
+      wx:for="{{typeOptions}}"
+      wx:key="*this"
+      wx:for-index="index"
+      class="filter-item {{typeFilter === typeValues[index] ? 'active' : ''}}"
+      bindtap="changeTypeFilter"
+      data-index="{{index}}"
+    >{{item}}</view>
+  </scroll-view>
+
+  <!-- 笔记列表 -->
+  <block wx:if="{{hasNotes}}">
+    <view
+      wx:for="{{noteList}}"
+      wx:key="id"
+      class="note-card"
+      bindtap="openNote"
+      data-id="{{item.id}}"
+    >
+      <view class="note-title">{{item.title}}</view>
+
+      <view class="note-meta">
+        <text class="note-type">{{item.typeText}}</text>
+        <text wx:if="{{item.projectName}}" class="note-project">{{item.projectName}}</text>
+      </view>
+
+      <view class="note-summary" wx:if="{{item.summary}}">{{item.summary}}</view>
+
+      <view class="note-time">{{item.displayTime}}</view>
+    </view>
+  </block>
+
+  <!-- 空状态 -->
+  <view wx:else class="empty">
+    <view class="empty-icon">
+      <view class="icon icon-file-text"></view>
+    </view>
+    <view class="empty-title">No notes yet</view>
+    <view class="empty-desc">Capture your learning, prep, and ideas</view>
+    <view class="empty-btn" bindtap="openCreate">+ Create your first note</view>
+  </view>
+
+</view>

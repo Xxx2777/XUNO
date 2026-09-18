@@ -1,0 +1,401 @@
+<view class="page {{themeClass}}">
+
+
+<!-- 欢迎区域 -->
+
+<view class="welcome-card">
+
+  <view class="welcome-title">
+    Stay consistent with your learning
+  </view>
+
+  <view class="welcome-text">
+    Track your study time every day
+  </view>
+
+</view>
+
+
+<!-- Today概览 -->
+<view class="overview-card">
+
+  <view class="overview-title">
+    Today
+  </view>
+
+  <view class="overview-minutes">
+    {{todayMinutes}}<text> min</text>
+  </view>
+
+  <view class="overview-sub">
+    Studied
+  </view>
+
+  <view class="overview-row">
+    <view class="overview-target">
+      Daily goal {{todayTarget}} min
+    </view>
+    <view class="overview-percent">
+      {{todayPercent}}% complete
+    </view>
+  </view>
+
+</view>
+
+
+<!-- Log Study -->
+<view class="section-title">
+  Log Study
+</view>
+
+<view class="section-sub">
+  Log your study for today
+</view>
+
+
+<!-- 所属项目 -->
+<view class="project-select-card">
+  <picker
+    class="project-picker"
+    range="{{projectPickerList}}"
+    value="{{selectedProjectIndex}}"
+    bindchange="changeProject"
+  >
+    <view class="project-picker-inner">
+      <view class="project-label">Project</view>
+      <view class="project-value {{selectedProjectIndex > 0 ? 'has-value' : ''}}">{{projectPickerList[selectedProjectIndex]}}</view>
+      <view class="project-arrow"><view class="icon icon-chevron-right"></view></view>
+    </view>
+  </picker>
+</view>
+
+
+<block
+  wx:for="{{studyList}}"
+  wx:key="name"
+>
+
+  <view class="study-card">
+
+    <!-- 标题 -->
+
+    <view class="card-head">
+
+      <view class="card-main">
+
+        <view class="card-title">
+
+          {{item.typeText}}
+
+        </view>
+
+        <view class="card-desc">
+          {{item.minutes}} min today
+        </view>
+
+      </view>
+
+
+      <view class="percent">
+        {{item.percent}}%
+      </view>
+
+    </view>
+
+
+    <!-- 进度条 -->
+
+    <view class="progress-box">
+
+      <view class="progress-bg">
+
+        <view
+          class="progress-inner progress-{{item.progressLevel}}"
+        ></view>
+
+      </view>
+
+
+      <view class="progress-info">
+
+        <text>
+          {{item.minutes}} / {{item.target}} min
+        </text>
+
+        <text>
+          Goal {{item.target}} min
+        </text>
+
+      </view>
+
+    </view>
+
+
+    <!-- Log Study时间 -->
+
+    <view class="input-row">
+
+      <input
+        class="study-input"
+        type="number"
+        maxlength="4"
+        placeholder="Enter duration"
+        value="{{inputList[index]}}"
+        bindinput="inputStudy"
+        data-index="{{index}}"
+      />
+
+      <button
+        class="record-button"
+        bindtap="addStudy"
+        data-index="{{index}}"
+      >
+        Log
+      </button>
+
+    </view>
+
+
+    <!-- 学习内容（可选） -->
+
+    <view class="content-row">
+
+      <input
+        class="content-input"
+        placeholder="What did you study today? (optional)"
+        maxlength="100"
+        value="{{contentList[index]}}"
+        bindinput="inputContent"
+        data-index="{{index}}"
+      />
+
+    </view>
+
+
+  </view>
+
+</block>
+
+
+<!-- Study Plans -->
+
+<view class="section-title">
+  Study Plans
+</view>
+
+<view class="section-sub">
+  Set a daily goal for a phase
+</view>
+
+<block wx:if="{{planList.length > 0}}">
+  <view class="plan-list">
+    <view
+      wx:for="{{planList}}"
+      wx:key="id"
+      class="plan-card"
+    >
+      <view class="plan-head">
+        <view class="plan-name">{{item.name}}</view>
+        <view class="plan-delete" catchtap="deletePlan" data-id="{{item.id}}">Delete</view>
+      </view>
+
+      <view class="plan-dates" wx:if="{{item.dateText}}">{{item.dateText}}</view>
+
+      <view class="plan-daily" wx:if="{{item.hasTarget}}">Daily goal {{item.dailyTarget}} min</view>
+
+      <view class="plan-progress-text">
+        <text>{{item.totalMinutes}} min studied</text>
+        <text wx:if="{{item.hasTarget}}"> · {{item.percent}}%</text>
+      </view>
+
+      <view class="plan-progress-bg" wx:if="{{item.hasTarget}}">
+        <view class="plan-progress-inner plan-progress-{{item.percentLevel}}"></view>
+      </view>
+
+      <view class="plan-nodaily" wx:if="{{!item.hasTarget}}">No daily goal</view>
+
+      <view class="plan-project" wx:if="{{item.projectName}}">{{item.projectName}}</view>
+    </view>
+  </view>
+</block>
+
+<view wx:else class="plan-empty">
+  <view class="plan-empty-title">No study plans yet</view>
+  <view class="plan-empty-desc">Set a goal for a phase</view>
+</view>
+
+<view class="plan-add" bindtap="openPlanEditor">+ New Plan</view>
+
+
+<!-- 学习历史 -->
+
+<view class="history-entry" bindtap="goHistory">
+  <view class="history-entry-icon">
+    <view class="icon icon-clock"></view>
+  </view>
+  <view class="history-entry-content">
+    <view class="history-entry-title">Learning History</view>
+    <view class="history-entry-desc">View past learning records</view>
+  </view>
+  <view class="history-entry-arrow"><view class="icon icon-chevron-right"></view></view>
+</view>
+
+
+<!-- Learning Goals -->
+
+<view class="section-title">
+  Learning Goals
+</view>
+
+<view class="section-sub">
+  Set a daily goal for each type
+</view>
+
+
+<!-- 学习类型目标列表 -->
+
+<view class="goal-list">
+  <view
+    wx:for="{{studyList}}"
+    wx:key="name"
+    wx:for-index="index"
+    class="goal-item"
+  >
+    <view class="goal-name">{{item.typeText}}</view>
+    <view class="goal-target">{{item.target}} min daily</view>
+    <view class="goal-edit" bindtap="editTarget" data-index="{{index}}">Set</view>
+    <view
+      wx:if="{{item.name !== '化学' && item.name !== '雅思'}}"
+      class="goal-delete"
+      bindtap="deleteStudyType"
+      data-index="{{index}}"
+    >Delete</view>
+  </view>
+</view>
+
+
+<!-- Add Learning Goal -->
+
+<view
+  class="add-target-card"
+  bindtap="addStudyType"
+>
+
+  <view class="add-target-icon">
+    <view class="icon icon-plus"></view>
+  </view>
+
+  <view class="add-target-content">
+
+    <view class="add-target-title">
+      Add Learning Goal
+    </view>
+
+    <view class="add-target-desc">
+      Add more long-term learning
+    </view>
+
+  </view>
+
+  <view class="add-target-arrow">
+    ›
+  </view>
+
+</view>
+
+
+<!-- Reminder -->
+
+<view class="tip-card">
+
+  <view class="tip-icon">
+    <view class="icon icon-check-circle"></view>
+  </view>
+
+  <view>
+
+    <view class="tip-title">
+      Reminder
+    </view>
+
+    <view class="tip-text">
+      Add goals that fit your needs.
+    </view>
+
+  </view>
+
+</view>
+
+
+<view class="bottom-text">
+  Small steps every day
+</view>
+
+
+<!-- Study Plans编辑弹层 -->
+<view class="plan-mask" wx:if="{{showPlanEditor}}" bindtap="closePlanEditor">
+  <view class="plan-panel" catchtap="noop">
+
+    <view class="plan-panel-title">New Study Plan</view>
+
+    <view class="plan-field">
+      <view class="plan-field-label">Plan Name</view>
+      <input
+        class="plan-field-input"
+        value="{{planEditName}}"
+        placeholder="e.g. ResNet fundamentals"
+        bindinput="inputPlanName"
+      />
+    </view>
+
+    <view class="plan-field">
+      <view class="plan-field-label">Start Date</view>
+      <picker mode="date" value="{{planEditStartDate}}" bindchange="changePlanStart">
+        <view class="plan-picker {{planEditStartDate ? 'has-value' : ''}}">{{planEditStartDate || 'Select date'}} ›</view>
+      </picker>
+    </view>
+
+    <view class="plan-field">
+      <view class="plan-field-label">End Date</view>
+      <picker mode="date" value="{{planEditEndDate}}" bindchange="changePlanEnd">
+        <view class="plan-picker {{planEditEndDate ? 'has-value' : ''}}">{{planEditEndDate || 'Select date'}} ›</view>
+      </picker>
+    </view>
+
+    <view class="plan-field">
+      <view class="plan-field-label">Daily Goal (min)</view>
+      <input
+        class="plan-field-input"
+        type="number"
+        value="{{planEditDailyTarget}}"
+        placeholder="Optional, e.g. 60"
+        bindinput="inputPlanDailyTarget"
+      />
+    </view>
+
+    <view class="plan-field">
+      <view class="plan-field-label">Linked Project</view>
+      <picker range="{{projectPickerList}}" value="{{planEditProjectIndex}}" bindchange="changePlanProject">
+        <view class="plan-picker">{{projectPickerList[planEditProjectIndex]}} ›</view>
+      </picker>
+    </view>
+
+    <view class="plan-field">
+      <view class="plan-field-label">Description</view>
+      <textarea
+        class="plan-field-textarea"
+        value="{{planEditDescription}}"
+        placeholder="Optional"
+        bindinput="inputPlanDescription"
+      ></textarea>
+    </view>
+
+    <view class="plan-actions">
+      <view class="plan-btn" bindtap="closePlanEditor">Cancel</view>
+      <view class="plan-btn plan-btn-primary" bindtap="savePlan">Create Plan</view>
+    </view>
+
+  </view>
+</view>
+
+</view>

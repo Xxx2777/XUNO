@@ -1,0 +1,383 @@
+<view class="page {{themeClass}}">
+
+<!-- =========================
+     顶部
+========================= -->
+
+<view class="header">
+
+  <view>
+
+    <view class="title">
+      New Course
+    </view>
+
+    <view class="subtitle">
+      Plan Your Chemistry Lessons
+    </view>
+
+  </view>
+
+  <view class="header-logo">
+    XUNO
+  </view>
+
+</view>
+
+
+<!-- =========================
+     Student Information
+========================= -->
+
+<view class="form-card">
+
+  <view class="form-title">
+    Student Information
+  </view>
+
+
+  <view class="form-item">
+
+    <view class="label">
+      Student Name
+    </view>
+
+    <input
+      class="input"
+      placeholder="Enter the student name"
+      value="{{student}}"
+      bindinput="inputStudent"
+    />
+
+  </view>
+
+
+  <view class="form-item">
+
+    <view class="label">
+      Grade
+    </view>
+
+    <picker
+      mode="selector"
+      range="{{gradeList}}"
+      value="{{gradeIndex}}"
+      bindchange="changeGrade"
+    >
+
+      <view class="picker">
+
+        <text>
+          {{gradeDisplayList[gradeIndex]}}
+        </text>
+
+        <text class="picker-arrow">
+          ›
+        </text>
+
+      </view>
+
+    </picker>
+
+  </view>
+
+</view>
+
+
+<!-- =========================
+     Course Information
+========================= -->
+
+<view class="form-card">
+
+  <view class="form-title">
+    Course Information
+  </view>
+
+
+  <view class="form-item">
+
+    <view class="label">
+      Lesson Content
+    </view>
+
+    <input
+      class="input"
+      placeholder="e.g. Redox reactions"
+      value="{{topic}}"
+      bindinput="inputTopic"
+    />
+
+  </view>
+
+</view>
+
+
+<!-- =========================
+     Class Time
+========================= -->
+
+<view class="form-card">
+
+  <view class="form-title">
+    Class Time
+  </view>
+
+
+  <!-- Start Date -->
+
+  <view class="form-item">
+
+    <view class="label">
+      Start Date
+    </view>
+
+    <picker
+      mode="date"
+      value="{{startDate}}"
+      bindchange="changeStartDate"
+    >
+
+      <view class="picker">
+
+        <text>
+          {{startDate}}
+        </text>
+
+        <text class="picker-arrow">
+          ›
+        </text>
+
+      </view>
+
+    </picker>
+
+  </view>
+
+
+  <!-- Start Time -->
+
+  <view class="form-item">
+
+    <view class="label">
+      Start Time
+    </view>
+
+    <picker
+      mode="time"
+      value="{{startTime}}"
+      bindchange="changeTime"
+    >
+
+      <view class="picker">
+
+        <text>
+          {{startTime}}
+        </text>
+
+        <text class="picker-arrow">
+          ›
+        </text>
+
+      </view>
+
+    </picker>
+
+  </view>
+
+
+  <!-- End Time -->
+
+  <view class="form-item">
+
+    <view class="label">
+      End Time
+    </view>
+
+    <picker
+      mode="time"
+      value="{{endTime}}"
+      bindchange="changeEndTime"
+    >
+
+      <view class="picker">
+
+        <text>
+          {{endTime}}
+        </text>
+
+        <text class="picker-arrow">
+          ›
+        </text>
+
+      </view>
+
+    </picker>
+
+  </view>
+
+</view>
+
+
+<!-- =========================
+     Schedule
+========================= -->
+
+<view class="form-card">
+
+  <view class="form-title">
+    Schedule
+  </view>
+
+
+  <!-- 单次 -->
+
+  <view
+    class="option-row"
+    bindtap="selectOnce"
+  >
+
+    <view
+      class="radio {{repeatType == 'once' ? 'radio-active' : ''}}"
+    >
+
+      <view
+        wx:if="{{repeatType == 'once'}}"
+        class="radio-dot"
+      ></view>
+
+    </view>
+
+
+    <view class="option-content">
+
+      <view class="option-title">
+        One-time
+      </view>
+
+      <view class="option-desc">
+        Add only this one lesson
+      </view>
+
+    </view>
+
+  </view>
+
+
+  <!-- Weekly -->
+
+  <view
+    class="option-row"
+    bindtap="selectWeekly"
+  >
+
+    <view
+      class="radio {{repeatType == 'weekly' ? 'radio-active' : ''}}"
+    >
+
+      <view
+        wx:if="{{repeatType == 'weekly'}}"
+        class="radio-dot"
+      ></view>
+
+    </view>
+
+
+    <view class="option-content">
+
+      <view class="option-title">
+        Weekly
+      </view>
+
+      <view class="option-desc">
+        Automatically create a lesson each week
+      </view>
+
+    </view>
+
+  </view>
+
+
+  <!-- 每周设置 -->
+
+  <view
+    wx:if="{{repeatType == 'weekly'}}"
+    class="weekly-area"
+  >
+
+    <view class="sub-title">
+      Repeat On
+    </view>
+
+
+    <view class="week-list">
+
+      <block
+        wx:for="{{weekList}}"
+        wx:key="value"
+      >
+
+        <view
+          class="week-item {{item.active ? 'week-active' : ''}}"
+          bindtap="selectWeek"
+          data-index="{{index}}"
+        >
+
+          {{item.name}}
+
+        </view>
+
+      </block>
+
+    </view>
+
+
+    <view class="sub-title end-title">
+      Repeat Until
+    </view>
+
+
+    <picker
+      mode="date"
+      value="{{endDate}}"
+      bindchange="changeEndDate"
+    >
+
+      <view class="picker">
+
+        <text>
+          {{endDate}}
+        </text>
+
+        <text class="picker-arrow">
+          ›
+        </text>
+
+      </view>
+
+    </picker>
+
+  </view>
+
+</view>
+
+
+<!-- =========================
+     保存
+========================= -->
+
+<view
+  class="save-button"
+  bindtap="saveCourse"
+>
+
+  {{repeatType == 'weekly' ? 'Add Recurring Course' : 'Add Course'}}
+
+</view>
+
+
+<view class="bottom-tip">
+  The course will appear in your calendar automatically
+</view>
+
+</view>

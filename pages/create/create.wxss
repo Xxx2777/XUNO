@@ -1,0 +1,533 @@
+/* =========================
+   页面背景
+========================= */
+
+page {
+  background: var(--theme-background);
+}
+
+
+/* =========================
+   主题变量
+========================= */
+
+.theme-1 {
+  --create-main: #765B91;
+  --create-main-2: #806A9A;
+  --create-main-3: #9180A8;
+
+  --create-background: #F7F5FA;
+
+  --create-card: #FFFFFF;
+
+  --create-input: #F4F1F7;
+
+  --create-week: #F4F1F7;
+
+  --create-text: #35313D;
+
+  --create-title: #332D3A;
+
+  --create-subtext: #8D8798;
+
+  --create-label: #766D7E;
+
+  --create-border: #E9E4EF;
+
+  --create-week-text: #746C7D;
+
+  --create-shadow:
+    rgba(45, 32, 70, 0.06);
+
+  --create-main-shadow:
+    rgba(118, 91, 145, 0.24);
+}
+
+
+.theme-2 {
+  --create-main: #7D86C9;
+  --create-main-2: #8885C4;
+  --create-main-3: #9A8FC7;
+
+  --create-background: #F6F7FB;
+
+  --create-card: #FFFFFF;
+
+  --create-input: #F3F4F9;
+
+  --create-week: #F3F4F9;
+
+  --create-text: #343844;
+
+  --create-title: #343844;
+
+  --create-subtext: #858B9D;
+
+  --create-label: #858B9D;
+
+  --create-border: #E5E8F0;
+
+  --create-week-text: #7C8294;
+
+  --create-shadow:
+    rgba(52, 56, 68, 0.06);
+
+  --create-main-shadow:
+    rgba(125, 134, 201, 0.24);
+}
+
+
+/* =========================
+   页面
+========================= */
+
+.page {
+  min-height: 100vh;
+
+  padding:
+    36rpx
+    30rpx
+    80rpx;
+
+  box-sizing: border-box;
+
+  background:
+    var(--create-background);
+}
+
+
+/* =========================
+   顶部
+========================= */
+
+.header {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  margin-bottom: 34rpx;
+}
+
+
+.title {
+
+  font-size: 42rpx;
+
+  font-weight: 700;
+
+  color:
+    var(--create-title);
+}
+
+
+.subtitle {
+
+  margin-top: 8rpx;
+
+  font-size: 25rpx;
+
+  color:
+    var(--create-subtext);
+}
+
+
+/* =========================
+   Logo
+========================= */
+
+.header-logo {
+
+  width: 78rpx;
+
+  height: 78rpx;
+
+  border-radius: 24rpx;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--create-main),
+      var(--create-main-2),
+      var(--create-main-3)
+    );
+
+  color: #ffffff;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  font-size:  20rpx;
+
+  font-weight: 700;
+
+  box-shadow:
+    0 10rpx 26rpx
+    var(--create-main-shadow);
+}
+
+
+/* =========================
+   表单卡片
+========================= */
+
+.form-card {
+
+  background:
+    var(--create-card);
+
+  border-radius: 28rpx;
+
+  padding: 30rpx;
+
+  margin-bottom: 24rpx;
+
+  box-shadow:
+    0 8rpx 28rpx
+    var(--create-shadow);
+}
+
+
+.form-title {
+
+  font-size: 30rpx;
+
+  font-weight: 700;
+
+  color:
+    var(--create-title);
+
+  margin-bottom: 24rpx;
+}
+
+
+/* =========================
+   表单项目
+========================= */
+
+.form-item {
+
+  margin-bottom: 24rpx;
+}
+
+
+.form-item:last-child {
+
+  margin-bottom: 0;
+}
+
+
+.label {
+
+  font-size: 24rpx;
+
+  color:
+    var(--create-label);
+
+  margin-bottom: 12rpx;
+}
+
+
+/* =========================
+   输入框
+========================= */
+
+.input {
+
+  width: 100%;
+
+  height: 82rpx;
+
+  background:
+    var(--create-input);
+
+  border-radius: 20rpx;
+
+  padding:
+    0 24rpx;
+
+  box-sizing: border-box;
+
+  font-size: 27rpx;
+
+  color:
+    var(--create-text);
+}
+
+
+/* =========================
+   选择器
+========================= */
+
+.picker {
+
+  height: 82rpx;
+
+  background:
+    var(--create-input);
+
+  border-radius: 20rpx;
+
+  padding:
+    0 24rpx;
+
+  box-sizing: border-box;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  font-size: 27rpx;
+
+  color:
+    var(--create-text);
+}
+
+
+.picker-arrow {
+
+  color:
+    var(--create-main);
+
+  font-size: 34rpx;
+
+  line-height: 1;
+}
+
+
+/* =========================
+   课程安排
+========================= */
+
+.option-row {
+
+  display: flex;
+
+  align-items: center;
+
+  padding:
+    18rpx 0;
+}
+
+
+.radio {
+
+  width: 38rpx;
+
+  height: 38rpx;
+
+  border-radius: 50%;
+
+  border:
+    2rpx solid
+    #d8d2df;
+
+  box-sizing: border-box;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  flex-shrink: 0;
+}
+
+
+.radio-active {
+
+  border-color:
+    var(--create-main);
+}
+
+
+.radio-dot {
+
+  width: 20rpx;
+
+  height: 20rpx;
+
+  border-radius: 50%;
+
+  background:
+    var(--create-main);
+}
+
+
+.option-content {
+
+  margin-left: 20rpx;
+}
+
+
+.option-title {
+
+  font-size: 28rpx;
+
+  color:
+    var(--create-text);
+
+  font-weight: 600;
+}
+
+
+.option-desc {
+
+  margin-top: 5rpx;
+
+  font-size: 23rpx;
+
+  color:
+    var(--create-subtext);
+}
+
+
+/* =========================
+   每周设置
+========================= */
+
+.weekly-area {
+
+  margin-top: 18rpx;
+
+  padding-top: 24rpx;
+
+  border-top:
+    2rpx solid
+    var(--create-border);
+}
+
+
+.sub-title {
+
+  font-size: 24rpx;
+
+  color:
+    var(--create-label);
+
+  margin-bottom: 16rpx;
+}
+
+
+.week-list {
+
+  display: flex;
+
+  justify-content: space-between;
+}
+
+
+.week-item {
+
+  width: 68rpx;
+
+  height: 68rpx;
+
+  border-radius: 20rpx;
+
+  background:
+    var(--create-week);
+
+  color:
+    var(--create-week-text);
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  font-size: 25rpx;
+}
+
+
+.week-active {
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--create-main),
+      var(--create-main-2),
+      var(--create-main-3)
+    );
+
+  color: #ffffff;
+
+  font-weight: 600;
+
+  box-shadow:
+    0 8rpx 18rpx
+    var(--create-main-shadow);
+}
+
+
+.end-title {
+
+  margin-top: 26rpx;
+}
+
+
+/* =========================
+   保存按钮
+========================= */
+
+.save-button {
+
+  width: 100%;
+
+  height: 88rpx;
+
+  line-height: 88rpx;
+
+  text-align: center;
+
+  border-radius: 24rpx;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--create-main),
+      var(--create-main-2),
+      var(--create-main-3)
+    );
+
+  color: #ffffff;
+
+  font-size: 29rpx;
+
+  font-weight: 600;
+
+  box-shadow:
+    0 12rpx 28rpx
+    var(--create-main-shadow);
+}
+
+
+.save-button:active {
+
+  opacity: 0.85;
+}
+
+
+/* =========================
+   底部提示
+========================= */
+
+.bottom-tip {
+
+  text-align: center;
+
+  margin-top: 20rpx;
+
+  font-size: 22rpx;
+
+  color:
+    var(--create-subtext);
+}

@@ -1,0 +1,593 @@
+page {
+  background: var(--theme-background);
+}
+
+
+/* =========================
+   首页主题
+   ========================= */
+
+.theme-1 {
+  --main: #765B91;
+  --main-light: #EEE9F4;
+  --main-soft: #F4F1F7;
+  --background: #F7F5FA;
+
+  --title: #332D3A;
+  --text: #35313D;
+  --subtext: #8D8798;
+
+  --border: #E9E4EF;
+
+  --card: #FFFFFF;
+
+  --topic-bg: #F4F1F7;
+  --content-bg: #FAF8FC;
+  --button-bg: #EEE9F4;
+
+  --time: #AAA2B0;
+  --tab-icon: #A39BAA;
+  --tab-text: #99929F;
+
+  --shadow-card: rgba(45, 32, 70, 0.06);
+  --shadow-tabbar: rgba(45, 32, 70, 0.12);
+  --shadow-main: rgba(118, 91, 145, 0.22);
+}
+
+
+.theme-2 {
+  --main: #7D86C9;
+  --main-light: #EEF0FA;
+  --main-soft: #F3F4F9;
+  --background: #F6F7FB;
+
+  --title: #343844;
+  --text: #343844;
+  --subtext: #858B9D;
+
+  --border: #E5E8F0;
+
+  --card: #FFFFFF;
+
+  --topic-bg: #F3F4F9;
+  --content-bg: #FAFAFC;
+  --button-bg: #EEF0FA;
+
+  --time: #9DA2B2;
+  --tab-icon: #A0A5B5;
+  --tab-text: #969BAA;
+
+  --shadow-card: rgba(52, 56, 68, 0.06);
+  --shadow-tabbar: rgba(52, 56, 68, 0.12);
+  --shadow-main: rgba(125, 134, 201, 0.22);
+}
+
+
+/* =========================
+   页面
+   ========================= */
+
+.page {
+
+  min-height: 100vh;
+
+  padding: 36rpx 30rpx 80rpx;
+
+  box-sizing: border-box;
+
+}
+
+
+/* =========================
+   顶部
+   ========================= */
+
+.header {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  margin-bottom: 34rpx;
+
+}
+
+.header-left {
+
+  flex: 1;
+
+}
+
+.header-title {
+
+  font-size: 42rpx;
+
+  font-weight: 700;
+
+  color: var(--title);
+
+}
+
+.header-desc {
+
+  margin-top: 10rpx;
+
+  font-size: 25rpx;
+
+  color: var(--subtext);
+
+}
+
+.header-logo {
+
+  width: 81rpx;
+
+  height: 81rpx;
+
+  border-radius: 24rpx;
+
+  background: var(--main);
+
+  color: #ffffff;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  font-size:  20rpx;
+
+  font-weight: 700;
+
+  box-shadow: 0 12rpx 30rpx var(--shadow-main);
+
+}
+
+
+/* =========================
+   统计卡片
+   ========================= */
+
+.summary-card {
+
+  background: var(--card);
+
+  border-radius: 28rpx;
+
+  padding: 30rpx 20rpx;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-around;
+
+  box-shadow: 0 8rpx 28rpx var(--shadow-card);
+
+}
+
+.summary-item {
+
+  flex: 1;
+
+  text-align: center;
+
+}
+
+.summary-number {
+
+  font-size: 38rpx;
+
+  font-weight: 700;
+
+  color: var(--main);
+
+}
+
+.summary-label {
+
+  margin-top: 8rpx;
+
+  font-size: 22rpx;
+
+  color: var(--subtext);
+
+}
+
+.summary-line {
+
+  width: 2rpx;
+
+  height: 58rpx;
+
+  background: var(--main-light);
+
+}
+
+
+/* =========================
+   标题
+   ========================= */
+
+.section-title {
+
+  margin-top: 38rpx;
+
+  margin-bottom: 20rpx;
+
+  font-size: 31rpx;
+
+  font-weight: 700;
+
+  color: var(--title);
+
+}
+
+
+/* =========================
+   空状态
+   ========================= */
+
+.empty-card {
+
+  background: var(--card);
+
+  border-radius: 28rpx;
+
+  padding: 60rpx 30rpx;
+
+  text-align: center;
+
+  box-shadow: 0 8rpx 28rpx var(--shadow-card);
+
+}
+
+.empty-icon {
+
+  width: 82rpx;
+
+  height: 82rpx;
+
+  border-radius: 24rpx;
+
+  margin: 0 auto 20rpx;
+
+  background: var(--main-light);
+
+  color: var(--main);
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  font-size: 30rpx;
+
+  font-weight: 700;
+
+}
+
+.empty-title {
+
+  font-size: 29rpx;
+
+  font-weight: 600;
+
+  color: var(--text);
+
+}
+
+.empty-desc {
+
+  margin-top: 10rpx;
+
+  font-size: 24rpx;
+
+  color: var(--subtext);
+
+}
+
+.empty-button {
+
+  width: 230rpx;
+
+  height: 72rpx;
+
+  line-height: 72rpx;
+
+  margin: 28rpx auto 0;
+
+  border-radius: 20rpx;
+
+  background: var(--main);
+
+  color: #ffffff;
+
+  font-size: 26rpx;
+
+}
+
+
+/* =========================
+   记录卡片
+   ========================= */
+
+.record-card {
+
+  background: var(--card);
+
+  border-radius: 28rpx;
+
+  padding: 28rpx;
+
+  margin-bottom: 20rpx;
+
+  box-shadow: 0 8rpx 28rpx var(--shadow-card);
+
+  box-sizing: border-box;
+
+}
+
+
+/* =========================
+   日期
+   ========================= */
+
+.record-top {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+}
+
+.record-date {
+
+  font-size: 23rpx;
+
+  color: var(--main);
+
+  font-weight: 600;
+
+}
+
+.record-time {
+
+  font-size: 22rpx;
+
+  color: var(--time);
+
+}
+
+
+/* =========================
+   学生
+   ========================= */
+
+.student-name {
+
+  margin-top: 14rpx;
+
+  font-size: 32rpx;
+
+  font-weight: 700;
+
+  color: var(--text);
+
+}
+
+.record-info {
+
+  margin-top: 8rpx;
+
+  font-size: 23rpx;
+
+  color: var(--subtext);
+
+}
+
+.dot {
+
+  margin: 0 8rpx;
+
+}
+
+
+/* =========================
+   知识点
+   ========================= */
+
+.topic-box {
+
+  margin-top: 22rpx;
+
+  padding: 20rpx;
+
+  border-radius: 20rpx;
+
+  background: var(--topic-bg);
+
+}
+
+.topic-label {
+
+  font-size: 21rpx;
+
+  color: var(--main);
+
+  font-weight: 600;
+
+}
+
+.topic-text {
+
+  margin-top: 7rpx;
+
+  font-size: 25rpx;
+
+  color: var(--text);
+
+}
+
+
+/* =========================
+   学习内容
+   ========================= */
+
+.content-box {
+
+  margin-top: 18rpx;
+
+  padding-top: 18rpx;
+
+  border-top: 2rpx solid var(--border);
+
+}
+
+.box-title {
+
+  font-size: 23rpx;
+
+  font-weight: 600;
+
+  color: var(--text);
+
+}
+
+.box-text {
+
+  margin-top: 8rpx;
+
+  font-size: 24rpx;
+
+  line-height: 1.7;
+
+  color: var(--subtext);
+
+}
+
+
+/* =========================
+   作业评价
+   ========================= */
+
+.evaluation-box {
+
+  margin-top: 18rpx;
+
+  padding: 22rpx;
+
+  border-radius: 22rpx;
+
+  background: var(--topic-bg);
+
+  border-left: 6rpx solid var(--main);
+
+}
+
+.evaluation-header {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+}
+
+.evaluation-text {
+
+  margin-top: 12rpx;
+
+  font-size: 24rpx;
+
+  line-height: 1.75;
+
+  color: var(--text);
+
+}
+
+.copy-small {
+
+  color: var(--main);
+
+  font-size: 22rpx;
+
+}
+
+
+/* =========================
+   操作按钮
+   ========================= */
+
+.record-actions {
+
+  display: flex;
+
+  margin-top: 24rpx;
+
+  gap: 16rpx;
+
+}
+
+.action-button {
+
+  flex: 1;
+
+  height: 68rpx;
+
+  line-height: 68rpx;
+
+  text-align: center;
+
+  border-radius: 18rpx;
+
+  background: var(--button-bg);
+
+  color: var(--main);
+
+  font-size: 24rpx;
+
+}
+
+.action-button.primary {
+
+  color: #ffffff;
+
+}
+
+
+/* 模式1主按钮 */
+
+.theme-1 .action-button.primary {
+
+  background: linear-gradient(
+    135deg,
+    #765B91 0%,
+    #806A9A 55%,
+    #9180A8 100%
+  );
+
+}
+
+
+/* 模式2主按钮 */
+
+.theme-2 .action-button.primary {
+
+  background: linear-gradient(
+    135deg,
+    #7D86C9 0%,
+    #8885C4 55%,
+    #9A8FC7 100%
+  );
+
+}
+
+

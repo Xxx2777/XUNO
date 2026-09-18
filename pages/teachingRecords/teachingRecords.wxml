@@ -1,0 +1,229 @@
+<view class="page {{themeClass}}">
+
+<!-- =========================
+     周期提示
+========================= -->
+
+<view class="period-card">
+
+  <view class="period-icon">
+    <view class="icon icon-calendar"></view>
+  </view>
+
+  <view class="period-info">
+
+    <view class="period-title">
+      {{periodText}}
+    </view>
+
+    <view class="period-desc">
+      {{courseList.length}} lessons
+    </view>
+
+  </view>
+
+</view>
+
+
+<!-- =========================
+     搜索
+========================= -->
+
+<view class="search-card">
+
+  <view class="search-icon">
+    <view class="icon icon-search"></view>
+  </view>
+
+  <input
+    class="search-input"
+    placeholder="Search students or topics"
+    value="{{keyword}}"
+    bindinput="inputKeyword"
+    confirm-type="search"
+  />
+
+  <view
+    wx:if="{{keyword}}"
+    class="clear-button"
+    bindtap="clearKeyword"
+  >
+    <view class="icon icon-x"></view>
+  </view>
+
+</view>
+
+
+<!-- =========================
+     空状态
+========================= -->
+
+<view
+  wx:if="{{courseList.length === 0}}"
+  class="empty-card"
+>
+
+  <view class="empty-icon">
+    <view class="icon icon-book"></view>
+  </view>
+
+  <view class="empty-title">
+    {{keyword ? "No matching lessons" : "No lesson records yet"}}
+  </view>
+
+  <view class="empty-text">
+    {{keyword ? "Try another student or topic" : "No lessons in " + periodText}}
+  </view>
+
+  <view
+    wx:if="{{keyword}}"
+    class="empty-button"
+    bindtap="clearKeyword"
+  >
+    Clear Search
+  </view>
+
+</view>
+
+
+<!-- =========================
+     课程列表
+========================= -->
+
+<block
+  wx:for="{{courseList}}"
+  wx:key="id"
+  wx:for-item="item"
+  wx:for-index="index"
+>
+
+  <view
+    class="course-card"
+    bindtap="openCourse"
+    data-index="{{index}}"
+  >
+
+    <!-- =====================
+         第一行：日期 + 状态
+    ====================== -->
+
+    <view class="course-top">
+
+      <view class="date-area">
+
+        <view class="date-day">
+          {{item.displayDate}}
+        </view>
+
+        <view class="course-time">
+          {{item.displayTime}}
+        </view>
+
+      </view>
+
+      <view class="status-tag {{item.statusClass}}">
+        {{item.displayStatus}}
+      </view>
+
+    </view>
+
+
+    <!-- =====================
+         学生
+    ====================== -->
+
+    <view class="student-row">
+
+      <view class="student-avatar">
+        {{item.avatarText}}
+      </view>
+
+      <view class="student-info">
+
+        <!-- 学生姓名 -->
+        <view class="student-name">
+          {{item.student}}
+        </view>
+
+        <!-- 年级 · 化学：固定同一行 -->
+        <view class="student-meta">
+
+          <text class="student-grade">
+            {{item.grade || "Student"}}
+          </text>
+
+          <text class="student-dot">
+            ·
+          </text>
+
+          <text class="student-subject">
+            {{item.subject || "Chemistry"}}
+          </text>
+
+        </view>
+
+      </view>
+
+    </view>
+
+
+    <!-- =====================
+         课程内容
+    ====================== -->
+
+    <view
+      wx:if="{{item.topic}}"
+      class="topic-box"
+    >
+
+      <view class="box-label">
+        Lesson Content
+      </view>
+
+      <view class="topic-text">
+        {{item.topic}}
+      </view>
+
+    </view>
+
+    <view
+      wx:else
+      class="topic-empty"
+    >
+      No lesson content yet
+    </view>
+
+
+    <!-- =====================
+         查看详情
+    ====================== -->
+
+    <view class="course-footer">
+
+      <view class="footer-text">
+        View Course Details
+      </view>
+
+      <view class="footer-arrow">
+        <view class="icon icon-chevron-right"></view>
+      </view>
+
+    </view>
+
+  </view>
+
+</block>
+
+
+<!-- =========================
+     底部提示
+========================= -->
+
+<view
+  wx:if="{{courseList.length > 0}}"
+  class="bottom-tip"
+>
+  All {{periodText}} lessons shown
+</view>
+
+</view>

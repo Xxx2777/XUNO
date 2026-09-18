@@ -1,0 +1,226 @@
+<view class="page {{themeClass}}">
+
+  <!-- ===================== Header ===================== -->
+  <view class="header">
+    <view class="header-head">
+      <view class="header-title">Insights</view>
+      <view class="header-sub">Your activity at a glance</view>
+    </view>
+    <view class="header-side">
+      <view class="header-brand">XUNO</view>
+      <view class="period-tag" bindtap="changePeriod">
+        {{periodText}}
+        <view class="period-arrow"><view class="icon icon-chevron-down"></view></view>
+      </view>
+    </view>
+  </view>
+
+
+  <!-- ===================== Hero ===================== -->
+  <view class="hero">
+    <view class="hero-metric">{{heroText}}</view>
+    <view class="hero-label">Focused learning</view>
+    <view class="hero-compare {{heroCompareClass}}">{{heroCompareText}}</view>
+  </view>
+
+
+  <!-- ===================== What Changed ===================== -->
+  <view class="changed">
+    <view class="changed-head">
+      <view class="changed-title">What changed</view>
+      <view class="changed-sub">vs {{prevPeriodText}}</view>
+    </view>
+
+    <view class="changed-list">
+      <view
+        class="changed-row"
+        wx:for="{{compareList}}"
+        wx:key="label"
+      >
+        <view class="changed-label">{{item.label}}</view>
+        <view class="changed-value">{{item.value}}</view>
+        <view class="changed-delta {{item.deltaClass}}">{{item.deltaText}}</view>
+      </view>
+    </view>
+  </view>
+
+
+  <!-- ===================== Learning ===================== -->
+  <view class="section">
+    <view class="section-head">
+      <view class="section-title">Learning</view>
+      <view class="section-desc">{{periodText}}</view>
+    </view>
+
+    <block wx:if="{{hasLearningData}}">
+      <view class="trend">
+        <view
+          class="trend-col"
+          wx:for="{{learningTrend}}"
+          wx:key="label"
+        >
+          <view class="trend-bar {{item.minutes > 0 ? '' : 'empty'}} bar-h-{{item.level}}"></view>
+          <view class="trend-label {{item.isToday ? 'today' : ''}}">{{item.label}}</view>
+        </view>
+      </view>
+
+      <view wx:if="{{showAverageDaily}}" class="avg-line">
+        <text class="avg-label">Daily average</text>
+        <text class="avg-value">{{averageDailyMinutes}} min</text>
+      </view>
+
+      <view class="type-block">
+        <view class="type-head">By type</view>
+        <view
+          class="type-row"
+          wx:for="{{learningTypeList}}"
+          wx:key="name"
+        >
+          <view class="type-name">{{item.name}}</view>
+          <view class="type-track">
+            <view class="type-fill bar-w-{{item.percentLevel}}"></view>
+          </view>
+          <view class="type-value">{{item.minutes}} min</view>
+        </view>
+      </view>
+    </block>
+
+    <view wx:else class="empty-note">No learning data in this period</view>
+  </view>
+
+
+  <!-- ===================== Teaching ===================== -->
+  <view class="section">
+    <view class="section-head">
+      <view class="section-title">Teaching</view>
+      <view class="section-desc">{{periodText}}</view>
+    </view>
+
+    <block wx:if="{{hasTeachingData}}">
+      <view class="teach-head">
+        <view class="teach-count">{{teachingTotal}}</view>
+        <view class="teach-count-label">courses</view>
+        <view class="teach-rate">{{teachingCompletionRate}}% completed</view>
+      </view>
+
+      <view class="seg-bar">
+        <block wx:for="{{teachingSegments}}" wx:key="label">
+          <view
+            wx:if="{{item.count > 0}}"
+            class="seg seg-{{item.dot}}"
+            style="flex-grow: {{item.count}};"
+          ></view>
+        </block>
+      </view>
+
+      <view class="seg-legend">
+        <view
+          class="seg-legend-item"
+          wx:for="{{teachingSegments}}"
+          wx:key="label"
+        >
+          <view class="dist-dot {{item.dot}}"></view>
+          <text class="seg-legend-label">{{item.label}}</text>
+          <text class="seg-legend-count">{{item.count}}</text>
+        </view>
+      </view>
+
+      <view
+        wx:if="{{feedbackExpected > 0}}"
+        class="feedback-line {{feedbackPending > 0 ? 'attention' : 'ok'}}"
+        bindtap="goFeedback"
+      >
+        <view class="feedback-text">
+          <block wx:if="{{feedbackPending > 0}}">
+            <text class="feedback-title">{{feedbackPending}} feedback pending</text>
+            <text class="feedback-action">Review feedback</text>
+          </block>
+          <block wx:else>
+            <text class="feedback-title">All feedback up to date</text>
+          </block>
+        </view>
+        <view wx:if="{{feedbackPending > 0}}" class="feedback-arrow"><view class="icon icon-chevron-right"></view></view>
+      </view>
+    </block>
+
+    <view wx:else class="empty-note">No courses in this period</view>
+  </view>
+
+
+  <!-- ===================== Tasks ===================== -->
+  <view class="section">
+    <view class="section-head">
+      <view class="section-title">Tasks</view>
+      <view class="section-desc">{{periodText}}</view>
+    </view>
+
+    <block wx:if="{{hasTaskData}}">
+      <view class="task-stats">
+        <view class="task-stat">
+          <view class="task-stat-value">{{taskCompleted}}</view>
+          <view class="task-stat-label">Completed</view>
+        </view>
+        <view class="task-stat">
+          <view class="task-stat-value">{{taskRemaining}}</view>
+          <view class="task-stat-label">Remaining</view>
+        </view>
+        <view class="task-stat">
+          <view class="task-stat-value overdue">{{taskOverdue}}</view>
+          <view class="task-stat-label">Overdue</view>
+        </view>
+      </view>
+
+      <view class="rhythm">
+        <view class="rhythm-head">Task rhythm · last 7 days</view>
+        <view class="trend">
+          <view
+            class="trend-col"
+            wx:for="{{taskTrend}}"
+            wx:key="label"
+          >
+            <view class="trend-bar task-bar {{item.count > 0 ? '' : 'empty'}} bar-h-{{item.level}}"></view>
+            <view class="trend-label {{item.isToday ? 'today' : ''}}">{{item.label}}</view>
+          </view>
+        </view>
+      </view>
+
+      <view class="priority-line">
+        <view class="priority-item">
+          <view class="priority-dot dot-high"></view>
+          <text class="priority-text">High</text>
+          <text class="priority-count">{{taskPriorityHigh}}</text>
+        </view>
+        <view class="priority-item">
+          <view class="priority-dot dot-medium"></view>
+          <text class="priority-text">Medium</text>
+          <text class="priority-count">{{taskPriorityMedium}}</text>
+        </view>
+        <view class="priority-item">
+          <view class="priority-dot dot-low"></view>
+          <text class="priority-text">Low</text>
+          <text class="priority-count">{{taskPriorityLow}}</text>
+        </view>
+      </view>
+    </block>
+
+    <view wx:else class="empty-note">No tasks in this period</view>
+  </view>
+
+
+  <!-- ===================== Summary ===================== -->
+  <view class="summary">
+    <text class="summary-text">{{projectActive}} active projects · {{noteTotal}} notes</text>
+  </view>
+
+
+  <!-- ===================== Bottom ===================== -->
+  <view class="bottom">
+    <text class="bottom-brand">XUNO · Insights</text>
+    <text class="bottom-updated">Updated {{updateTime}}</text>
+  </view>
+
+
+  <!-- 底部导航 -->
+  <tab-bar active="statistics" />
+
+</view>

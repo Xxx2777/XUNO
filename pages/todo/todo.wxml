@@ -1,0 +1,332 @@
+<view class="page {{themeClass}}">
+
+<!-- 顶部 -->
+<view class="header">
+  <view class="header-title">Tasks</view>
+  <view class="header-desc">{{todoView === 'today' ? 'Today' : 'All Tasks'}}</view>
+</view>
+
+<!-- 视图切换 -->
+
+<view class="view-tabs">
+  <view
+    class="view-tab {{todoView === 'today' ? 'active' : ''}}"
+    bindtap="switchView"
+    data-view="today"
+  >Today</view>
+
+  <view
+    class="view-tab {{todoView === 'all' ? 'active' : ''}}"
+    bindtap="switchView"
+    data-view="all"
+  >All</view>
+</view>
+
+<!-- 日期 -->
+
+<view class="date-card" wx:if="{{todoView === 'today'}}">
+
+  <view class="date-title">{{todayText}}</view>
+
+  <view class="date-desc">Get things done, one at a time</view>
+
+</view>
+
+<!-- 添加待办 -->
+
+<view class="add-card" wx:if="{{todoView === 'today'}}">
+
+  <input
+    class="todo-input"
+    placeholder="Add a task"
+    maxlength="40"
+    value="{{todoInput}}"
+    bindinput="inputTodo"
+    confirm-type="done"
+    bindconfirm="addTodo"
+  />
+
+  <button class="add-button" bindtap="addTodo">+</button>
+
+</view>
+
+<!-- 更多选项 -->
+
+<view
+  class="more-toggle"
+  wx:if="{{todoView === 'today'}}"
+  bindtap="toggleMore"
+>
+  <text>{{showMore ? 'Hide options' : 'More options'}}</text>
+  <view class="more-arrow">
+    <view class="icon icon-chevron-up" wx:if="{{showMore}}"></view>
+    <view class="icon icon-chevron-down" wx:else></view>
+  </view>
+</view>
+
+<!-- 添加选项：优先级 + 截止日期 -->
+
+<view class="add-options" wx:if="{{todoView === 'today' && showMore}}">
+
+  <view class="option" bindtap="togglePriority">
+    <text class="option-label">Priority</text>
+    <text class="option-value {{selectedPriority ? 'has-value' : ''}}">{{selectedPriorityText || 'None'}}</text>
+    <text class="option-arrow">›</text>
+  </view>
+
+  <picker
+    class="option"
+    mode="date"
+    value="{{deadline}}"
+    bindchange="changeDeadline"
+  >
+    <view class="option-inner">
+      <text class="option-label">Due</text>
+      <text class="option-value {{deadline ? 'has-value' : ''}}">{{deadline || 'None'}}</text>
+      <view wx:if="{{deadline}}" class="option-clear" catchtap="clearDeadline"><view class="icon icon-x"></view></view>
+      <text wx:else class="option-arrow">›</text>
+    </view>
+  </picker>
+
+</view>
+
+<!-- 所属项目 -->
+
+<view class="project-row" wx:if="{{todoView === 'today' && showMore}}">
+  <picker
+    class="project-picker"
+    range="{{projectPickerList}}"
+    value="{{selectedProjectIndex}}"
+    bindchange="changeProject"
+  >
+    <view class="project-picker-inner">
+      <text class="option-label">Project</text>
+      <text class="option-value {{selectedProjectIndex > 0 ? 'has-value' : ''}}">{{projectPickerList[selectedProjectIndex]}}</text>
+      <text class="option-arrow">›</text>
+    </view>
+  </picker>
+</view>
+
+<!-- 描述 -->
+
+<view class="desc-card" wx:if="{{todoView === 'today' && showMore}}">
+
+  <textarea
+    class="desc-textarea"
+    value="{{todoDescription}}"
+    placeholder="Add a description (optional)"
+    maxlength="200"
+    bindinput="inputDescription"
+  />
+
+</view>
+
+<!-- 标签 -->
+
+<view class="tags-card" wx:if="{{todoView === 'today' && showMore}}">
+
+  <input
+    class="tags-input"
+    value="{{todoTags}}"
+    placeholder="Add tags, e.g. AI, paper"
+    maxlength="100"
+    bindinput="inputTags"
+  />
+
+</view>
+
+<!-- 优先级选择面板 -->
+
+<view class="priority-panel" wx:if="{{todoView === 'today' && priorityOpen && showMore}}">
+
+  <view
+    class="priority-item high {{selectedPriority === '高' ? 'active' : ''}}"
+    bindtap="selectPriority"
+    data-index="0"
+  >High</view>
+
+  <view
+    class="priority-item medium {{selectedPriority === '中' ? 'active' : ''}}"
+    bindtap="selectPriority"
+    data-index="1"
+  >Medium</view>
+
+  <view
+    class="priority-item low {{selectedPriority === '低' ? 'active' : ''}}"
+    bindtap="selectPriority"
+    data-index="2"
+  >Low</view>
+
+  <view class="priority-item clear" bindtap="clearPriority">Clear</view>
+
+</view>
+
+<!-- 搜索 -->
+
+<view class="search-card">
+
+  <input
+    class="search-input"
+    value="{{searchText}}"
+    placeholder="Search tasks, descriptions, or tags"
+    bindinput="inputSearch"
+    confirm-type="search"
+  />
+
+</view>
+
+<!-- 筛选 / 排序栏 -->
+
+<view class="filter-bar">
+
+  <view class="filter-btn" bindtap="toggleFilter">Filter</view>
+
+  <view class="sort-btn" bindtap="changeSort">{{sortText}}</view>
+
+  <view class="filter-count">{{displayCount}} tasks</view>
+
+</view>
+
+<!-- 筛选面板 -->
+
+<view class="filter-panel" wx:if="{{filterOpen}}">
+
+  <view class="filter-group">
+    <view class="filter-group-title">Status</view>
+    <view class="filter-options">
+      <view class="filter-option {{statusFilter === 'all' ? 'active' : ''}}" bindtap="selectStatus" data-value="all">All</view>
+      <view class="filter-option {{statusFilter === 'unfinished' ? 'active' : ''}}" bindtap="selectStatus" data-value="unfinished">Incomplete</view>
+      <view class="filter-option {{statusFilter === 'finished' ? 'active' : ''}}" bindtap="selectStatus" data-value="finished">Completed</view>
+      <view class="filter-option {{statusFilter === 'overdue' ? 'active' : ''}}" bindtap="selectStatus" data-value="overdue">Overdue</view>
+    </view>
+  </view>
+
+  <view class="filter-group">
+    <view class="filter-group-title">Priority</view>
+    <view class="filter-options">
+      <view class="filter-option {{priorityFilter === 'all' ? 'active' : ''}}" bindtap="selectPriorityFilter" data-value="all">All</view>
+      <view class="filter-option {{priorityFilter === '高' ? 'active' : ''}}" bindtap="selectPriorityFilter" data-value="高">High</view>
+      <view class="filter-option {{priorityFilter === '中' ? 'active' : ''}}" bindtap="selectPriorityFilter" data-value="中">Medium</view>
+      <view class="filter-option {{priorityFilter === '低' ? 'active' : ''}}" bindtap="selectPriorityFilter" data-value="低">Low</view>
+      <view class="filter-option {{priorityFilter === 'none' ? 'active' : ''}}" bindtap="selectPriorityFilter" data-value="none">None</view>
+    </view>
+  </view>
+
+  <view class="filter-group">
+    <view class="filter-group-title">Project</view>
+    <view class="filter-options">
+      <view class="filter-option {{projectFilter === 'all' ? 'active' : ''}}" bindtap="selectProjectFilter" data-value="all">All Projects</view>
+      <view class="filter-option {{projectFilter === 'none' ? 'active' : ''}}" bindtap="selectProjectFilter" data-value="none">No Project</view>
+      <view
+        class="filter-option {{projectFilter === item.id ? 'active' : ''}}"
+        wx:for="{{filterProjectList}}"
+        wx:key="id"
+        bindtap="selectProjectFilter"
+        data-value="{{item.id}}"
+      >{{item.name}}</view>
+    </view>
+  </view>
+
+  <view class="filter-group">
+    <view class="filter-group-title">Due Date</view>
+    <view class="filter-options">
+      <view class="filter-option {{deadlineFilter === 'all' ? 'active' : ''}}" bindtap="selectDeadlineFilter" data-value="all">All</view>
+      <view class="filter-option {{deadlineFilter === 'none' ? 'active' : ''}}" bindtap="selectDeadlineFilter" data-value="none">No Due Date</view>
+      <view class="filter-option {{deadlineFilter === 'today' ? 'active' : ''}}" bindtap="selectDeadlineFilter" data-value="today">Due Today</view>
+      <view class="filter-option {{deadlineFilter === 'future' ? 'active' : ''}}" bindtap="selectDeadlineFilter" data-value="future">Upcoming</view>
+      <view class="filter-option {{deadlineFilter === 'overdue' ? 'active' : ''}}" bindtap="selectDeadlineFilter" data-value="overdue">Overdue</view>
+    </view>
+  </view>
+
+</view>
+
+<!-- 统计 -->
+
+<view class="summary">
+
+  <view class="summary-item">
+    <view class="summary-number">{{allCount}}</view>
+    <view class="summary-label">All</view>
+  </view>
+
+  <view class="summary-item">
+    <view class="summary-number">{{completedCount}}</view>
+    <view class="summary-label">Completed</view>
+  </view>
+
+  <view class="summary-item">
+    <view class="summary-number">{{remainingCount}}</view>
+    <view class="summary-label">Open</view>
+  </view>
+
+  <view class="summary-item">
+    <view class="summary-number {{overdueCount > 0 ? 'overdue' : ''}}">{{overdueCount}}</view>
+    <view class="summary-label">Overdue</view>
+  </view>
+
+</view>
+
+<!-- 待办列表 -->
+
+<view wx:if="{{hasTodo}}" class="todo-list">
+
+  <block wx:for="{{displayList}}" wx:key="id">
+
+    <view class="todo-item {{item.overdue ? 'overdue-item' : ''}}" data-date="{{item.date}}">
+
+      <view
+        class="todo-check {{item.completed ? 'active' : ''}}"
+        bindtap="toggleTodo"
+        data-id="{{item.id}}"
+      ></view>
+
+      <view class="todo-main" bindtap="openTask" data-id="{{item.id}}">
+
+        <view class="todo-text {{item.completed ? 'completed' : ''}}">{{item.text}}</view>
+
+        <view class="todo-date" wx:if="{{todoView === 'all'}}">{{item.date}}</view>
+
+        <view class="todo-meta" wx:if="{{item.priority || item.deadline || item.overdue || item.projectName}}">
+          <text wx:if="{{item.priority}}" class="tag priority-tag priority-{{item.priorityClass}}">{{item.priorityText}}</text>
+          <text wx:if="{{item.deadline}}" class="tag deadline-tag {{item.overdue ? 'overdue' : ''}}">{{item.deadline}}</text>
+          <text wx:if="{{item.projectName}}" class="tag project-tag">{{item.projectName}}</text>
+          <text wx:if="{{item.overdue}}" class="tag overdue-tag">Overdue</text>
+        </view>
+
+      </view>
+
+      <view class="delete" bindtap="deleteTodo" data-id="{{item.id}}">Delete</view>
+
+    </view>
+
+  </block>
+
+</view>
+
+<!-- 空状态 -->
+
+<view wx:if="{{!hasTodo && allCount === 0}}" class="empty">
+
+  <view class="empty-icon">
+    <view class="icon icon-plus"></view>
+  </view>
+
+  <view class="empty-title">{{todoView === 'today' ? 'No tasks for today' : 'No tasks yet'}}</view>
+
+  <view class="empty-desc">{{todoView === 'today' ? 'Add something to get done today' : 'Switch to Today to add a task'}}</view>
+
+</view>
+
+<view wx:if="{{!hasTodo && allCount > 0}}" class="empty">
+
+  <view class="empty-icon">
+    <view class="icon icon-search"></view>
+  </view>
+
+  <view class="empty-title">No matching tasks</view>
+
+  <view class="empty-desc">Try adjusting your search or filters</view>
+
+</view>
+
+</view>

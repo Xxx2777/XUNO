@@ -1,0 +1,420 @@
+/* =========================================================
+   XUNO · 任务详情
+   Content-first，去卡片墙，使用 theme token
+========================================================= */
+
+page {
+  background: var(--theme-background);
+}
+
+.page {
+  min-height: 100vh;
+  padding: 32rpx 32rpx 60rpx;
+  box-sizing: border-box;
+  background: var(--theme-background);
+}
+
+
+/* =========================================================
+   Main Detail Card
+========================================================= */
+
+.detail-card {
+  background: var(--theme-card);
+  border-radius: 28rpx;
+  padding: 32rpx;
+  box-shadow: 0 8rpx 28rpx var(--theme-shadow-card);
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   Hero（标题 + 状态 + 标签）
+========================================================= */
+
+.task-title {
+  font-size: 42rpx;
+  font-weight: 700;
+  color: var(--theme-text);
+  line-height: 1.35;
+  word-break: break-all;
+}
+
+.task-title.done {
+  color: var(--theme-subtext);
+  text-decoration: line-through;
+}
+
+.task-chips {
+  margin-top: 20rpx;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.status-badge {
+  padding: 8rpx 18rpx;
+  border-radius: 999rpx;
+  font-size: 23rpx;
+  margin-right: 12rpx;
+  margin-bottom: 4rpx;
+  background: var(--theme-main-soft);
+  color: var(--theme-main);
+}
+
+.status-badge.done {
+  background: #EAF1EC;
+  color: #5E8668;
+}
+
+
+/* =========================================================
+   描述（正文）
+========================================================= */
+
+.content-block {
+  margin-top: 28rpx;
+  padding-top: 28rpx;
+  border-top: 1rpx solid var(--theme-border);
+}
+
+.content-block-label {
+  font-size: 22rpx;
+  font-weight: 600;
+  color: var(--theme-subtext);
+  letter-spacing: 1rpx;
+  margin-bottom: 16rpx;
+}
+
+.content-block-text {
+  font-size: 29rpx;
+  color: var(--theme-text);
+  line-height: 1.65;
+  word-break: break-all;
+}
+
+
+/* =========================================================
+   元数据（divider 分隔，无卡片）
+========================================================= */
+
+.meta-block {
+  margin-top: 24rpx;
+  border-top: 1rpx solid var(--theme-border);
+}
+
+.meta-row {
+  display: flex;
+  align-items: flex-start;
+  padding: 24rpx 0;
+  border-bottom: 1rpx solid var(--theme-border);
+}
+
+.meta-row:last-child {
+  border-bottom: none;
+}
+
+.meta-label {
+  width: 150rpx;
+  flex-shrink: 0;
+  font-size: 22rpx;
+  color: var(--theme-subtext);
+  letter-spacing: 1rpx;
+}
+
+.meta-value {
+  flex: 1;
+  min-width: 0;
+  font-size: 27rpx;
+  color: var(--theme-text);
+  line-height: 1.5;
+  word-break: break-all;
+}
+
+.meta-tags {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+
+/* =========================================================
+   标签
+========================================================= */
+
+.tag {
+  margin-right: 12rpx;
+  margin-bottom: 4rpx;
+  padding: 5rpx 14rpx;
+  font-size: 21rpx;
+  border-radius: 999rpx;
+}
+
+.deadline-tag {
+  background: var(--theme-main-soft);
+  color: var(--theme-main);
+}
+
+.normal-tag {
+  background: #F0EDF4;
+  color: #7F7789;
+}
+
+.priority-high {
+  background: #F7ECEE;
+  color: #B96B73;
+}
+
+.priority-medium {
+  background: #F8F1E5;
+  color: #B98A4E;
+}
+
+.priority-low {
+  background: #EAF1EC;
+  color: #5E8668;
+}
+
+
+/* =========================================================
+   操作按钮
+========================================================= */
+
+.action-bar {
+  margin-top: 36rpx;
+  display: flex;
+  flex-direction: column;
+}
+
+.detail-card .action-bar {
+  margin-top: 28rpx;
+  padding-top: 28rpx;
+  border-top: 1rpx solid var(--theme-border);
+}
+
+.action-row {
+  display: flex;
+  margin-bottom: 16rpx;
+}
+
+.action-btn {
+  height: 88rpx;
+  border-radius: 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28rpx;
+  font-weight: 600;
+  box-sizing: border-box;
+}
+
+.action-btn.edit {
+  flex: 1;
+  margin-right: 8rpx;
+  background: #FFFFFF;
+  color: #765B91;
+  box-shadow: 0 6rpx 20rpx rgba(50, 38, 70, 0.05);
+}
+
+.action-btn.danger {
+  flex: 1;
+  margin-left: 8rpx;
+  background: #FFFFFF;
+  color: #B96B73;
+  box-shadow: 0 6rpx 20rpx rgba(50, 38, 70, 0.05);
+}
+
+.action-btn.cancel {
+  margin-bottom: 16rpx;
+  background: #FFFFFF;
+  color: #7F7789;
+  box-shadow: 0 6rpx 20rpx rgba(50, 38, 70, 0.05);
+}
+
+.action-btn.primary {
+  background: linear-gradient(135deg, #765B91 0%, #806A9A 52%, #9180A8 100%);
+  color: #FFFFFF;
+  box-shadow: 0 10rpx 24rpx rgba(118, 91, 145, 0.20);
+}
+
+
+/* =========================================================
+   编辑表单
+========================================================= */
+
+.card {
+  background: var(--theme-card);
+  border-radius: 24rpx;
+  padding: 28rpx 28rpx;
+  box-sizing: border-box;
+}
+
+.field {
+  margin-bottom: 26rpx;
+}
+
+.field-last {
+  margin-bottom: 0;
+}
+
+.field-label {
+  font-size: 24rpx;
+  color: #554C60;
+  margin-bottom: 14rpx;
+}
+
+.field-input {
+  height: 80rpx;
+  padding: 0 22rpx;
+  background: #F5F3F8;
+  border-radius: 16rpx;
+  font-size: 26rpx;
+  color: #393449;
+  box-sizing: border-box;
+}
+
+.field-textarea {
+  width: 100%;
+  min-height: 160rpx;
+  padding: 20rpx 22rpx;
+  background: #F5F3F8;
+  border-radius: 16rpx;
+  font-size: 26rpx;
+  color: #393449;
+  box-sizing: border-box;
+}
+
+.picker-value {
+  height: 80rpx;
+  padding: 0 22rpx;
+  background: #F5F3F8;
+  border-radius: 16rpx;
+  font-size: 26rpx;
+  color: #393449;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+.picker-arrow {
+  color: #C9C3D2;
+}
+
+.clear-link {
+  font-size: 23rpx;
+  color: #B96B73;
+}
+
+
+/* =========================================================
+   优先级按钮
+========================================================= */
+
+.priority-row {
+  display: flex;
+}
+
+.priority-item {
+  flex: 1;
+  margin: 0 6rpx;
+  padding: 16rpx 0;
+  text-align: center;
+  font-size: 25rpx;
+  color: #9993A5;
+  background: #F5F3F8;
+  border-radius: 14rpx;
+}
+
+.priority-item:first-child {
+  margin-left: 0;
+}
+
+.priority-item:last-child {
+  margin-right: 0;
+}
+
+.priority-item.high.active {
+  background: #B96B73;
+  color: #FFFFFF;
+}
+
+.priority-item.medium.active {
+  background: #C49A5A;
+  color: #FFFFFF;
+}
+
+.priority-item.low.active {
+  background: #6F9B7A;
+  color: #FFFFFF;
+}
+
+.priority-item.none.active {
+  background: #C9C3D2;
+  color: #FFFFFF;
+}
+
+
+/* =========================================================
+   空状态
+========================================================= */
+
+.empty {
+  margin-top: 120rpx;
+  text-align: center;
+}
+
+.empty-icon {
+  width: 90rpx;
+  height: 90rpx;
+  margin: 0 auto 25rpx;
+  border-radius: 24rpx;
+  background: var(--theme-main-soft);
+  color: var(--theme-main);
+  font-size: 32rpx;
+  font-weight: 700;
+  line-height: 90rpx;
+  text-align: center;
+}
+
+.empty-title {
+  font-size: 29rpx;
+  font-weight: 600;
+  color: var(--theme-text);
+}
+
+.empty-desc {
+  margin-top: 12rpx;
+  font-size: 24rpx;
+  color: var(--theme-subtext);
+}
+
+
+/* =========================================================
+   主题 2 · 蓝紫
+========================================================= */
+
+.theme-2 .status-badge {
+  background: #EEF0FA;
+  color: #7D86C9;
+}
+
+.theme-2 .deadline-tag {
+  background: #EEF0FA;
+  color: #7D86C9;
+}
+
+.theme-2 .action-btn.primary {
+  background: linear-gradient(135deg, #7D86C9 0%, #8885C4 52%, #9A8FC7 100%);
+  box-shadow: 0 10rpx 24rpx rgba(125, 134, 201, 0.20);
+}
+
+.theme-2 .action-btn.edit {
+  color: #7D86C9;
+}
+
+.theme-2 .empty-icon {
+  background: #EEF0FA;
+  color: #7D86C9;
+}

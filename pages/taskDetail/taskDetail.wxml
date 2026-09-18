@@ -1,0 +1,146 @@
+<view class="page {{themeClass}}">
+
+  <!-- 任务不存在 -->
+  <view wx:if="{{!hasTask}}" class="empty">
+    <view class="empty-icon">
+      <view class="icon icon-check-square"></view>
+    </view>
+    <view class="empty-title">Task not found</view>
+    <view class="empty-desc">This task may have been deleted</view>
+  </view>
+
+
+  <!-- ===================== 展示状态 ===================== -->
+  <block wx:if="{{hasTask && !isEditing}}">
+
+    <view class="detail-card">
+
+      <!-- Hero：标题 + 状态 + 优先级 / 截止 -->
+      <view class="task-hero">
+        <view class="task-title {{task.completed ? 'done' : ''}}">{{task.text}}</view>
+        <view class="task-chips">
+          <view class="status-badge {{task.completed ? 'done' : ''}}">
+            {{task.completed ? '● Completed' : '○ Incomplete'}}
+          </view>
+          <text wx:if="{{task.priority}}" class="tag priority-{{task.priorityClass}}">{{task.priority}}</text>
+          <text wx:if="{{task.displayDeadline}}" class="tag deadline-tag">Due {{task.displayDeadline}}</text>
+        </view>
+      </view>
+
+      <!-- 描述（正文） -->
+      <view class="content-block" wx:if="{{task.description}}">
+        <view class="content-block-label">Description</view>
+        <view class="content-block-text">{{task.description}}</view>
+      </view>
+
+      <!-- 元数据（divider 分隔） -->
+      <view class="meta-block">
+        <view class="meta-row" wx:if="{{task.date}}">
+          <view class="meta-label">Date</view>
+          <view class="meta-value">{{task.date}}</view>
+        </view>
+        <view class="meta-row" wx:if="{{task.projectName}}">
+          <view class="meta-label">Project</view>
+          <view class="meta-value">{{task.projectName}}</view>
+        </view>
+        <view class="meta-row" wx:if="{{task.tags.length > 0}}">
+          <view class="meta-label">Tags</view>
+          <view class="meta-tags">
+            <text class="tag normal-tag" wx:for="{{task.tags}}" wx:key="*this">{{item}}</text>
+          </view>
+        </view>
+        <view class="meta-row" wx:if="{{task.displayCreated}}">
+          <view class="meta-label">Created</view>
+          <view class="meta-value">{{task.displayCreated}}</view>
+        </view>
+      </view>
+
+      <!-- 操作 -->
+      <view class="action-bar">
+        <view class="action-row">
+          <view class="action-btn edit" bindtap="openEdit">Edit Task</view>
+          <view class="action-btn danger" bindtap="deleteTask">Delete Task</view>
+        </view>
+        <view class="action-btn primary" bindtap="toggleCompleted">
+          {{task.completed ? 'Mark Incomplete' : 'Complete'}}
+        </view>
+      </view>
+
+    </view>
+
+  </block>
+
+
+  <!-- ===================== 编辑状态 ===================== -->
+  <block wx:if="{{hasTask && isEditing}}">
+
+    <view class="card">
+
+      <view class="field">
+        <view class="field-label">Task Name</view>
+        <input class="field-input" value="{{editName}}" placeholder="Enter a task name" bindinput="inputName" maxlength="40" />
+      </view>
+
+      <view class="field">
+        <view class="field-label">Description</view>
+        <textarea class="field-textarea" value="{{editDescription}}" placeholder="Add a description (optional)" bindinput="inputDescription" maxlength="200" />
+      </view>
+
+      <view class="field">
+        <view class="field-label">Project</view>
+        <picker range="{{projectPickerList}}" value="{{editProjectIndex}}" bindchange="changeProject">
+          <view class="picker-value">{{projectPickerList[editProjectIndex]}} ›</view>
+        </picker>
+      </view>
+
+      <view class="field">
+        <view class="field-label">Priority</view>
+        <view class="priority-row">
+          <view
+            class="priority-item high {{editPriority === '高' ? 'active' : ''}}"
+            bindtap="selectPriority"
+            data-value="高"
+          >High</view>
+          <view
+            class="priority-item medium {{editPriority === '中' ? 'active' : ''}}"
+            bindtap="selectPriority"
+            data-value="中"
+          >Medium</view>
+          <view
+            class="priority-item low {{editPriority === '低' ? 'active' : ''}}"
+            bindtap="selectPriority"
+            data-value="低"
+          >Low</view>
+          <view
+            class="priority-item none {{editPriority === '' ? 'active' : ''}}"
+            bindtap="clearPriority"
+          >None</view>
+        </view>
+      </view>
+
+      <view class="field">
+        <view class="field-label">Due Date</view>
+        <picker mode="date" value="{{editDeadline}}" bindchange="changeDeadline">
+          <view class="picker-value">
+            {{editDeadline || 'No due date'}}
+            <text wx:if="{{editDeadline}}" class="clear-link" catchtap="clearDeadline"> Clear</text>
+            <text wx:else class="picker-arrow"> ›</text>
+          </view>
+        </picker>
+      </view>
+
+      <view class="field field-last">
+        <view class="field-label">Tags</view>
+        <input class="field-input" value="{{editTagsText}}" placeholder="Separate tags with commas, e.g. AI, paper" bindinput="inputTags" />
+      </view>
+
+    </view>
+
+    <view class="action-bar">
+      <view class="action-btn cancel" bindtap="closeEdit">Cancel</view>
+      <view class="action-btn primary" bindtap="saveTask">Save</view>
+    </view>
+
+  </block>
+
+</view>

@@ -1,0 +1,218 @@
+<view class="page {{themeClass}}">
+
+<!-- 顶部 -->
+<view class="header">
+
+  <view class="header-left">
+
+    <view class="header-title">
+      Learning History
+    </view>
+
+    <view class="header-desc">
+      Track your learning
+    </view>
+
+  </view>
+
+  <view class="header-logo">
+    XUNO
+  </view>
+
+</view>
+
+
+<!-- 统计 -->
+<view class="summary-card">
+
+  <view class="summary-item">
+
+    <view class="summary-number">
+      {{recordCount}}
+    </view>
+
+    <view class="summary-label">
+      Sessions
+    </view>
+
+  </view>
+
+
+  <view class="summary-line"></view>
+
+
+  <view class="summary-item">
+
+    <view class="summary-number">
+      {{totalMinutes}}
+    </view>
+
+    <view class="summary-label">
+      Minutes
+    </view>
+
+  </view>
+
+
+  <view class="summary-line"></view>
+
+
+  <view class="summary-item">
+
+    <view class="summary-number">
+      {{topicCount}}
+    </view>
+
+    <view class="summary-label">
+      Topics
+    </view>
+
+  </view>
+
+</view>
+
+
+<!-- 标题 -->
+<view class="section-title">
+  All Records
+</view>
+
+
+<!-- 没有记录 -->
+<view
+  wx:if="{{records.length == 0}}"
+  class="empty-card"
+>
+
+  <view class="empty-icon">
+    <view class="icon icon-book-open"></view>
+  </view>
+
+  <view class="empty-title">
+    No learning records yet
+  </view>
+
+  <view class="empty-desc">
+    Log your learning here
+  </view>
+
+</view>
+
+
+<!-- 有记录 -->
+<block wx:else>
+
+  <block
+    wx:for="{{records}}"
+    wx:key="id"
+  >
+
+    <view
+      class="record-card"
+      bindtap="openRecord"
+      data-id="{{item.id}}"
+    >
+
+      <!-- 日期 -->
+      <view class="record-top">
+
+        <view class="record-date">
+          {{item.date || "No date"}}
+        </view>
+
+        <view class="record-time">
+          {{item.time || ""}}
+        </view>
+
+      </view>
+
+
+      <!-- 学习时长 -->
+      <view class="record-info">
+
+        <text>
+          {{item.minutes || 0}} min
+        </text>
+
+      </view>
+
+
+      <!-- Topics -->
+      <view
+        wx:if="{{item.topic}}"
+        class="topic-box"
+      >
+
+        <view class="topic-label">
+          Topics
+        </view>
+
+        <view class="topic-text">
+          {{item.topic}}
+        </view>
+
+      </view>
+
+
+      <!-- Content -->
+      <view
+        wx:if="{{item.content}}"
+        class="content-box"
+      >
+
+        <view class="box-title">
+          Content
+        </view>
+
+        <view class="box-text">
+          {{item.content}}
+        </view>
+
+      </view>
+
+
+      <!-- Notes -->
+      <view
+        wx:if="{{item.note}}"
+        class="content-box"
+      >
+
+        <view class="box-title">
+          Notes
+        </view>
+
+        <view class="box-text">
+          {{item.note}}
+        </view>
+
+      </view>
+
+
+      <!-- 操作 -->
+      <view class="record-actions">
+
+        <view
+          class="action-button primary"
+          catchtap="copyRecord"
+          data-id="{{item.id}}"
+        >
+          Copy
+        </view>
+
+        <view
+          class="action-button"
+          catchtap="deleteRecord"
+          data-id="{{item.id}}"
+        >
+          Delete
+        </view>
+
+      </view>
+
+    </view>
+
+  </block>
+
+</block>
+
+</view>

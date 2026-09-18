@@ -1,0 +1,137 @@
+<view class="page {{themeClass}}">
+
+  <!-- 新建项目入口 -->
+  <view class="create-bar">
+    <view class="create-bar-btn" bindtap="openCreate">+ New Project</view>
+  </view>
+
+  <!-- 项目列表 -->
+  <block wx:if="{{hasProjects}}">
+
+    <view
+      wx:for="{{projectList}}"
+      wx:key="id"
+      class="project-card"
+      bindtap="openProject"
+      data-id="{{item.id}}"
+    >
+
+      <view class="card-head">
+        <view class="card-title">{{item.name}}</view>
+        <view class="tag type-tag">{{item.typeText}}</view>
+      </view>
+
+      <view class="card-desc" wx:if="{{item.description}}">{{item.description}}</view>
+
+      <!-- 进度 -->
+      <view class="progress-row">
+        <view class="progress-label">Progress</view>
+        <view class="progress-value">{{item.progress}}%</view>
+      </view>
+      <view class="progress-bg">
+        <view class="progress-inner progress-{{item.progressLevel}}"></view>
+      </view>
+
+      <!-- 统计 -->
+      <view class="stats-row">
+        <view class="stat-item">
+          <view class="stat-number">{{item.taskDone}}/{{item.taskTotal}}</view>
+          <view class="stat-label">Tasks Done</view>
+        </view>
+        <view class="stat-item">
+          <view class="stat-number">{{item.learningMinutes}}</view>
+          <view class="stat-label">Study (min)</view>
+        </view>
+        <view class="stat-item">
+          <view class="stat-number status-{{item.statusClass}}">{{item.statusText}}</view>
+          <view class="stat-label">Status</view>
+        </view>
+      </view>
+
+      <!-- 日期 / 操作 -->
+      <view class="card-bottom">
+        <view class="date-text" wx:if="{{item.deadline}}">Due {{item.deadline}}</view>
+        <view class="date-text" wx:else>No due date</view>
+        <view class="card-actions">
+          <view class="action-btn" catchtap="openEdit" data-id="{{item.id}}">Edit</view>
+          <view class="action-btn danger" catchtap="deleteProject" data-id="{{item.id}}">Delete</view>
+        </view>
+      </view>
+
+    </view>
+
+  </block>
+
+  <!-- 空状态 -->
+  <view wx:else class="empty">
+    <view class="empty-icon">
+      <view class="icon icon-folder"></view>
+    </view>
+    <view class="empty-title">No projects yet</view>
+    <view class="empty-desc">Create a project to organize tasks and learning</view>
+    <view class="empty-btn" bindtap="openCreate">New Project</view>
+  </view>
+
+
+  <!-- 编辑面板 -->
+  <view class="mask" wx:if="{{showEditor}}" bindtap="closeEditor">
+    <view class="editor" catchtap="noop">
+
+      <view class="editor-title">{{editingId ? 'Edit Project' : 'New Project'}}</view>
+
+      <view class="field">
+        <view class="field-label">Project Name</view>
+        <input class="field-input" value="{{editName}}" placeholder="Enter a project name" bindinput="inputName" maxlength="20" />
+      </view>
+
+      <view class="field">
+        <view class="field-label">Description</view>
+        <textarea class="field-textarea" value="{{editDescription}}" placeholder="Describe this project (optional)" bindinput="inputDescription" maxlength="100" />
+      </view>
+
+      <view class="field-row">
+        <view class="field half">
+          <view class="field-label">Type</view>
+          <picker range="{{typeOptions}}" value="{{editTypeIndex}}" bindchange="changeType">
+            <view class="picker-value">{{typeOptions[editTypeIndex]}} ›</view>
+          </picker>
+        </view>
+
+        <view class="field half">
+          <view class="field-label">Status</view>
+          <picker range="{{statusOptions}}" value="{{editStatusIndex}}" bindchange="changeStatus">
+            <view class="picker-value">{{statusOptions[editStatusIndex]}} ›</view>
+          </picker>
+        </view>
+      </view>
+
+      <view class="field">
+        <view class="field-label">Progress {{editProgress}}%</view>
+        <slider min="0" max="100" value="{{editProgress}}" bindchange="changeProgress" activeColor="#765B91" block-size="20" />
+      </view>
+
+      <view class="field-row">
+        <view class="field half">
+          <view class="field-label">Start Date</view>
+          <picker mode="date" value="{{editStartDate}}" bindchange="changeStartDate">
+            <view class="picker-value">{{editStartDate || 'Not set'}} ›</view>
+          </picker>
+        </view>
+
+        <view class="field half">
+          <view class="field-label">Due Date</view>
+          <picker mode="date" value="{{editDeadline}}" bindchange="changeDeadline">
+            <view class="picker-value">{{editDeadline || 'Not set'}} ›</view>
+          </picker>
+        </view>
+      </view>
+
+      <view class="editor-actions">
+        <view class="editor-btn cancel" bindtap="closeEditor">Cancel</view>
+        <view class="editor-btn save" bindtap="saveProject">Save</view>
+      </view>
+
+    </view>
+  </view>
+
+</view>

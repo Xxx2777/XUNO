@@ -1,0 +1,1284 @@
+<view class="page {{themeClass}}">
+
+<!-- =========================
+     Current Student
+========================= -->
+
+<view class="student-card">
+
+  <!-- Feedback History：右上角 -->
+  <view
+    class="history-entry student-history-entry"
+    bindtap="goHistory"
+  >
+    Feedback History
+  </view>
+
+
+  <view class="student-avatar">
+    {{student.name ? student.name.substring(0,1) : "S"}}
+  </view>
+
+
+  <view class="student-info">
+
+    <view class="student-label">
+      Current Student
+    </view>
+
+
+    <view class="student-name-row">
+
+      <view class="student-name">
+        {{student.name || "Select a student"}}
+      </view>
+
+    </view>
+
+
+    <view class="student-grade">
+
+      <text>
+        {{student.grade || "Select a student"}}
+      </text>
+
+      <text wx:if="{{student.subject}}">
+        · {{student.subject}}
+      </text>
+
+    </view>
+
+  </view>
+
+
+  <!-- 选择：右下角 -->
+  <view
+    class="student-select-entry"
+    bindtap="toggleStudentPicker"
+  >
+    {{studentPickerOpen ? "Collapse" : "Select"}}
+  </view>
+
+</view>
+
+
+<!-- =========================
+     Student
+========================= -->
+
+<view
+  wx:if="{{studentPickerOpen}}"
+  class="student-picker"
+>
+
+  <view class="picker-header">
+
+    <view>
+
+      <view class="picker-title">
+        Select Student
+      </view>
+
+      <view class="picker-tip">
+        Select a student for feedback
+      </view>
+
+    </view>
+
+    <view
+      class="picker-close-top"
+      bindtap="closeStudentPicker"
+    >
+      Done
+    </view>
+
+  </view>
+
+
+  <view
+    wx:for="{{studentList}}"
+    wx:key="index"
+    class="student-option {{studentIndex == index ? 'student-option-active' : ''}}"
+    bindtap="selectStudent"
+    data-index="{{index}}"
+  >
+
+    <view class="option-avatar">
+      {{item.name ? item.name.substring(0,1) : "S"}}
+    </view>
+
+    <view class="option-info">
+
+      <view class="option-name">
+        {{item.name}}
+      </view>
+
+      <view class="option-grade">
+        {{item.grade || "Student"}}
+        ·
+        {{item.subject || "Chemistry"}}
+      </view>
+
+    </view>
+
+    <view
+      wx:if="{{studentIndex == index}}"
+      class="option-selected"
+    >
+      ✓
+    </view>
+
+  </view>
+
+</view>
+
+
+<!-- =========================
+     courses
+========================= -->
+
+<view
+  wx:if="{{course}}"
+  class="course-section"
+>
+
+  <!-- 当前课程 -->
+
+  <view class="course-select-card">
+
+    <view
+      class="course-select-main"
+      bindtap="openCoursePicker"
+    >
+
+      <view class="course-select-left">
+
+        <view class="course-select-label">
+          This Lesson
+        </view>
+
+        <view class="course-select-title">
+          {{courseTopic || "No topic set"}}
+        </view>
+
+        <view class="course-select-info">
+
+          <text wx:if="{{courseDateText}}">
+            {{courseDateText}}
+          </text>
+
+          <text wx:if="{{courseTimeText}}">
+            · {{courseTimeText}}
+          </text>
+
+        </view>
+
+      </view>
+
+      <view class="course-change">
+        Change
+      </view>
+
+    </view>
+
+  </view>
+
+
+  <!-- =========================
+       Select Course
+  ========================= -->
+
+  <view
+    wx:if="{{coursePickerOpen}}"
+    class="course-modal-mask"
+    bindtap="closeCourseModal"
+  >
+
+    <view
+      class="course-modal"
+      catchtap="stopCourseModal"
+    >
+
+      <view class="course-modal-header">
+
+        <view class="course-modal-title">
+          Select This Lesson
+        </view>
+
+        <view
+          class="course-modal-close"
+          bindtap="closeCourseModal"
+        >
+          ×
+        </view>
+
+      </view>
+
+
+      <!-- Student信息 -->
+
+      <view class="course-modal-student">
+
+        <view class="modal-student-avatar">
+          {{student.name ? student.name.substring(0,1) : "S"}}
+        </view>
+
+        <view class="modal-student-info">
+
+          <view class="modal-student-name">
+            {{student.name}}
+          </view>
+
+          <view class="modal-student-sub">
+            {{student.grade}} · {{student.subject || "Chemistry"}}
+          </view>
+
+        </view>
+
+        <view class="course-count">
+          {{courseList.length}} lessons
+        </view>
+
+      </view>
+
+
+      <view class="course-modal-tip">
+        Select a course for feedback
+      </view>
+
+
+      <!-- 课程列表 -->
+
+      <scroll-view
+        scroll-y="true"
+        class="course-modal-list"
+      >
+
+        <view
+          wx:for="{{courseList}}"
+          wx:key="id"
+          class="course-option {{courseIndex == index ? 'course-option-active' : ''}}"
+          bindtap="selectCourse"
+          data-index="{{index}}"
+        >
+
+          <!-- 日期 -->
+
+          <view class="course-date-box">
+
+            <view class="course-date-day">
+              {{item.date ? item.date.substring(8,10) : "--"}}
+            </view>
+
+            <view class="course-date-month">
+              {{item.date ? item.date.substring(0,7) : "TBD"}}
+            </view>
+
+          </view>
+
+
+          <!-- 课程 -->
+
+          <view class="course-option-content">
+
+            <view class="course-option-topic">
+              {{item.topic || "No topic set"}}
+            </view>
+
+            <view class="course-option-time">
+
+              <text wx:if="{{item.startTime || item.time}}">
+                {{item.startTime || item.time}}{{item.endTime ? " — " + item.endTime : ""}}
+              </text>
+
+              <text wx:else>
+                Time TBD
+              </text>
+
+            </view>
+
+          </view>
+
+
+          <!-- 选中 -->
+
+          <view
+            wx:if="{{courseIndex == index}}"
+            class="course-selected"
+          >
+            ✓
+          </view>
+
+        </view>
+
+      </scroll-view>
+
+
+      <view class="course-modal-footer">
+
+        <view
+          class="course-confirm-btn"
+          bindtap="closeCoursePicker"
+        >
+          Confirm
+        </view>
+
+      </view>
+
+    </view>
+
+  </view>
+
+</view>
+
+
+<!-- =========================
+     没courses
+========================= -->
+
+<view
+  wx:if="{{!course}}"
+  class="empty-course-card"
+>
+
+  <view class="empty-course-icon">
+    +
+  </view>
+
+  <view class="empty-course-title">
+    No courses to review
+  </view>
+
+  <view class="empty-course-desc">
+    {{student.name || "Current Student"}}No courses available for feedback yet
+  </view>
+
+  <view class="empty-course-tip">
+    Create a course first to generate feedback
+  </view>
+
+  <navigator
+    class="empty-course-btn"
+    url="/pages/create/create"
+  >
+    Create Course
+  </navigator>
+
+</view>
+
+
+<!-- =========================
+     Feedback
+========================= -->
+
+<block wx:if="{{course}}">
+
+
+  <!-- =========================
+     01 Lesson Topics
+========================= -->
+
+<view class="select-card knowledge-card">
+
+<!-- 标题 -->
+
+<view
+  class="card-title"
+  bindtap="toggleKnowledge"
+>
+
+  <view class="card-title-left">
+
+    <view class="card-index">
+      01
+    </view>
+
+    <view>
+
+      <view class="card-title-main">
+        Lesson Topics
+      </view>
+
+      <view class="card-title-sub">
+        Choose a textbook and chapter, then select the sections
+      </view>
+
+    </view>
+
+  </view>
+
+  <text class="card-action">
+    {{knowledgeOpen ? "Collapse" : "Expand"}}
+  </text>
+
+</view>
+
+
+<!-- =========================
+     Selected
+========================= -->
+
+<view
+  wx:if="{{selectedKnowledge.length > 0}}"
+  class="selected-summary"
+>
+
+  <view class="selected-summary-top">
+
+    <view class="selected-summary-title">
+      {{selectedKnowledge.length}} topics selected
+    </view>
+
+    <view class="selected-summary-count">
+      ✓
+    </view>
+
+  </view>
+
+  <view class="selected-summary-text">
+    {{selectedKnowledgeText}}
+  </view>
+
+</view>
+
+
+<!-- =========================
+     Expand后
+========================= -->
+
+<view
+  wx:if="{{knowledgeOpen}}"
+  class="knowledge-selector"
+>
+
+
+  <!-- =====================
+       Step 1 · Textbook
+  ====================== -->
+
+  <view class="knowledge-step">
+
+    <view class="knowledge-step-label">
+      <view class="knowledge-step-number">
+        1
+      </view>
+
+      <view class="knowledge-step-title">
+        Select Textbook
+      </view>
+    </view>
+
+
+    <view
+      class="knowledge-select-box"
+      bindtap="toggleTextbook"
+    >
+
+      <view class="knowledge-select-left">
+
+        <view class="knowledge-select-label">
+          Current Textbook
+        </view>
+
+        <view class="knowledge-select-value">
+          {{selectedTextbookText || "Select a textbook"}}
+        </view>
+
+      </view>
+
+      <view class="knowledge-select-arrow">
+        {{textbookOpen ? "⌃" : "›"}}
+      </view>
+
+    </view>
+
+
+    <!-- 教材列表 -->
+
+    <view
+      wx:if="{{textbookOpen}}"
+      class="knowledge-option-list"
+    >
+
+      <block
+        wx:for="{{textbookList}}"
+        wx:key="id"
+      >
+
+        <view
+          class="knowledge-option
+            {{textbookIndex == index ? 'knowledge-option-active' : ''}}"
+          bindtap="selectTextbook"
+          data-index="{{index}}"
+        >
+
+          <view class="knowledge-option-main">
+
+            <view class="knowledge-option-title">
+              {{item.name}}
+            </view>
+
+            <view class="knowledge-option-sub">
+              人教版 · 高中化学
+            </view>
+
+          </view>
+
+          <view
+            wx:if="{{textbookIndex == index}}"
+            class="knowledge-option-check"
+          >
+            ✓
+          </view>
+
+        </view>
+
+      </block>
+
+    </view>
+
+  </view>
+
+
+  <!-- =====================
+       第二步：Select Chapter
+  ====================== -->
+
+  <view
+    wx:if="{{selectedTextbook}}"
+    class="knowledge-step"
+  >
+
+    <view class="knowledge-step-label">
+
+      <view class="knowledge-step-number">
+        2
+      </view>
+
+      <view class="knowledge-step-title">
+        Select Chapter
+      </view>
+
+    </view>
+
+
+    <view
+      class="knowledge-select-box"
+      bindtap="toggleChapter"
+    >
+
+      <view class="knowledge-select-left">
+
+        <view class="knowledge-select-label">
+          Current Chapter
+        </view>
+
+        <view class="knowledge-select-value">
+          {{selectedChapterText || "Select a chapter"}}
+        </view>
+
+      </view>
+
+      <view class="knowledge-select-arrow">
+        {{chapterOpen ? "⌃" : "›"}}
+      </view>
+
+    </view>
+
+
+    <!-- 章lessons列表 -->
+
+    <view wx:if="{{chapterOpen}}" class="knowledge-option-list">
+  <block wx:for="{{chapterList}}" wx:key="index">
+
+    <view
+      class="knowledge-option {{chapterIndex == index ? 'knowledge-option-active' : ''}}"
+      bindtap="selectChapter"
+      data-index="{{index}}"
+    >
+
+      <view class="knowledge-option-main">
+
+        <!-- 第几章 -->
+        <view class="knowledge-option-title">
+          {{item.chapter}}
+        </view>
+
+        <!-- 小lessons数量 -->
+        <view class="knowledge-option-sub">
+          {{item.sections.length}} sections
+        </view>
+
+      </view>
+
+      <!-- 当前选择 -->
+      <view
+        wx:if="{{chapterIndex == index}}"
+        class="knowledge-option-check"
+      >
+        ✓
+      </view>
+
+    </view>
+
+  </block>
+</view>
+
+  </view>
+
+
+  <!-- =====================
+       第三步：选择小lessons
+  ====================== -->
+
+  <view
+    wx:if="{{selectedChapter}}"
+    class="knowledge-step"
+  >
+
+    <view class="knowledge-step-label">
+
+      <view class="knowledge-step-number">
+        3
+      </view>
+
+      <view class="knowledge-step-title">
+        Select the sections covered
+      </view>
+
+    </view>
+
+
+    <view class="knowledge-section-tip">
+      Multi-select
+    </view>
+
+
+    <!-- 小lessons列表 -->
+
+    <view class="section-list">
+
+      <block
+        wx:for="{{knowledgeList}}"
+        wx:key="index"
+      >
+
+        <view
+          class="section-option
+            {{knowledgeSelected[index] ? 'section-option-active' : ''}}"
+          bindtap="selectKnowledge"
+          data-index="{{index}}"
+        >
+
+          <view class="section-check">
+
+            <view
+              wx:if="{{knowledgeSelected[index]}}"
+              class="section-check-active"
+            >
+              ✓
+            </view>
+
+          </view>
+
+
+          <view class="section-content">
+
+            <view class="section-name">
+              {{item}}
+            </view>
+
+          </view>
+
+        </view>
+
+      </block>
+
+    </view>
+
+
+    <!-- Current Chapter没有小lessons -->
+
+    <view
+      wx:if="{{knowledgeList.length === 0}}"
+      class="knowledge-empty"
+    >
+      No sections in this chapter
+    </view>
+
+  </view>
+
+
+</view>
+
+</view>
+
+
+  <!-- =========================
+       02 Suggestions
+  ========================= -->
+
+  <view
+    wx:if="{{selectedKnowledge.length}}"
+    class="select-card"
+  >
+
+    <view
+      class="card-title"
+      bindtap="toggleKeyword"
+    >
+
+      <view class="card-title-left">
+
+        <view class="card-index">
+          02
+        </view>
+
+        <view>
+
+          <view class="card-title-main">
+            Suggestions
+          </view>
+
+          <view class="card-title-sub">
+            Suggested keywords based on the lesson
+          </view>
+
+        </view>
+
+      </view>
+
+      <text class="card-action">
+        {{keywordOpen ? "Collapse" : "Expand"}}
+      </text>
+
+    </view>
+
+
+    <view
+      wx:if="{{selectedKeywordsText}}"
+      class="selected-show"
+    >
+      Selected: {{selectedKeywordsText}}
+    </view>
+
+
+    <view
+      wx:if="{{recommendedKeywords.length === 0}}"
+      class="recommend-empty"
+    >
+      No suggestions yet
+    </view>
+
+
+    <view
+      wx:if="{{keywordOpen && recommendedKeywords.length > 0}}"
+      class="tag-list"
+    >
+
+      <block
+        wx:for="{{recommendedKeywords}}"
+        wx:key="index"
+      >
+
+        <view
+          class="tag {{keywordSelected[index] ? 'tag-active' : ''}}"
+          bindtap="selectKeyword"
+          data-index="{{index}}"
+        >
+          {{item}}
+        </view>
+
+      </block>
+
+    </view>
+
+  </view>
+
+
+  <!-- =========================
+       03 Class Performance
+  ========================= -->
+
+  <view class="select-card">
+
+    <view
+      class="card-title"
+      bindtap="togglePerformance"
+    >
+
+      <view class="card-title-left">
+
+        <view class="card-index">
+          03
+        </view>
+
+        <view>
+
+          <view class="card-title-main">
+            Class Performance
+          </view>
+
+          <view class="card-title-sub">
+            Select the student performance
+          </view>
+
+        </view>
+
+      </view>
+
+      <text class="card-action">
+        {{performanceOpen ? "Collapse" : "Expand"}}
+      </text>
+
+    </view>
+
+
+    <view
+      wx:if="{{selectedPerformanceText}}"
+      class="selected-show"
+    >
+      Selected: {{selectedPerformanceText}}
+    </view>
+
+
+    <view
+      wx:if="{{performanceOpen}}"
+      class="tag-list"
+    >
+
+      <block
+        wx:for="{{performanceList}}"
+        wx:key="index"
+      >
+
+        <view
+          class="tag {{performanceSelected[index] ? 'tag-active' : ''}}"
+          bindtap="selectPerformance"
+          data-index="{{index}}"
+        >
+          {{item}}
+        </view>
+
+      </block>
+
+    </view>
+
+  </view>
+
+
+  <!-- =========================
+       04 Knowledge
+  ========================= -->
+
+  <view class="select-card">
+
+    <view
+      class="card-title"
+      bindtap="toggleMastery"
+    >
+
+      <view class="card-title-left">
+
+        <view class="card-index">
+          04
+        </view>
+
+        <view>
+
+          <view class="card-title-main">
+            Knowledge
+          </view>
+
+          <view class="card-title-sub">
+            Rate the student understanding
+          </view>
+
+        </view>
+
+      </view>
+
+      <text class="card-action">
+        {{masteryOpen ? "Collapse" : "Expand"}}
+      </text>
+
+    </view>
+
+
+    <view
+      wx:if="{{selectedMastery}}"
+      class="selected-show"
+    >
+      Selected: {{selectedMastery}}
+    </view>
+
+
+    <view
+      wx:if="{{masteryOpen}}"
+      class="tag-list"
+    >
+
+      <block
+        wx:for="{{masteryList}}"
+        wx:key="index"
+      >
+
+        <view
+          class="tag {{selectedMastery == item ? 'tag-active' : ''}}"
+          bindtap="selectMastery"
+          data-index="{{index}}"
+        >
+          {{item}}
+        </view>
+
+      </block>
+
+    </view>
+
+  </view>
+
+
+  <!-- =========================
+       05 Problem Solving
+  ========================= -->
+
+  <view class="select-card">
+
+    <view
+      class="card-title"
+      bindtap="toggleProblem"
+    >
+
+      <view class="card-title-left">
+
+        <view class="card-index">
+          05
+        </view>
+
+        <view>
+
+          <view class="card-title-main">
+            Problem Solving
+          </view>
+
+          <view class="card-title-sub">
+            Note problem-solving performance
+          </view>
+
+        </view>
+
+      </view>
+
+      <text class="card-action">
+        {{problemOpen ? "Collapse" : "Expand"}}
+      </text>
+
+    </view>
+
+
+    <view
+      wx:if="{{selectedProblemsText}}"
+      class="selected-show"
+    >
+      Selected: {{selectedProblemsText}}
+    </view>
+
+
+    <view
+      wx:if="{{problemOpen}}"
+      class="tag-list"
+    >
+
+      <block
+        wx:for="{{problemList}}"
+        wx:key="index"
+      >
+
+        <view
+          class="tag {{problemSelected[index] ? 'tag-active' : ''}}"
+          bindtap="selectProblem"
+          data-index="{{index}}"
+        >
+          {{item}}
+        </view>
+
+      </block>
+
+    </view>
+
+  </view>
+
+
+  <!-- =========================
+       06 Learning Status
+  ========================= -->
+
+  <view class="select-card">
+
+    <view
+      class="card-title"
+      bindtap="toggleStatus"
+    >
+
+      <view class="card-title-left">
+
+        <view class="card-index">
+          06
+        </view>
+
+        <view>
+
+          <view class="card-title-main">
+            Learning Status
+          </view>
+
+          <view class="card-title-sub">
+            Note the overall learning state
+          </view>
+
+        </view>
+
+      </view>
+
+      <text class="card-action">
+        {{statusOpen ? "Collapse" : "Expand"}}
+      </text>
+
+    </view>
+
+
+    <view
+      wx:if="{{selectedStatus}}"
+      class="selected-show"
+    >
+      Selected: {{selectedStatus}}
+    </view>
+
+
+    <view
+      wx:if="{{statusOpen}}"
+      class="tag-list"
+    >
+
+      <block
+        wx:for="{{statusList}}"
+        wx:key="index"
+      >
+
+        <view
+          class="tag {{selectedStatus == item ? 'tag-active' : ''}}"
+          bindtap="selectStatus"
+          data-index="{{index}}"
+        >
+          {{item}}
+        </view>
+
+      </block>
+
+    </view>
+
+  </view>
+
+
+  <!-- =========================
+       07 Teacher Notes
+  ========================= -->
+
+  <view class="select-card">
+
+    <view class="card-title">
+
+      <view class="card-title-left">
+
+        <view class="card-index">
+          07
+        </view>
+
+        <view>
+
+          <view class="card-title-main">
+            Teacher Notes
+          </view>
+
+          <view class="card-title-sub">
+            Add any additional notes
+          </view>
+
+        </view>
+
+      </view>
+
+    </view>
+
+
+    <textarea
+      class="note-input"
+      placeholder="e.g. Strong grasp of a topic today"
+      value="{{teacherNote}}"
+      bindinput="inputTeacherNote"
+    ></textarea>
+
+  </view>
+
+
+  <!-- =========================
+       Generate
+  ========================= -->
+
+  <view
+    class="generate-btn"
+    bindtap="generateFeedback"
+  >
+    <text>Generate Feedback</text>
+  </view>
+
+
+  <!-- =========================
+       Feedback Result
+  ========================= -->
+
+  <view
+    wx:if="{{hasFeedback}}"
+    class="result-card"
+  >
+
+    <!-- 结果顶部 -->
+
+    <view class="result-header">
+
+      <view>
+
+        <view class="result-title">
+          Class Feedback
+        </view>
+
+        <view class="result-subtitle">
+          Generated from this lesson
+        </view>
+
+      </view>
+
+      <view class="result-status">
+        Generated
+      </view>
+
+    </view>
+
+
+    <!-- =====================
+         Basic Info
+    ====================== -->
+
+    <view class="feedback-info">
+
+      <!-- Student -->
+
+      <view class="feedback-info-row">
+
+        <view class="feedback-info-label">
+          Student
+        </view>
+
+        <view class="feedback-info-value">
+          {{feedbackStudentText || student.name || "Not selected"}}
+        </view>
+
+      </view>
+
+
+      <!-- Topic -->
+
+      <view class="feedback-info-row">
+
+        <view class="feedback-info-label">
+          Topic
+        </view>
+
+        <view class="feedback-info-value">
+          {{feedbackTopicText || courseTopic || "No topic set"}}
+        </view>
+
+      </view>
+
+
+      <!-- Date -->
+
+      <view class="feedback-info-row">
+
+        <view class="feedback-info-label">
+          Date
+        </view>
+
+        <view class="feedback-info-value">
+          {{feedbackDateText || "Date TBD"}}
+        </view>
+
+      </view>
+
+    </view>
+
+
+    <!-- 分隔线 -->
+
+    <view class="feedback-divider"></view>
+
+
+    <!-- =====================
+         Teacher Feedback
+    ====================== -->
+
+    <view class="evaluation-heading">
+
+      <view class="evaluation-heading-left">
+
+        <view class="evaluation-dot"></view>
+
+        <view class="evaluation-title">
+          Teacher Feedback
+        </view>
+
+      </view>
+
+      <view class="evaluation-tip">
+        Ready to copy and send
+      </view>
+
+    </view>
+
+
+    <!-- =====================
+         Feedback
+    ====================== -->
+
+    <view class="result-content">
+      {{feedbackBody}}
+    </view>
+
+
+    <!-- =====================
+         操作按钮
+    ====================== -->
+
+    <view class="result-actions">
+
+      <view
+        class="copy-btn"
+        bindtap="copyFeedback"
+      >
+        Copy Feedback
+      </view>
+
+      <view
+        class="save-btn"
+        bindtap="saveFeedback"
+      >
+        {{hasSaved ? "Saved" : "Save Record"}}
+      </view>
+
+    </view>
+
+  </view>
+
+</block>
+
+</view>

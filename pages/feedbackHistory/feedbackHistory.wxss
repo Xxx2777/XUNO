@@ -1,0 +1,483 @@
+/* =========================================================
+   页面
+========================================================= */
+
+page {
+  background: var(--theme-background);
+}
+
+
+/* =========================================================
+   模式1
+========================================================= */
+
+.page.theme-1 {
+  --main: #765B91;
+  --main-light: #EEE9F4;
+  --main-soft: #F4F1F7;
+  --background: #F7F5FA;
+  --text: #35313D;
+  --title: #332D3A;
+  --subtext: #8D8798;
+  --border: #E9E4EF;
+  --card: #FFFFFF;
+  --shadow-card: rgba(45, 32, 70, 0.06);
+  --shadow-main: rgba(118, 91, 145, 0.22);
+  --input-bg: #F8F6FA;
+  --search-bg: #EEE9F4;
+  --topic-bg: #F4F1F7;
+  --content-bg: #FAF8FC;
+  --delete-bg: #F1EDF5;
+  --delete-text: #756D80;
+  --time: #AAA2B0;
+  --tag-text: #625B6D;
+
+  background: var(--theme-background);
+}
+
+
+/* =========================================================
+   模式2
+========================================================= */
+
+.page.theme-2 {
+  --main: #7D86C9;
+  --main-light: #EEF0FA;
+  --main-soft: #F3F4F9;
+  --background: #F6F7FB;
+  --text: #343844;
+  --title: #343844;
+  --subtext: #858B9D;
+  --border: #E5E8F0;
+  --card: #FFFFFF;
+  --shadow-card: rgba(52, 56, 68, 0.06);
+  --shadow-main: rgba(125, 134, 201, 0.22);
+  --input-bg: #F5F6FA;
+  --search-bg: #EEF0FA;
+  --topic-bg: #F3F4F9;
+  --content-bg: #FAFAFC;
+  --delete-bg: #F0F1F7;
+  --delete-text: #70768A;
+  --time: #9DA2B2;
+  --tag-text: #62687A;
+
+  background: #F6F7FB;
+}
+
+
+/* =========================================================
+   页面容器
+========================================================= */
+
+.page {
+  min-height: 100vh;
+  padding: 30rpx;
+  padding-bottom: 80rpx;
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   顶部
+========================================================= */
+
+.header {
+  height: 90rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.back {
+  width: 60rpx;
+  height: 60rpx;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 55rpx;
+  color: var(--subtext);
+}
+
+.title {
+  font-size: 34rpx;
+  font-weight: 700;
+  color: var(--title);
+}
+
+.placeholder {
+  width: 60rpx;
+}
+
+
+/* =========================================================
+   搜索
+========================================================= */
+
+.search-box {
+  margin-top: 18rpx;
+  height: 78rpx;
+  padding: 0 22rpx;
+  box-sizing: border-box;
+
+  background: var(--card);
+  border-radius: 22rpx;
+
+  display: flex;
+  align-items: center;
+
+  box-shadow:
+    0 6rpx 22rpx
+    var(--shadow-card);
+}
+
+.search-icon {
+  width: 46rpx;
+  height: 46rpx;
+  border-radius: 15rpx;
+
+  background: var(--search-bg);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: var(--main);
+  font-size: 21rpx;
+
+  flex-shrink: 0;
+}
+
+.search-input {
+  flex: 1;
+  height: 78rpx;
+  margin-left: 15rpx;
+
+  font-size: 24rpx;
+  color: var(--text);
+}
+
+.clear-button {
+  width: 42rpx;
+  height: 42rpx;
+
+  border-radius: 50%;
+
+  background: var(--main-light);
+  color: var(--subtext);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 32rpx;
+  line-height: 42rpx;
+}
+
+
+/* =========================================================
+   记录数量
+========================================================= */
+
+.result-info {
+  margin-top: 22rpx;
+  font-size: 22rpx;
+  color: var(--subtext);
+}
+
+
+/* =========================================================
+   空状态
+========================================================= */
+
+.empty {
+  margin-top: 150rpx;
+  text-align: center;
+}
+
+.empty-icon {
+  width: 90rpx;
+  height: 90rpx;
+
+  margin: 0 auto;
+
+  border-radius: 28rpx;
+
+  background: var(--main-light);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: var(--main);
+  font-size: 34rpx;
+  font-weight: bold;
+}
+
+.empty-title {
+  margin-top: 25rpx;
+
+  font-size: 30rpx;
+  font-weight: 700;
+
+  color: var(--title);
+}
+
+.empty-text {
+  margin-top: 12rpx;
+
+  font-size: 22rpx;
+
+  color: var(--subtext);
+}
+
+.clear-search {
+  width: 180rpx;
+  height: 65rpx;
+
+  line-height: 65rpx;
+
+  margin: 30rpx auto 0;
+
+  border-radius: 35rpx;
+
+  background: var(--main-light);
+  color: var(--main);
+
+  font-size: 23rpx;
+}
+
+
+/* =========================================================
+   历史卡片
+========================================================= */
+
+.history-card {
+  margin-top: 22rpx;
+  padding: 28rpx;
+
+  background: var(--card);
+
+  border-radius: 28rpx;
+
+  box-shadow:
+    0 8rpx 26rpx
+    var(--shadow-card);
+}
+
+
+/* =========================================================
+   学生信息
+========================================================= */
+
+.history-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.student-area {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+}
+
+.student-avatar {
+  width: 66rpx;
+  height: 66rpx;
+
+  border-radius: 21rpx;
+
+  background: var(--main-light);
+  color: var(--main);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 27rpx;
+  font-weight: bold;
+
+  flex-shrink: 0;
+}
+
+.student-info {
+  margin-left: 17rpx;
+}
+
+.student {
+  font-size: 30rpx;
+  font-weight: 700;
+  color: var(--title);
+}
+
+.student-meta {
+  margin-top: 5rpx;
+  font-size: 21rpx;
+  color: var(--subtext);
+}
+
+
+/* =========================================================
+   时间
+========================================================= */
+
+.time {
+  margin-left: 15rpx;
+
+  font-size: 19rpx;
+  color: var(--time);
+
+  white-space: nowrap;
+}
+
+
+/* =========================================================
+   日期
+========================================================= */
+
+.date {
+  margin-top: 16rpx;
+
+  font-size: 21rpx;
+  color: var(--time);
+}
+
+
+/* =========================================================
+   知识点
+========================================================= */
+
+.topic {
+  margin-top: 14rpx;
+
+  padding: 14rpx 18rpx;
+
+  background: var(--topic-bg);
+
+  border-radius: 16rpx;
+
+  color: var(--main);
+  font-size: 23rpx;
+}
+
+
+/* =========================================================
+   课程
+========================================================= */
+
+.lesson {
+  margin-top: 16rpx;
+
+  color: var(--main);
+
+  font-size: 23rpx;
+  line-height: 1.6;
+}
+
+
+/* =========================================================
+   反馈内容
+========================================================= */
+
+.content {
+  margin-top: 18rpx;
+
+  padding: 22rpx;
+
+  background: var(--content-bg);
+
+  border-radius: 20rpx;
+
+  color: var(--text);
+
+  font-size: 24rpx;
+  line-height: 1.8;
+}
+
+
+/* =========================================================
+   操作按钮
+========================================================= */
+
+.action-row {
+  margin-top: 20rpx;
+
+  display: flex;
+  justify-content: flex-end;
+}
+
+.copy-button,
+.delete-button {
+  width: 140rpx;
+  height: 65rpx;
+
+  line-height: 65rpx;
+
+  margin: 0 0 0 16rpx;
+
+  padding: 0;
+
+  border-radius: 35rpx;
+
+  font-size: 23rpx;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   复制按钮
+========================================================= */
+
+.copy-button {
+  color: #FFFFFF;
+}
+
+.theme-1 .copy-button {
+  background: linear-gradient(
+    135deg,
+    #765B91 0%,
+    #806A9A 55%,
+    #9180A8 100%
+  );
+}
+
+.theme-2 .copy-button {
+  background: linear-gradient(
+    135deg,
+    #7D86C9 0%,
+    #8885C4 55%,
+    #9A8FC7 100%
+  );
+}
+
+
+/* =========================================================
+   删除按钮
+========================================================= */
+
+.delete-button {
+  background: var(--delete-bg);
+  color: var(--delete-text);
+}
+
+
+/* =========================================================
+   去掉微信 button 默认边框
+========================================================= */
+
+.copy-button::after,
+.delete-button::after {
+  border: none;
+}
+
+
+/* =========================================================
+   点击效果
+========================================================= */
+
+.copy-button:active,
+.delete-button:active,
+.clear-search:active {
+  opacity: 0.8;
+}

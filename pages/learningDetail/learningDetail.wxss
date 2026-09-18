@@ -1,0 +1,247 @@
+/* =========================================================
+   炫记 · 学习记录详情
+   主题颜色与项目统一
+========================================================= */
+
+page {
+  background: var(--theme-background);
+}
+
+.page {
+  min-height: 100vh;
+  padding: 30rpx 32rpx 60rpx;
+  box-sizing: border-box;
+  background: var(--theme-background);
+}
+
+
+/* =========================================================
+   卡片
+========================================================= */
+
+.card {
+  background: #FFFFFF;
+  border-radius: 24rpx;
+  padding: 28rpx;
+  margin-bottom: 18rpx;
+  box-sizing: border-box;
+  box-shadow: 0 8rpx 24rpx rgba(50, 38, 70, 0.05);
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.type-tag {
+  padding: 8rpx 18rpx;
+  border-radius: 999rpx;
+  font-size: 23rpx;
+  background: #EEE9F4;
+  color: #765B91;
+}
+
+.minutes {
+  font-size: 40rpx;
+  font-weight: 700;
+  color: #393449;
+}
+
+.date-row {
+  margin-top: 20rpx;
+  display: flex;
+  align-items: center;
+}
+
+.date-text {
+  font-size: 23rpx;
+  color: #7F7789;
+}
+
+.time-text {
+  margin-left: 16rpx;
+  font-size: 23rpx;
+  color: #7F7789;
+}
+
+.field-block {
+  margin-top: 24rpx;
+}
+
+.field-label {
+  font-size: 22rpx;
+  color: #9A92A2;
+  margin-bottom: 10rpx;
+}
+
+.field-value {
+  font-size: 26rpx;
+  color: #4A4251;
+  line-height: 1.5;
+  word-break: break-all;
+}
+
+
+/* =========================================================
+   操作按钮
+========================================================= */
+
+.action-bar {
+  margin-top: 28rpx;
+  display: flex;
+  flex-direction: column;
+}
+
+.action-btn {
+  height: 88rpx;
+  margin-bottom: 16rpx;
+  border-radius: 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28rpx;
+  font-weight: 600;
+  box-sizing: border-box;
+}
+
+.action-btn.edit {
+  background: #765B91;
+  color: #FFFFFF;
+  box-shadow: 0 10rpx 24rpx rgba(118, 91, 145, 0.20);
+}
+
+.action-btn.danger {
+  background: #FFFFFF;
+  color: #B96B73;
+  box-shadow: 0 6rpx 20rpx rgba(50, 38, 70, 0.05);
+}
+
+.action-btn.cancel {
+  background: #FFFFFF;
+  color: #7F7789;
+  box-shadow: 0 6rpx 20rpx rgba(50, 38, 70, 0.05);
+}
+
+.action-btn.save {
+  background: linear-gradient(135deg, #765B91 0%, #806A9A 52%, #9180A8 100%);
+  color: #FFFFFF;
+  box-shadow: 0 10rpx 24rpx rgba(118, 91, 145, 0.20);
+}
+
+
+/* =========================================================
+   编辑表单
+========================================================= */
+
+.field {
+  margin-bottom: 26rpx;
+}
+
+.field-last {
+  margin-bottom: 0;
+}
+
+.field-label {
+  font-size: 24rpx;
+  color: #554C60;
+  margin-bottom: 14rpx;
+}
+
+.field-input {
+  height: 80rpx;
+  padding: 0 22rpx;
+  background: #F5F3F8;
+  border-radius: 16rpx;
+  font-size: 26rpx;
+  color: #393449;
+  box-sizing: border-box;
+}
+
+.field-textarea {
+  width: 100%;
+  min-height: 160rpx;
+  padding: 20rpx 22rpx;
+  background: #F5F3F8;
+  border-radius: 16rpx;
+  font-size: 26rpx;
+  color: #393449;
+  box-sizing: border-box;
+}
+
+.picker-value {
+  height: 80rpx;
+  padding: 0 22rpx;
+  background: #F5F3F8;
+  border-radius: 16rpx;
+  font-size: 26rpx;
+  color: #393449;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   空状态
+========================================================= */
+
+.empty {
+  margin-top: 120rpx;
+  text-align: center;
+}
+
+.empty-icon {
+  width: 90rpx;
+  height: 90rpx;
+  margin: 0 auto 25rpx;
+  border-radius: 24rpx;
+  background: #EEE9F4;
+  color: #765B91;
+  font-size: 32rpx;
+  font-weight: 700;
+  line-height: 90rpx;
+  text-align: center;
+}
+
+.empty-title {
+  font-size: 29rpx;
+  font-weight: 600;
+  color: #393449;
+}
+
+.empty-desc {
+  margin-top: 12rpx;
+  font-size: 24rpx;
+  color: #AAA3B2;
+}
+
+
+/* =========================================================
+   主题 2 · 蓝紫
+========================================================= */
+
+.theme-2 {
+  background: #F6F7FB;
+}
+
+.theme-2 .type-tag {
+  background: #EEF0FA;
+  color: #7D86C9;
+}
+
+.theme-2 .action-btn.edit {
+  background: #7D86C9;
+  box-shadow: 0 10rpx 24rpx rgba(125, 134, 201, 0.20);
+}
+
+.theme-2 .action-btn.save {
+  background: linear-gradient(135deg, #7D86C9 0%, #8885C4 52%, #9A8FC7 100%);
+  box-shadow: 0 10rpx 24rpx rgba(125, 134, 201, 0.20);
+}
+
+.theme-2 .empty-icon {
+  background: #EEF0FA;
+  color: #7D86C9;
+}

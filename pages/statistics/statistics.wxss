@@ -1,0 +1,635 @@
+/* =========================================================
+   XUNO · Insights
+   Content-first, chart-first, oversized key metric.
+   仅使用 app.wxss 主题 token，不引入第三套颜色。
+========================================================= */
+
+page {
+  background: var(--theme-background);
+}
+
+.page {
+  min-height: 100vh;
+  padding: 44rpx 32rpx 180rpx;
+  box-sizing: border-box;
+  background: var(--theme-background);
+}
+
+
+/* =========================================================
+   Header
+========================================================= */
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 56rpx;
+}
+
+.header-head {
+  flex: 1;
+  min-width: 0;
+  padding-right: 20rpx;
+}
+
+.header-side {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.header-brand {
+  margin-bottom: 14rpx;
+  color: var(--theme-main);
+  font-size: 20rpx;
+  font-weight: 700;
+  letter-spacing: 3rpx;
+}
+
+.header-title {
+  font-size: var(--font-display);
+  font-weight: 700;
+  color: var(--theme-text);
+  line-height: 1.2;
+}
+
+.header-sub {
+  margin-top: 8rpx;
+  font-size: var(--font-secondary);
+  color: var(--theme-subtext);
+}
+
+.period-tag {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  padding: 14rpx 22rpx;
+  border-radius: var(--radius-pill);
+  background: var(--theme-card);
+  color: var(--theme-main);
+  font-size: var(--font-secondary);
+  font-weight: 600;
+  box-shadow: var(--theme-shadow-card);
+}
+
+.period-arrow {
+  margin-left: 8rpx;
+  display: flex;
+  align-items: center;
+}
+
+.period-arrow .icon {
+  width: 26rpx;
+  height: 26rpx;
+}
+
+
+/* =========================================================
+   Hero（视觉焦点）
+========================================================= */
+
+.hero {
+  margin-bottom: 52rpx;
+  text-align: center;
+}
+
+.hero-metric {
+  font-size: 84rpx;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--theme-text);
+  letter-spacing: -1rpx;
+}
+
+.hero-label {
+  margin-top: 16rpx;
+  font-size: var(--font-body);
+  color: var(--theme-subtext);
+}
+
+.hero-compare {
+  margin-top: 10rpx;
+  font-size: var(--font-secondary);
+  font-weight: 600;
+}
+
+.hero-compare.up {
+  color: var(--theme-success);
+}
+
+.hero-compare.down {
+  color: var(--theme-danger);
+}
+
+.hero-compare.flat {
+  color: var(--theme-subtext);
+  font-weight: 400;
+}
+
+
+/* =========================================================
+   What Changed（变化摘要）
+========================================================= */
+
+.changed {
+  margin-bottom: 12rpx;
+  padding-bottom: 8rpx;
+}
+
+.changed-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 12rpx;
+}
+
+.changed-title {
+  font-size: var(--font-section);
+  font-weight: 700;
+  color: var(--theme-text);
+}
+
+.changed-sub {
+  font-size: var(--font-caption);
+  color: var(--theme-subtext);
+}
+
+.changed-row {
+  display: flex;
+  align-items: center;
+  padding: 18rpx 0;
+  border-bottom: 1rpx solid var(--theme-border);
+}
+
+.changed-row:last-child {
+  border-bottom: none;
+}
+
+.changed-label {
+  flex: 1;
+  font-size: var(--font-body);
+  font-weight: 600;
+  color: var(--theme-text);
+}
+
+.changed-value {
+  font-size: var(--font-body);
+  color: var(--theme-subtext);
+  margin-right: 24rpx;
+}
+
+.changed-delta {
+  min-width: 96rpx;
+  text-align: right;
+  font-size: var(--font-body);
+  font-weight: 700;
+}
+
+.changed-delta.up {
+  color: var(--theme-success);
+}
+
+.changed-delta.down {
+  color: var(--theme-danger);
+}
+
+.changed-delta.flat {
+  color: var(--theme-subtext);
+  font-weight: 500;
+}
+
+
+/* =========================================================
+   Section
+========================================================= */
+
+.section {
+  margin-top: 56rpx;
+}
+
+.section-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 24rpx;
+}
+
+.section-title {
+  font-size: var(--font-section);
+  font-weight: 700;
+  color: var(--theme-text);
+}
+
+.section-desc {
+  font-size: var(--font-caption);
+  color: var(--theme-subtext);
+}
+
+
+/* =========================================================
+   Trend chart（柱状趋势）
+========================================================= */
+
+.trend {
+  display: flex;
+  align-items: flex-end;
+  height: 200rpx;
+}
+
+.trend-col {
+  flex: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.trend-bar {
+  width: 34rpx;
+  border-radius: 8rpx 8rpx 0 0;
+  background: var(--theme-main);
+}
+
+.trend-bar.empty {
+  background: var(--theme-main-soft);
+}
+
+.trend-bar.task-bar {
+  background: var(--theme-success);
+}
+
+.trend-label {
+  margin-top: 10rpx;
+  font-size: var(--font-caption);
+  color: var(--theme-subtext);
+  white-space: nowrap;
+}
+
+.trend-label.today {
+  color: var(--theme-main);
+  font-weight: 700;
+}
+
+
+/* 柱高档位（8rpx → 156rpx，步长 ~15） */
+.bar-h-0 { height: 8rpx; }
+.bar-h-1 { height: 23rpx; }
+.bar-h-2 { height: 38rpx; }
+.bar-h-3 { height: 53rpx; }
+.bar-h-4 { height: 68rpx; }
+.bar-h-5 { height: 83rpx; }
+.bar-h-6 { height: 98rpx; }
+.bar-h-7 { height: 113rpx; }
+.bar-h-8 { height: 128rpx; }
+.bar-h-9 { height: 143rpx; }
+.bar-h-10 { height: 158rpx; }
+
+
+/* =========================================================
+   Learning 辅助（日均 + 类型）
+========================================================= */
+
+.avg-line {
+  margin-top: 26rpx;
+  font-size: var(--font-body);
+}
+
+.avg-label {
+  color: var(--theme-subtext);
+}
+
+.avg-value {
+  margin-left: 12rpx;
+  font-weight: 600;
+  color: var(--theme-text);
+}
+
+.type-block {
+  margin-top: 36rpx;
+}
+
+.type-head {
+  font-size: var(--font-card);
+  font-weight: 600;
+  color: var(--theme-text);
+  margin-bottom: 16rpx;
+}
+
+.type-row {
+  display: flex;
+  align-items: center;
+  padding: 13rpx 0;
+}
+
+.type-name {
+  width: 150rpx;
+  flex-shrink: 0;
+  font-size: var(--font-body);
+  color: var(--theme-text);
+}
+
+.type-track {
+  flex: 1;
+  height: 12rpx;
+  border-radius: var(--radius-pill);
+  background: var(--theme-main-soft);
+  overflow: hidden;
+}
+
+.type-fill {
+  height: 100%;
+  border-radius: var(--radius-pill);
+  background: var(--theme-main);
+}
+
+.type-value {
+  width: 120rpx;
+  flex-shrink: 0;
+  text-align: right;
+  font-size: var(--font-secondary);
+  color: var(--theme-subtext);
+}
+
+
+/* 横向条宽度档位 */
+.bar-w-0 { width: 0%; }
+.bar-w-1 { width: 10%; }
+.bar-w-2 { width: 20%; }
+.bar-w-3 { width: 30%; }
+.bar-w-4 { width: 40%; }
+.bar-w-5 { width: 50%; }
+.bar-w-6 { width: 60%; }
+.bar-w-7 { width: 70%; }
+.bar-w-8 { width: 80%; }
+.bar-w-9 { width: 90%; }
+.bar-w-10 { width: 100%; }
+
+
+/* =========================================================
+   Teaching（状态分布）
+========================================================= */
+
+.teach-head {
+  display: flex;
+  align-items: baseline;
+}
+
+.teach-count {
+  font-size: 56rpx;
+  font-weight: 700;
+  color: var(--theme-text);
+  line-height: 1;
+}
+
+.teach-count-label {
+  margin-left: 14rpx;
+  font-size: var(--font-secondary);
+  color: var(--theme-subtext);
+}
+
+.teach-rate {
+  margin-left: auto;
+  font-size: var(--font-body);
+  font-weight: 600;
+  color: var(--theme-main);
+}
+
+.seg-bar {
+  display: flex;
+  margin-top: 28rpx;
+  height: 16rpx;
+  border-radius: var(--radius-pill);
+  overflow: hidden;
+  background: var(--theme-main-soft);
+}
+
+.seg {
+  height: 100%;
+}
+
+.seg-dot-completed { background: var(--theme-success); }
+.seg-dot-running { background: var(--theme-main); }
+.seg-dot-pending { background: var(--theme-muted); }
+.seg-dot-leave { background: var(--theme-warning); }
+.seg-dot-cancel { background: var(--theme-danger); }
+
+
+.seg-legend {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 20rpx;
+}
+
+.seg-legend-item {
+  display: flex;
+  align-items: center;
+  margin-right: 30rpx;
+  margin-bottom: 12rpx;
+}
+
+.dist-dot {
+  width: 12rpx;
+  height: 12rpx;
+  border-radius: 50%;
+  margin-right: 10rpx;
+  flex-shrink: 0;
+}
+
+.seg-legend-label {
+  font-size: var(--font-secondary);
+  color: var(--theme-subtext);
+  margin-right: 8rpx;
+}
+
+.seg-legend-count {
+  font-size: var(--font-secondary);
+  font-weight: 700;
+  color: var(--theme-text);
+}
+
+
+/* 状态 / 优先级圆点色 */
+.dot-completed { background: var(--theme-success); }
+.dot-running { background: var(--theme-main); }
+.dot-pending { background: var(--theme-muted); }
+.dot-leave { background: var(--theme-warning); }
+.dot-cancel { background: var(--theme-danger); }
+.dot-high { background: var(--theme-danger); }
+.dot-medium { background: var(--theme-warning); }
+.dot-low { background: var(--theme-muted); }
+
+
+/* =========================================================
+   Feedback 行动入口
+========================================================= */
+
+.feedback-line {
+  margin-top: 30rpx;
+  padding: 22rpx 26rpx;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.feedback-line.attention {
+  background: var(--theme-main-soft);
+}
+
+.feedback-line.ok {
+  background: var(--theme-card);
+  border: 1rpx solid var(--theme-border);
+}
+
+.feedback-text {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.feedback-title {
+  font-size: var(--font-body);
+  font-weight: 600;
+  color: var(--theme-text);
+}
+
+.feedback-action {
+  margin-top: 4rpx;
+  font-size: var(--font-secondary);
+  font-weight: 600;
+  color: var(--theme-main);
+}
+
+.feedback-arrow {
+  display: flex;
+  align-items: center;
+}
+
+.feedback-arrow .icon {
+  width: 30rpx;
+  height: 30rpx;
+}
+
+
+/* =========================================================
+   Tasks
+========================================================= */
+
+.task-stats {
+  display: flex;
+}
+
+.task-stat {
+  flex: 1;
+  text-align: center;
+}
+
+.task-stat-value {
+  font-size: 44rpx;
+  font-weight: 700;
+  color: var(--theme-text);
+  line-height: 1.1;
+}
+
+.task-stat-value.overdue {
+  color: var(--theme-danger);
+}
+
+.task-stat-label {
+  margin-top: 8rpx;
+  font-size: var(--font-caption);
+  color: var(--theme-subtext);
+}
+
+.rhythm {
+  margin-top: 36rpx;
+}
+
+.rhythm-head {
+  font-size: var(--font-card);
+  font-weight: 600;
+  color: var(--theme-text);
+  margin-bottom: 18rpx;
+}
+
+.priority-line {
+  display: flex;
+  margin-top: 28rpx;
+  padding-top: 24rpx;
+  border-top: 1rpx solid var(--theme-border);
+}
+
+.priority-item {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.priority-dot {
+  width: 12rpx;
+  height: 12rpx;
+  border-radius: 50%;
+  margin-right: 10rpx;
+  flex-shrink: 0;
+}
+
+.priority-text {
+  font-size: var(--font-secondary);
+  color: var(--theme-subtext);
+  margin-right: 8rpx;
+}
+
+.priority-count {
+  font-size: var(--font-secondary);
+  font-weight: 700;
+  color: var(--theme-text);
+}
+
+
+/* =========================================================
+   Summary / Bottom
+========================================================= */
+
+.summary {
+  margin-top: 56rpx;
+  padding-top: 24rpx;
+  border-top: 1rpx solid var(--theme-border);
+  text-align: center;
+}
+
+.summary-text {
+  font-size: var(--font-secondary);
+  color: var(--theme-subtext);
+}
+
+.bottom {
+  margin-top: 40rpx;
+  text-align: center;
+}
+
+.bottom-brand {
+  font-size: var(--font-caption);
+  color: var(--theme-muted);
+}
+
+.bottom-updated {
+  margin-left: 12rpx;
+  font-size: var(--font-caption);
+  color: var(--theme-muted);
+}
+
+
+/* =========================================================
+   Empty
+========================================================= */
+
+.empty-note {
+  padding: 32rpx 0;
+  font-size: var(--font-secondary);
+  color: var(--theme-subtext);
+}

@@ -1,0 +1,272 @@
+page {
+  background: var(--theme-background);
+}
+
+.page {
+  min-height: 100vh;
+  padding: 24rpx 32rpx 80rpx;
+  box-sizing: border-box;
+  background: var(--theme-background);
+}
+
+
+/* 详情卡片 */
+
+.card {
+  padding: 32rpx 28rpx;
+  border-radius: 20rpx;
+  background: #FFFFFF;
+}
+
+.detail-title {
+  font-size: 36rpx;
+  font-weight: 700;
+  color: #332D3A;
+  line-height: 1.4;
+}
+
+.detail-meta {
+  margin-top: 16rpx;
+  display: flex;
+  align-items: center;
+}
+
+.detail-type {
+  padding: 4rpx 16rpx;
+  border-radius: 999rpx;
+  background: #EEE9F4;
+  color: #765B91;
+  font-size: 22rpx;
+}
+
+.detail-project {
+  margin-left: 14rpx;
+  padding: 4rpx 16rpx;
+  border-radius: 999rpx;
+  background: #EDEFF8;
+  color: #6E7FA8;
+  font-size: 22rpx;
+}
+
+.detail-tags {
+  margin-top: 16rpx;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.detail-tag {
+  margin-right: 12rpx;
+  margin-bottom: 8rpx;
+  padding: 4rpx 14rpx;
+  border-radius: 999rpx;
+  background: #F1EEF4;
+  color: #6E6678;
+  font-size: 21rpx;
+}
+
+.detail-content {
+  display: block;
+  margin-top: 24rpx;
+  font-size: 27rpx;
+  color: #4A4251;
+  line-height: 1.7;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.detail-time {
+  margin-top: 20rpx;
+  font-size: 21rpx;
+  color: #A19AA8;
+}
+
+.detail-time + .detail-time {
+  margin-top: 6rpx;
+}
+
+
+/* 操作按钮 */
+
+.action-bar {
+  margin-top: 32rpx;
+  display: flex;
+}
+
+.action-btn {
+  flex: 1;
+  height: 84rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 24rpx;
+  font-size: 27rpx;
+  font-weight: 600;
+}
+
+.action-btn.edit {
+  background: #765B91;
+  color: #FFFFFF;
+}
+
+.action-btn.danger {
+  margin-left: 20rpx;
+  background: #F7ECEE;
+  color: #B96B73;
+}
+
+
+/* 空状态 */
+
+.empty {
+  margin-top: 100rpx;
+  text-align: center;
+}
+
+.empty-icon {
+  width: 88rpx;
+  height: 88rpx;
+  margin: 0 auto 20rpx;
+  border-radius: 24rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #EEE9F4;
+  color: #765B91;
+  font-size: 32rpx;
+  font-weight: 700;
+}
+
+.empty-title {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #403849;
+}
+
+.empty-desc {
+  margin-top: 10rpx;
+  font-size: 23rpx;
+  color: #9B93A2;
+}
+
+.empty-btn {
+  margin: 30rpx auto 0;
+  width: 240rpx;
+  padding: 18rpx 0;
+  border-radius: 24rpx;
+  background: #765B91;
+  color: #FFFFFF;
+  font-size: 26rpx;
+  font-weight: 600;
+}
+
+
+/* 编辑表单 */
+
+.form-card {
+  padding: 32rpx 28rpx;
+  border-radius: 24rpx;
+  background: #FFFFFF;
+  box-shadow: 0 8rpx 24rpx rgba(50, 38, 70, 0.05);
+}
+
+.field {
+  margin-bottom: 26rpx;
+}
+
+.field-label {
+  font-size: 23rpx;
+  color: #6E6678;
+  margin-bottom: 12rpx;
+}
+
+.field-input {
+  height: 78rpx;
+  padding: 0 20rpx;
+  border-radius: 16rpx;
+  background: #F5F2F8;
+  font-size: 26rpx;
+  color: #332D3A;
+}
+
+.type-row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.type-chip {
+  margin-right: 14rpx;
+  margin-bottom: 12rpx;
+  padding: 12rpx 28rpx;
+  border-radius: 16rpx;
+  background: #F5F2F8;
+  color: #6E6678;
+  font-size: 24rpx;
+}
+
+.type-chip.active {
+  background: #F2EDFB;
+  color: #765B91;
+  font-weight: 600;
+}
+
+.picker-value {
+  height: 78rpx;
+  padding: 0 20rpx;
+  border-radius: 16rpx;
+  background: #F5F2F8;
+  font-size: 26rpx;
+  color: #332D3A;
+  line-height: 78rpx;
+}
+
+.content-textarea {
+  width: 100%;
+  height: 320rpx;
+  padding: 16rpx 20rpx;
+  border-radius: 16rpx;
+  background: #F5F2F8;
+  font-size: 26rpx;
+  color: #332D3A;
+  box-sizing: border-box;
+}
+
+.save-btn {
+  margin-top: 10rpx;
+  height: 84rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20rpx;
+  background: #765B91;
+  color: #FFFFFF;
+  font-size: 28rpx;
+  font-weight: 600;
+}
+
+
+/* 主题 2 */
+
+.theme-2 {
+  background: #F6F7FB;
+}
+
+.theme-2 .detail-type {
+  background: #EEF0FA;
+  color: #7D86C9;
+}
+
+.theme-2 .type-chip.active {
+  background: #EDF0FA;
+  color: #7D86C9;
+}
+
+.theme-2 .action-btn.edit,
+.theme-2 .save-btn,
+.theme-2 .empty-btn {
+  background: #7D86C9;
+}
+
+.theme-2 .empty-icon {
+  background: #EEF0FA;
+  color: #7D86C9;
+}

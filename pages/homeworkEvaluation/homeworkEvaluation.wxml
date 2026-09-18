@@ -1,0 +1,142 @@
+<view class="page {{themeClass}}">
+
+
+<!-- 学生信息 -->
+
+<view class="student-card">
+
+  <view class="student-avatar">
+    {{course.student ? course.student.substring(0,1) : "S"}}
+  </view>
+
+  <view class="student-info">
+
+    <view class="student-name">
+      {{course.student || "Student"}}
+    </view>
+
+    <view class="student-grade">
+      {{gradeText || "Student"}} · Chemistry
+    </view>
+
+  </view>
+
+</view>
+
+
+<!-- 作业内容 -->
+
+<view class="section-card">
+
+  <view class="section-title">
+    Homework
+  </view>
+
+  <view
+    wx:if="{{homework}}"
+    class="homework-box"
+  >
+    {{homework}}
+  </view>
+
+  <view
+    wx:else
+    class="empty-homework"
+  >
+    No homework recorded
+  </view>
+
+</view>
+
+
+<!-- 成绩 -->
+
+<view class="section-card">
+
+  <view class="section-title">
+    Score
+  </view>
+
+  <view class="score-row">
+
+    <input
+      class="score-input"
+      type="number"
+      maxlength="3"
+      placeholder="Enter score"
+      value="{{score}}"
+      bindinput="inputScore"
+    />
+
+    <view class="score-unit">
+      points
+    </view>
+
+  </view>
+
+</view>
+
+
+<!-- Quick Review -->
+
+<view class="section-card">
+
+  <view class="section-title">
+    Quick Review
+  </view>
+
+  <view class="evaluation-list">
+
+    <block
+      wx:for="{{evaluationList}}"
+      wx:key="index"
+    >
+
+      <view
+        class="evaluation-tag {{selectedEvaluation == item ? 'evaluation-active' : ''}}"
+        bindtap="selectEvaluation"
+        data-index="{{index}}"
+      >
+        {{item}}
+      </view>
+
+    </block>
+
+  </view>
+
+</view>
+
+
+<!-- Teacher Review -->
+
+<view class="section-card">
+
+  <view class="section-title">
+    Teacher Review
+  </view>
+
+  <textarea
+    class="evaluation-input"
+    placeholder="Enter a review for this homework"
+    value="{{evaluation}}"
+    bindinput="inputEvaluation"
+  ></textarea>
+
+</view>
+
+
+<!-- 保存 -->
+
+<view
+  class="save-button"
+  bindtap="saveEvaluation"
+>
+  {{hasSaved ? "Update Homework Review" : "Save Homework Review"}}
+</view>
+
+
+<view class="bottom-tip">
+  The homework review will be saved to this lesson record
+</view>
+
+</view>

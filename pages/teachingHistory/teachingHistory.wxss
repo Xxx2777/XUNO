@@ -1,0 +1,813 @@
+/* =========================================================
+   炫记 · 教学记录
+========================================================= */
+
+page {
+  background: var(--theme-background);
+}
+
+
+/* =========================================================
+   页面
+========================================================= */
+
+.page {
+  min-height: 100vh;
+  background: var(--theme-background);
+  box-sizing: border-box;
+  padding-bottom: 70rpx;
+}
+
+
+/* =========================================================
+   顶部 Tab
+========================================================= */
+
+.tab-bar {
+  width: 100%;
+  height: 100rpx;
+
+  display: flex;
+  align-items: stretch;
+
+  background: #FFFFFF;
+
+  border-bottom: 1rpx solid #EEEAF1;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   Tab
+========================================================= */
+
+.tab-item {
+  position: relative;
+
+  width: 50%;
+  height: 100rpx;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  box-sizing: border-box;
+
+  background: #FFFFFF;
+
+  color: #9E96A5;
+}
+
+
+/* 不要中间竖线 */
+
+.tab-item:first-child {
+  border-right: none;
+}
+
+
+/* Tab 文字 */
+
+.tab-title {
+  font-size: 28rpx;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+
+/* =========================================================
+   选中
+========================================================= */
+
+.tab-active {
+  color: #765B91;
+}
+
+
+/* =========================================================
+   选中底部线
+   铺满当前 50% 区域
+========================================================= */
+
+.tab-active::after {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  bottom: 0;
+
+  width: 100%;
+  height: 6rpx;
+
+  border-radius: 0;
+
+  background: #765B91;
+}
+
+
+/* =========================================================
+   内容
+========================================================= */
+
+.content {
+  padding: 28rpx 30rpx 0;
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   搜索框
+========================================================= */
+
+.search-card {
+  width: 100%;
+  height: 78rpx;
+
+  display: flex;
+  align-items: center;
+
+  padding: 0 22rpx;
+
+  box-sizing: border-box;
+
+  border-radius: 22rpx;
+
+  background: #FFFFFF;
+
+  box-shadow:
+    0 7rpx 22rpx
+    rgba(50, 38, 70, 0.045);
+}
+
+
+/* 搜索图标 */
+
+.search-icon {
+  width: 48rpx;
+  height: 48rpx;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 15rpx;
+
+  background: #EEE9F4;
+
+  color: #765B91;
+
+  font-size: 19rpx;
+  font-weight: 700;
+}
+
+
+/* 输入框 */
+
+.search-input {
+  flex: 1;
+
+  min-width: 0;
+
+  margin-left: 15rpx;
+
+  color: #403948;
+
+  font-size: 23rpx;
+}
+
+
+/* 清除 */
+
+.clear-button {
+  width: 48rpx;
+  height: 48rpx;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #AAA3AE;
+
+  font-size: 34rpx;
+  font-weight: 300;
+}
+
+
+/* =========================================================
+   搜索结果数量
+========================================================= */
+
+.result-info {
+  height: 76rpx;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  box-sizing: border-box;
+}
+
+.result-title {
+  color: #3C3544;
+  font-size: 25rpx;
+  font-weight: 700;
+}
+
+.result-count {
+  color: #A29AA8;
+  font-size: 20rpx;
+}
+
+
+/* =========================================================
+   卡片
+========================================================= */
+
+.feedback-card,
+.homework-card {
+  width: 100%;
+
+  margin-bottom: 18rpx;
+
+  padding: 25rpx;
+
+  box-sizing: border-box;
+
+  border-radius: 27rpx;
+
+  background: #FFFFFF;
+
+  box-shadow:
+    0 8rpx 28rpx
+    rgba(50, 38, 70, 0.055);
+}
+
+
+/* =========================================================
+   卡片头部
+========================================================= */
+
+.card-head {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+
+/* 学生区域 */
+
+.student-area {
+  min-width: 0;
+
+  display: flex;
+  align-items: center;
+
+  flex: 1;
+}
+
+
+/* 学生头像 */
+
+.student-avatar {
+  width: 66rpx;
+  height: 66rpx;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 20rpx;
+
+  background: #EEE9F4;
+
+  color: #765B91;
+
+  font-size: 25rpx;
+  font-weight: 700;
+}
+
+
+/* 学生信息 */
+
+.student-info {
+  min-width: 0;
+  margin-left: 16rpx;
+}
+
+.student-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  color: #302A37;
+
+  font-size: 28rpx;
+  font-weight: 700;
+}
+
+.student-meta {
+  margin-top: 5rpx;
+
+  color: #9D95A4;
+
+  font-size: 20rpx;
+}
+
+
+/* =========================================================
+   右侧填写时间
+========================================================= */
+
+.record-time {
+  flex-shrink: 0;
+
+  margin-left: 15rpx;
+
+  max-width: 230rpx;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  color: #AAA2AE;
+
+  font-size: 18rpx;
+}
+
+
+/* =========================================================
+   日期
+   课堂反馈和作业评价统一
+========================================================= */
+
+.record-date {
+  margin-top: 20rpx;
+
+  color: #765B91;
+
+  font-size: 20rpx;
+  font-weight: 600;
+
+  line-height: 1.5;
+}
+
+
+/* =========================================================
+   知识点、反馈、作业等内容框
+========================================================= */
+
+.topic-box,
+.feedback-content,
+.section-box,
+.evaluation-box {
+  margin-top: 18rpx;
+
+  padding: 20rpx;
+
+  box-sizing: border-box;
+
+  border-radius: 19rpx;
+
+  background: #F9F7FB;
+}
+
+
+/* 标签 */
+
+.box-label {
+  margin-bottom: 9rpx;
+
+  color: #8E8697;
+
+  font-size: 19rpx;
+  font-weight: 600;
+}
+
+
+/* =========================================================
+   知识点
+========================================================= */
+
+.topic-box {
+  background: #F7F3FA;
+}
+
+.topic-text {
+  color: #765B91;
+
+  font-size: 22rpx;
+  font-weight: 600;
+
+  line-height: 1.5;
+}
+
+
+/* =========================================================
+   课堂反馈正文
+========================================================= */
+
+.feedback-content {
+  background: #FBFAFC;
+}
+
+.content-text {
+  color: #514A57;
+
+  font-size: 22rpx;
+
+  line-height: 1.75;
+
+  word-break: break-all;
+}
+
+
+/* =========================================================
+   作业
+========================================================= */
+
+.section-box {
+  background: #FAF9FB;
+}
+
+.box-text {
+  color: #514A57;
+
+  font-size: 22rpx;
+
+  line-height: 1.7;
+
+  word-break: break-all;
+}
+
+.empty-box-text {
+  color: #B2ABB5;
+
+  font-size: 21rpx;
+
+  line-height: 1.5;
+}
+
+
+/* =========================================================
+   成绩
+========================================================= */
+
+.score-box {
+  margin-top: 18rpx;
+
+  min-height: 88rpx;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 22rpx;
+
+  box-sizing: border-box;
+
+  border-radius: 19rpx;
+
+  background: #F1ECF5;
+}
+
+.score-label {
+  color: #80758B;
+
+  font-size: 20rpx;
+}
+
+.score {
+  color: #765B91;
+
+  font-size: 34rpx;
+
+  font-weight: 700;
+}
+
+.score text {
+  margin-left: 4rpx;
+
+  font-size: 20rpx;
+
+  font-weight: 500;
+}
+
+
+/* =========================================================
+   教师评价
+========================================================= */
+
+.evaluation-box {
+  background: #FBFAFC;
+}
+
+.evaluation-text {
+  color: #514A57;
+
+  font-size: 22rpx;
+
+  line-height: 1.75;
+
+  word-break: break-all;
+}
+
+
+/* =========================================================
+   操作按钮
+========================================================= */
+
+.action-row {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  margin-top: 21rpx;
+
+  padding-top: 18rpx;
+
+  border-top: 1rpx solid #F0EDF2;
+}
+
+
+/* 微信 button 默认样式清除 */
+
+.action-row button {
+  margin: 0;
+  padding: 0;
+
+  min-width: 0;
+
+  height: 58rpx;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 17rpx;
+
+  box-sizing: border-box;
+
+  font-size: 20rpx;
+
+  line-height: 1;
+
+  border: none;
+}
+
+
+/* 防止 button 默认 after */
+
+.action-row button::after {
+  border: none;
+}
+
+
+/* 复制 */
+
+.copy-button {
+  width: 142rpx;
+
+  margin-right: 14rpx !important;
+
+  background: #EEE9F4;
+
+  color: #765B91;
+}
+
+
+/* 删除 */
+
+.delete-button {
+  width: 106rpx;
+
+  background: #F7F2F5;
+
+  color: #A17889;
+}
+
+
+/* =========================================================
+   空状态
+========================================================= */
+
+.empty-card {
+  width: 100%;
+
+  min-height: 330rpx;
+
+  padding: 45rpx 25rpx;
+
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 27rpx;
+
+  background: #FFFFFF;
+
+  box-shadow:
+    0 8rpx 25rpx
+    rgba(50, 38, 70, 0.04);
+}
+
+
+/* 空图标 */
+
+.empty-icon {
+  width: 72rpx;
+  height: 72rpx;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 22rpx;
+
+  background: #EEE9F4;
+
+  color: #765B91;
+
+  font-size: 26rpx;
+  font-weight: 700;
+}
+
+
+/* 空标题 */
+
+.empty-title {
+  margin-top: 19rpx;
+
+  color: #3B3442;
+
+  font-size: 26rpx;
+
+  font-weight: 700;
+}
+
+
+/* 空说明 */
+
+.empty-text {
+  margin-top: 9rpx;
+
+  color: #AAA2AE;
+
+  font-size: 20rpx;
+
+  line-height: 1.5;
+
+  text-align: center;
+}
+
+
+/* 清除搜索 */
+
+.empty-button {
+  margin-top: 22rpx;
+
+  padding: 11rpx 24rpx;
+
+  border-radius: 15rpx;
+
+  background: #EEE9F4;
+
+  color: #765B91;
+
+  font-size: 20rpx;
+}
+
+
+/* =========================================================
+   底部提示
+========================================================= */
+
+.bottom-tip {
+  padding: 10rpx 0 25rpx;
+
+  text-align: center;
+
+  color: #B0A8B4;
+
+  font-size: 18rpx;
+}
+
+
+/* =========================================================
+   模式1
+========================================================= */
+
+.theme-1 {
+  background: var(--theme-background);
+}
+
+.theme-1 .tab-active {
+  color: #765B91;
+}
+
+.theme-1 .tab-active::after {
+  background: #765B91;
+}
+
+.theme-1 .search-icon {
+  background: #EEE9F4;
+  color: #765B91;
+}
+
+.theme-1 .student-avatar {
+  background: #EEE9F4;
+  color: #765B91;
+}
+
+.theme-1 .record-date {
+  color: #765B91;
+}
+
+.theme-1 .topic-text {
+  color: #765B91;
+}
+
+.theme-1 .score {
+  color: #765B91;
+}
+
+.theme-1 .copy-button {
+  background: #EEE9F4;
+  color: #765B91;
+}
+
+.theme-1 .empty-icon {
+  background: #EEE9F4;
+  color: #765B91;
+}
+
+.theme-1 .empty-button {
+  background: #EEE9F4;
+  color: #765B91;
+}
+
+
+/* =========================================================
+   模式2
+========================================================= */
+
+.theme-2 {
+  background: #F6F7FB;
+}
+
+.theme-2 .tab-active {
+  color: #7D86C9;
+}
+
+.theme-2 .tab-active::after {
+  background: #7D86C9;
+}
+
+.theme-2 .search-icon {
+  background: #EEF0FA;
+  color: #7D86C9;
+}
+
+.theme-2 .student-avatar {
+  background: #EEF0FA;
+  color: #7D86C9;
+}
+
+.theme-2 .record-date {
+  color: #7D86C9;
+}
+
+.theme-2 .topic-text {
+  color: #7D86C9;
+}
+
+.theme-2 .score {
+  color: #7D86C9;
+}
+
+.theme-2 .copy-button {
+  background: #EEF0FA;
+  color: #7D86C9;
+}
+
+.theme-2 .empty-icon {
+  background: #EEF0FA;
+  color: #7D86C9;
+}
+
+.theme-2 .empty-button {
+  background: #EEF0FA;
+  color: #7D86C9;
+}

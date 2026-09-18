@@ -1,0 +1,1806 @@
+/* =========================================================
+   炫记 · 日程
+   主题颜色与首页完全统一
+========================================================= */
+
+
+/* =========================================================
+   页面
+========================================================= */
+
+page {
+
+  background: var(--theme-background);
+
+}
+
+
+/* =========================================================
+   模式1
+   首页：经典紫色
+========================================================= */
+
+.page.theme-1 {
+
+  --theme-main: #765B91;
+
+  --theme-block: #8268A0;
+
+  --theme-main-mid: #806A9A;
+
+  --theme-main-end: #9180A8;
+
+  --theme-main-light: #EEE9F4;
+
+  --theme-main-soft: #F4F1F7;
+
+  --theme-background: #F7F5FA;
+
+  --theme-text: #332D3A;
+
+  --theme-subtext: #766D7E;
+
+  --theme-muted: #A29AA9;
+
+  --theme-border: #EEEAF1;
+
+  --theme-white: #FFFFFF;
+
+  --theme-white-soft:
+    rgba(255,255,255,0.74);
+
+  --theme-white-faint:
+    rgba(255,255,255,0.16);
+
+  --theme-card: #FFFFFF;
+
+  --theme-tabbar:
+    rgba(255,255,255,0.97);
+
+  --theme-other-month: #C5BDCE;
+
+  --theme-shadow-main:
+    rgba(118,91,145,0.16);
+
+  --theme-shadow-card:
+    rgba(50,38,70,0.055);
+
+  --theme-shadow-tabbar:
+    rgba(45,34,60,0.10);
+
+}
+
+
+/* =========================================================
+   模式2
+   首页：蓝紫渐变
+========================================================= */
+
+.page.theme-2 {
+
+  --theme-main: #7D86C9;
+
+  --theme-block: #8993D8;
+
+  --theme-main-mid: #8885C4;
+
+  --theme-main-end: #9A8FC7;
+
+  --theme-main-light: #EEF0FA;
+
+  --theme-main-soft: #F4F4FA;
+
+  --theme-background: #F6F7FB;
+
+  --theme-text: #343844;
+
+  --theme-subtext: #858B9D;
+
+  --theme-muted: #A1A5B4;
+
+  --theme-border: #E9E9F1;
+
+  --theme-white: #FFFFFF;
+
+  --theme-white-soft:
+    rgba(255,255,255,0.74);
+
+  --theme-white-faint:
+    rgba(255,255,255,0.16);
+
+  --theme-card: #FFFFFF;
+
+  --theme-tabbar:
+    rgba(255,255,255,0.97);
+
+  --theme-other-month: #C5C8D5;
+
+  --theme-shadow-main:
+    rgba(125,134,201,0.16);
+
+  --theme-shadow-card:
+    rgba(52,56,68,0.055);
+
+  --theme-shadow-tabbar:
+    rgba(52,56,68,0.10);
+
+}
+
+
+/* =========================================================
+   页面基础
+========================================================= */
+
+.page {
+
+  min-height: 100vh;
+
+  padding:
+    36rpx
+    32rpx
+    190rpx;
+
+  box-sizing: border-box;
+
+  background:
+    var(--theme-background);
+
+}
+
+
+/* =========================================================
+   顶部
+========================================================= */
+
+.header {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  margin-bottom: 28rpx;
+
+}
+
+
+.header-left {
+
+  flex: 1;
+
+}
+
+
+.header-title {
+
+  font-size: var(--font-display);
+
+  font-weight: 700;
+
+  color:
+    var(--theme-text);
+
+}
+
+
+.header-desc {
+
+  margin-top: 9rpx;
+
+  font-size: 25rpx;
+
+  color:
+    var(--theme-subtext);
+
+}
+
+
+.header-logo {
+
+  flex-shrink: 0;
+
+  margin-left: 20rpx;
+
+  color:
+    var(--theme-main);
+
+  font-size: 20rpx;
+
+  font-weight: 600;
+
+  letter-spacing: 3rpx;
+
+}
+
+
+/* =========================================================
+   月份概览
+========================================================= */
+
+.month-summary {
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--theme-main) 0%,
+      var(--theme-main-mid) 52%,
+      var(--theme-main-end) 100%
+    );
+
+  border-radius: 28rpx;
+
+  padding:
+    28rpx
+    30rpx;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  box-sizing: border-box;
+
+  box-shadow:
+    0 12rpx 32rpx
+    var(--theme-shadow-main);
+
+}
+
+
+.month-summary-left {
+
+  flex: 1;
+
+}
+
+
+.month-summary-title {
+
+  color:
+    var(--theme-white);
+
+  font-size: 32rpx;
+
+  font-weight: 700;
+
+}
+
+
+.month-summary-desc {
+
+  margin-top: 8rpx;
+
+  color:
+    var(--theme-white-soft);
+
+  font-size: 23rpx;
+
+}
+
+
+/* =========================================================
+   当日安排分组标题
+========================================================= */
+
+.group-title {
+
+  margin-top: 26rpx;
+
+  margin-bottom: 14rpx;
+
+  font-size: 25rpx;
+
+  font-weight: 700;
+
+  color: var(--theme-text);
+
+}
+
+
+.today-button {
+
+  padding:
+    13rpx
+    22rpx;
+
+  border-radius: 18rpx;
+
+  background:
+    var(--theme-white-faint);
+
+  color:
+    var(--theme-white);
+
+  font-size: 23rpx;
+
+}
+
+
+/* =========================================================
+   月份切换
+========================================================= */
+
+.month-bar {
+
+  height: 88rpx;
+
+  margin-top: 22rpx;
+
+  background:
+    var(--theme-card);
+
+  border-radius: 25rpx;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  padding:
+    0 18rpx;
+
+  box-sizing: border-box;
+
+  box-shadow:
+    0 7rpx 25rpx
+    var(--theme-shadow-card);
+
+}
+
+
+.month-title {
+
+  font-size: 30rpx;
+
+  font-weight: 600;
+
+  color:
+    var(--theme-text);
+
+}
+
+
+.month-button {
+
+  width: 62rpx;
+
+  height: 62rpx;
+
+  border-radius: 19rpx;
+
+  background:
+    var(--theme-main-light);
+
+  color:
+    var(--theme-main);
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  font-size: 42rpx;
+
+}
+
+
+/* =========================================================
+   星期
+========================================================= */
+
+.week-row {
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(7, 1fr);
+
+  margin-top: 26rpx;
+
+  margin-bottom: 10rpx;
+
+}
+
+
+.week-row view {
+
+  text-align: center;
+
+  font-size: 23rpx;
+
+  color:
+    var(--theme-subtext);
+
+}
+
+
+.week-row .weekend {
+
+  color:
+    var(--theme-main);
+
+}
+
+
+/* =========================================================
+   日历卡片
+========================================================= */
+
+.calendar-card {
+
+  background:
+    var(--theme-card);
+
+  border-radius: 28rpx;
+
+  padding:
+    18rpx
+    10rpx;
+
+  box-shadow:
+    0 8rpx 28rpx
+    var(--theme-shadow-card);
+
+}
+
+
+.calendar-grid {
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(7, 1fr);
+
+}
+
+
+/* =========================================================
+   日期
+========================================================= */
+
+.day {
+
+  height: 84rpx;
+
+  margin: 4rpx;
+
+  border-radius: 19rpx;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  position: relative;
+
+}
+
+
+.day-number {
+
+  font-size: 27rpx;
+
+  color:
+    var(--theme-text);
+
+}
+
+
+.day.other-month .day-number {
+
+  color:
+    var(--theme-other-month);
+
+}
+
+
+.day.today {
+
+  background:
+    var(--theme-main-light);
+
+}
+
+
+.day.today .day-number {
+
+  color:
+    var(--theme-main);
+
+  font-weight: 700;
+
+}
+
+
+.day.selected {
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--theme-main) 0%,
+      var(--theme-main-mid) 52%,
+      var(--theme-main-end) 100%
+    );
+
+  box-shadow:
+    0 7rpx 17rpx
+    var(--theme-shadow-main);
+
+}
+
+
+.day.selected .day-number {
+
+  color:
+    var(--theme-white);
+
+  font-weight: 700;
+
+}
+
+
+/* =========================================================
+   课程指示
+========================================================= */
+
+.course-indicator {
+
+  height: 16rpx;
+
+  margin-top: 4rpx;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+}
+
+
+.course-dot {
+
+  width: 9rpx;
+
+  height: 9rpx;
+
+  border-radius: 50%;
+
+  background:
+    var(--theme-main);
+
+}
+
+
+.day.selected .course-dot {
+
+  background:
+    var(--theme-white);
+
+}
+
+
+.course-count {
+
+  min-width: 22rpx;
+
+  height: 20rpx;
+
+  padding:
+    0 5rpx;
+
+  box-sizing: border-box;
+
+  border-radius: 10rpx;
+
+  background:
+    var(--theme-main);
+
+  color:
+    var(--theme-white);
+
+  font-size: 14rpx;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+}
+
+
+.day.selected .course-count {
+
+  background:
+    var(--theme-white);
+
+  color:
+    var(--theme-main);
+
+}
+
+
+/* =========================================================
+   当日课程
+========================================================= */
+
+.section {
+
+  margin-top: 38rpx;
+
+}
+
+
+.section-header {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  margin-bottom: 20rpx;
+
+}
+
+
+.section-title {
+
+  font-size: 31rpx;
+
+  font-weight: 700;
+
+  color:
+    var(--theme-text);
+
+}
+
+
+.section-desc {
+
+  margin-top: 5rpx;
+
+  font-size: 22rpx;
+
+  color:
+    var(--theme-subtext);
+
+}
+
+
+.add-text {
+
+  font-size: 24rpx;
+
+  color:
+    var(--theme-main);
+
+  padding:
+    10rpx 0;
+
+}
+
+
+/* =========================================================
+   空状态
+========================================================= */
+
+.empty-card {
+
+  background:
+    var(--theme-card);
+
+  border-radius: 28rpx;
+
+  padding:
+    50rpx
+    30rpx;
+
+  text-align: center;
+
+  box-shadow:
+    0 8rpx 28rpx
+    var(--theme-shadow-card);
+
+}
+
+
+.empty-icon {
+
+  width: 82rpx;
+
+  height: 82rpx;
+
+  border-radius: 25rpx;
+
+  margin:
+    0 auto
+    20rpx;
+
+  background:
+    var(--theme-main-light);
+
+  color:
+    var(--theme-main);
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  font-size: 30rpx;
+
+  font-weight: 700;
+
+}
+
+
+.empty-title {
+
+  font-size: 29rpx;
+
+  font-weight: 600;
+
+  color:
+    var(--theme-text);
+
+}
+
+
+.empty-desc {
+
+  margin-top: 10rpx;
+
+  font-size: 23rpx;
+
+  color:
+    var(--theme-subtext);
+
+}
+
+
+.empty-button {
+
+  width: 220rpx;
+
+  height: 70rpx;
+
+  line-height: 70rpx;
+
+  margin:
+    28rpx auto 0;
+
+  border-radius: 20rpx;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--theme-main) 0%,
+      var(--theme-main-mid) 52%,
+      var(--theme-main-end) 100%
+    );
+
+  color:
+    var(--theme-white);
+
+  font-size: 26rpx;
+
+  box-shadow:
+    0 8rpx 20rpx
+    var(--theme-shadow-main);
+
+}
+
+
+/* =========================================================
+   课程时间轴
+========================================================= */
+
+.timeline {
+  padding: 4rpx 0;
+}
+
+.timeline-item {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  padding-bottom: 22rpx;
+}
+
+.timeline-item:last-child {
+  padding-bottom: 0;
+}
+
+.timeline-time {
+  width: 88rpx;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding-right: 16rpx;
+  padding-top: 2rpx;
+}
+
+.timeline-time-start {
+  font-size: 24rpx;
+  font-weight: 700;
+  color: var(--theme-main);
+  white-space: nowrap;
+}
+
+.timeline-time-end {
+  margin-top: 4rpx;
+  font-size: 20rpx;
+  color: var(--theme-muted);
+  white-space: nowrap;
+}
+
+.timeline-axis {
+  width: 20rpx;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 7rpx;
+}
+
+.timeline-dot {
+  width: 12rpx;
+  height: 12rpx;
+  border-radius: 50%;
+  background: var(--theme-main);
+  flex-shrink: 0;
+}
+
+.timeline-line {
+  flex: 1;
+  width: 2rpx;
+  margin-top: 6rpx;
+  background: var(--theme-main-light);
+}
+
+.timeline-item:last-child .timeline-line {
+  background: transparent;
+}
+
+.timeline-content {
+  flex: 1;
+  min-width: 0;
+  padding-left: 16rpx;
+  padding-bottom: 4rpx;
+}
+
+.timeline-student {
+  font-size: 26rpx;
+  font-weight: 700;
+  color: var(--theme-text);
+  line-height: 1.4;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.timeline-topic {
+  margin-top: 5rpx;
+  font-size: 23rpx;
+  color: var(--theme-subtext);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.timeline-meta {
+  margin-top: 5rpx;
+  font-size: 20rpx;
+  color: var(--theme-muted);
+}
+
+.timeline-delete {
+  flex-shrink: 0;
+  align-self: center;
+  margin-left: 12rpx;
+  font-size: 21rpx;
+  color: var(--theme-muted);
+}
+
+
+
+
+/* =========================================================
+   防止底部内容被导航遮住
+========================================================= */
+
+.page::after {
+
+  content: "";
+
+  display: block;
+
+  height: 20rpx;
+
+}
+
+
+/* =========================================================
+   通用事件卡片（任务 / 项目 / 学习）
+   与课程卡片统一风格，用左侧色点区分类型
+========================================================= */
+
+.event-card {
+
+  background:
+    var(--theme-card);
+
+  border-radius: 28rpx;
+
+  padding:
+    25rpx
+    22rpx;
+
+  margin-bottom: 18rpx;
+
+  display: flex;
+
+  align-items: flex-start;
+
+  box-sizing: border-box;
+
+  box-shadow:
+    0 8rpx 28rpx
+    var(--theme-shadow-card);
+
+}
+
+
+/* 已完成 / 历史：弱化 */
+.event-card.event-done {
+
+  opacity: 0.72;
+
+}
+
+
+/* =========================================================
+   类型色点（紫色层次区分，不引入大量颜色）
+========================================================= */
+
+.event-dot {
+
+  width: 14rpx;
+
+  height: 14rpx;
+
+  border-radius: 50%;
+
+  margin-top: 10rpx;
+
+  margin-right: 18rpx;
+
+  flex-shrink: 0;
+
+}
+
+
+.event-dot-course {
+
+  background:
+    var(--theme-main);
+
+}
+
+
+.event-dot-task {
+
+  background:
+    var(--theme-main-mid);
+
+}
+
+
+.event-dot-project {
+
+  background:
+    var(--theme-main-end);
+
+}
+
+
+.event-dot-learning {
+
+  background:
+    var(--theme-muted);
+
+}
+
+
+/* =========================================================
+   事件内容
+========================================================= */
+
+.event-main {
+
+  flex: 1;
+
+  min-width: 0;
+
+}
+
+
+.event-title {
+
+  font-size: 29rpx;
+
+  font-weight: 600;
+
+  color:
+    var(--theme-text);
+
+  line-height: 1.4;
+
+}
+
+
+.event-title-done {
+
+  color:
+    var(--theme-subtext);
+
+  text-decoration: line-through;
+
+}
+
+
+.event-desc {
+
+  margin-top: 7rpx;
+
+  font-size: 23rpx;
+
+  color:
+    var(--theme-subtext);
+
+}
+
+
+.event-project {
+
+  margin-top: 7rpx;
+
+  font-size: 22rpx;
+
+  color:
+    var(--theme-main);
+
+}
+
+
+/* =========================================================
+   事件标签行
+========================================================= */
+
+.event-meta {
+
+  margin-top: 12rpx;
+
+  display: flex;
+
+  flex-wrap: wrap;
+
+  align-items: center;
+
+}
+
+
+.event-type-tag {
+
+  padding:
+    5rpx
+    11rpx;
+
+  border-radius: 10rpx;
+
+  font-size: 19rpx;
+
+  margin-right: 10rpx;
+
+  background:
+    var(--theme-main-light);
+
+  color:
+    var(--theme-main);
+
+}
+
+
+.event-tag {
+
+  padding:
+    5rpx
+    11rpx;
+
+  border-radius: 10rpx;
+
+  font-size: 19rpx;
+
+  margin-right: 10rpx;
+
+  margin-bottom: 6rpx;
+
+  background:
+    var(--theme-main-soft);
+
+  color:
+    var(--theme-subtext);
+
+}
+
+
+/* =========================================================
+   视图切换（月历 / 课程表）
+========================================================= */
+
+.view-switch {
+
+  display: flex;
+
+  background: var(--theme-card);
+
+  border-radius: 22rpx;
+
+  padding: 6rpx;
+
+  margin-bottom: 24rpx;
+
+  box-shadow:
+    0 6rpx 20rpx
+    var(--theme-shadow-card);
+
+}
+
+
+.view-switch-item {
+
+  flex: 1;
+
+  text-align: center;
+
+  padding: 16rpx 0;
+
+  font-size: 27rpx;
+
+  font-weight: 600;
+
+  color: var(--theme-subtext);
+
+  border-radius: 16rpx;
+
+}
+
+
+.view-switch-item.active {
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--theme-main) 0%,
+      var(--theme-main-end) 100%
+    );
+
+  color: var(--theme-white);
+
+  box-shadow:
+    0 6rpx 16rpx
+    var(--theme-shadow-main);
+
+}
+
+
+/* =========================================================
+   周课程表（固定一屏，无滚动）
+========================================================= */
+
+/* 课程表模式下页面锁定一屏：上下左右均不可滚动 */
+.page.page-fixed {
+
+  height: 100vh;
+
+  display: flex;
+
+  flex-direction: column;
+
+  padding: 20rpx 16rpx 140rpx;
+
+  box-sizing: border-box;
+
+  overflow: hidden;
+
+}
+
+
+.schedule-view {
+
+  flex: 1;
+
+  display: flex;
+
+  flex-direction: column;
+
+  min-height: 0;
+
+}
+
+
+/* ---- 周切换 ---- */
+
+.week-switcher {
+
+  flex-shrink: 0;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  background: var(--theme-card);
+
+  border-radius: 22rpx;
+
+  padding: 12rpx 14rpx;
+
+  margin-bottom: 14rpx;
+
+  box-shadow:
+    0 6rpx 20rpx
+    var(--theme-shadow-card);
+
+}
+
+
+.week-arrow {
+
+  width: 58rpx;
+
+  height: 58rpx;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  font-size: 38rpx;
+
+  color: var(--theme-main);
+
+  background: var(--theme-main-light);
+
+  border-radius: 16rpx;
+
+}
+
+
+.week-center {
+
+  flex: 1;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+}
+
+
+.week-range {
+
+  font-size: 24rpx;
+
+  font-weight: 700;
+
+  color: var(--theme-text);
+
+}
+
+
+.week-today-btn {
+
+  margin-top: 4rpx;
+
+  font-size: 20rpx;
+
+  color: var(--theme-main);
+
+  padding: 2rpx 16rpx;
+
+  background: var(--theme-main-light);
+
+  border-radius: 999rpx;
+
+}
+
+
+.week-today-btn.disabled {
+
+  opacity: 0.4;
+
+}
+
+
+/* ---- 星期表头 ---- */
+
+.schedule-head {
+
+  flex-shrink: 0;
+
+  display: grid;
+
+  grid-template-columns:
+    72rpx
+    repeat(7, 92rpx);
+
+  background: var(--theme-card);
+
+  border-bottom:
+    1rpx solid
+    var(--theme-border);
+
+  border-top-left-radius: 20rpx;
+
+  border-top-right-radius: 20rpx;
+
+}
+
+
+.schedule-corner {
+
+  background: var(--theme-card);
+
+}
+
+
+.schedule-head-cell {
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  padding: 10rpx 0 8rpx;
+
+  box-sizing: border-box;
+
+}
+
+
+.schedule-head-label {
+
+  font-size: 20rpx;
+
+  color: var(--theme-subtext);
+
+}
+
+
+.schedule-head-day {
+
+  font-size: 24rpx;
+
+  font-weight: 700;
+
+  color: var(--theme-text);
+
+  margin-top: 1rpx;
+
+}
+
+
+.schedule-head-cell.weekend .schedule-head-label {
+
+  color: var(--theme-main);
+
+}
+
+
+.schedule-head-cell.today {
+
+  background: var(--theme-main-light);
+
+}
+
+
+.schedule-head-cell.today .schedule-head-day {
+
+  color: var(--theme-main);
+
+}
+
+
+/* ---- 主体（课程块定位容器） ---- */
+
+.schedule-body {
+
+  flex: 1;
+
+  position: relative;
+
+  min-height: 0;
+
+  overflow: hidden;
+
+  background: var(--theme-card);
+
+  border-bottom-left-radius: 12rpx;
+
+  border-bottom-right-radius: 12rpx;
+
+  box-shadow:
+    0 6rpx 20rpx
+    var(--theme-shadow-card);
+
+}
+
+
+/* 课程块定位容器：铺满 body，22:00 是时间轴结束边界，
+   不在 22:00 之后额外留空白时间段 */
+.schedule-canvas {
+
+  position: absolute;
+
+  top: 0;
+
+  left: 0;
+
+  width: 100%;
+
+  height: 100%;
+
+}
+
+
+/* ---- 时间轴 ---- */
+
+.schedule-gutter {
+
+  position: absolute;
+
+  left: 0;
+
+  top: 0;
+
+  height: 100%;
+
+  z-index: 5;
+
+  background: var(--theme-card);
+
+  border-right:
+    1rpx solid
+    var(--theme-border);
+
+}
+
+
+.schedule-axis-item {
+
+  position: absolute;
+
+  right: 6rpx;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: flex-end;
+
+  line-height: 1.2;
+
+}
+
+
+.schedule-axis-item.end {
+
+  /* 22:00 结束刻度：底部对齐，往上排 */
+  transform: translateY(-100%);
+
+}
+
+
+.schedule-axis-time {
+
+  font-size: 13rpx;
+
+  font-weight: 600;
+
+  color: var(--theme-subtext);
+
+  white-space: nowrap;
+
+  line-height: 1.1;
+
+}
+
+
+/* ---- 星期列底纹（grid，与表头列定义一致） ---- */
+
+.schedule-columns {
+
+  position: absolute;
+
+  top: 0;
+
+  left: 0;
+
+  width: 100%;
+
+  height: 100%;
+
+  display: grid;
+
+  grid-template-columns:
+    72rpx
+    repeat(7, 92rpx);
+
+}
+
+
+.schedule-column-gap {
+
+  /* 时间轴占位 */
+
+}
+
+
+.schedule-column {
+
+  /* grid 子元素，自动占满容器高度 */
+
+}
+
+
+.schedule-column.today {
+
+  background: var(--theme-main-soft);
+
+}
+
+
+/* ---- 整点横向分隔线 ---- */
+
+.schedule-hour-line {
+
+  position: absolute;
+
+  height: 1rpx;
+
+  background: var(--theme-border);
+
+}
+
+
+/* ---- 课程块 ---- */
+
+.schedule-block {
+
+  position: absolute;
+
+  box-sizing: border-box;
+
+  border-radius: 8rpx;
+
+  padding: 2rpx 2rpx;
+
+  overflow: hidden;
+
+  background: var(--theme-block);
+
+  /* 背景只填充内容区，上下 padding 露出网格底色，
+     让相邻课程块之间形成约 4rpx 的视觉间隔 */
+  background-clip: content-box;
+
+  box-shadow:
+    0 2rpx 8rpx
+    var(--theme-shadow-main);
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  z-index: 2;
+
+}
+
+
+.schedule-block-student {
+
+  font-size: 19rpx;
+
+  font-weight: 700;
+
+  color: var(--theme-white);
+
+  line-height: 1.15;
+
+  text-align: center;
+
+  max-width: 100%;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+
+  white-space: nowrap;
+
+  min-height: 22rpx;
+
+}
+
+
+.schedule-block-grade {
+
+  font-size: 15rpx;
+
+  color: var(--theme-white-soft);
+
+  line-height: 1.15;
+
+  text-align: center;
+
+  max-width: 100%;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+
+  white-space: nowrap;
+
+  min-height: 17rpx;
+
+}
+
+
+.schedule-block-status {
+
+  font-size: 13rpx;
+
+  color: var(--theme-white-soft);
+
+  line-height: 1.15;
+
+  text-align: center;
+
+  max-width: 100%;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+
+  white-space: nowrap;
+
+  min-height: 15rpx;
+
+}
+
+
+/* 学生请假：中性灰紫底 + 删除线 + 状态提示
+   （比当天列背景更深，避免与 today 列融合） */
+
+.schedule-block.leave {
+
+  background: #E4E0E8;
+
+  box-shadow: none;
+
+  border: 1rpx solid var(--theme-border);
+
+}
+
+
+.schedule-block.leave .schedule-block-student {
+
+  color: var(--theme-text);
+
+  text-decoration: line-through;
+
+}
+
+
+.schedule-block.leave .schedule-block-grade {
+
+  color: var(--theme-subtext);
+
+}
+
+
+.schedule-block.leave .schedule-block-status {
+
+  color: var(--theme-muted);
+
+}
+
+
+/* 已取消：中性灰玫瑰底 + 删除线 + 状态提示
+   （比当天列背景更深，避免与 today 列融合） */
+
+.schedule-block.cancelled {
+
+  background: #EDE0E3;
+
+  box-shadow: none;
+
+  border: 1rpx solid var(--theme-border);
+
+}
+
+
+.schedule-block.cancelled .schedule-block-student {
+
+  color: var(--theme-text);
+
+  text-decoration: line-through;
+
+}
+
+
+.schedule-block.cancelled .schedule-block-grade {
+
+  color: var(--theme-subtext);
+
+}
+
+
+.schedule-block.cancelled .schedule-block-status {
+
+  color: var(--theme-muted);
+
+}
+
+
+/* ---- 空状态 ---- */
+
+.schedule-empty {
+
+  position: absolute;
+
+  left: 50%;
+
+  top: 50%;
+
+  transform: translate(-50%, -50%);
+
+  color: var(--theme-muted);
+
+  font-size: 26rpx;
+
+}
+
+
+/* =========================================================
+   Icon System — 导航箭头图标尺寸
+========================================================= */
+
+.month-button .icon,
+.week-arrow .icon {
+
+  width: 32rpx;
+
+  height: 32rpx;
+
+}

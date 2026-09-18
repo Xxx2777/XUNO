@@ -1,0 +1,82 @@
+<view class="page {{themeClass}}">
+
+  <!-- 笔记不存在 -->
+  <view wx:if="{{!hasNote && !isNew && !showEditor}}" class="empty">
+    <view class="empty-icon">
+      <view class="icon icon-file-text"></view>
+    </view>
+    <view class="empty-title">Note not found</view>
+    <view class="empty-desc">This note may have been deleted</view>
+  </view>
+
+  <!-- 编辑表单（新建 / 编辑） -->
+  <block wx:if="{{showEditor}}">
+    <view class="form-card">
+
+      <view class="field">
+        <view class="field-label">Title</view>
+        <input class="field-input" value="{{editTitle}}" placeholder="Enter a title" bindinput="inputTitle" maxlength="50" />
+      </view>
+
+      <view class="field">
+        <view class="field-label">Type</view>
+        <view class="type-row">
+          <view
+            wx:for="{{typeOptions}}"
+            wx:key="*this"
+            class="type-chip {{editTypeIndex === index ? 'active' : ''}}"
+            bindtap="selectType"
+            data-index="{{index}}"
+          >{{item}}</view>
+        </view>
+      </view>
+
+      <view class="field">
+        <view class="field-label">Project</view>
+        <picker range="{{projectPickerList}}" value="{{editProjectIndex}}" bindchange="changeProject">
+          <view class="picker-value">{{projectPickerList[editProjectIndex]}} ›</view>
+        </picker>
+      </view>
+
+      <view class="field">
+        <view class="field-label">Content</view>
+        <textarea class="content-textarea" value="{{editContent}}" placeholder="Start writing…" bindinput="inputContent" />
+      </view>
+
+      <view class="field">
+        <view class="field-label">Tags</view>
+        <input class="field-input" value="{{editTags}}" placeholder="e.g. AI, ResNet, deep learning" bindinput="inputTags" />
+      </view>
+
+      <view class="save-btn" bindtap="saveNote">Save Note</view>
+
+    </view>
+  </block>
+
+  <!-- 详情 -->
+  <block wx:if="{{hasNote && !showEditor}}">
+    <view class="card">
+      <view class="detail-title">{{note.title}}</view>
+
+      <view class="detail-meta">
+        <text class="detail-type">{{note.typeText}}</text>
+        <text wx:if="{{note.projectName}}" class="detail-project">{{note.projectName}}</text>
+      </view>
+
+      <view class="detail-tags" wx:if="{{note.tags.length > 0}}">
+        <text wx:for="{{note.tags}}" wx:key="*this" class="detail-tag">{{item}}</text>
+      </view>
+
+      <text class="detail-content">{{note.content}}</text>
+
+      <view class="detail-time">Created {{note.displayCreatedAt}}</view>
+      <view class="detail-time">Updated {{note.displayUpdatedAt}}</view>
+    </view>
+
+    <view class="action-bar">
+      <view class="action-btn edit" bindtap="openEdit">Edit</view>
+      <view class="action-btn danger" bindtap="deleteNote">Delete Note</view>
+    </view>
+  </block>
+
+</view>

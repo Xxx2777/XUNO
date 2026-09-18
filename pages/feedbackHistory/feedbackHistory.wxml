@@ -1,0 +1,151 @@
+<view class="page {{themeClass}}">
+
+<!-- 搜索框 -->
+<view class="search-box">
+
+  <view class="search-icon">
+    <view class="icon icon-search"></view>
+  </view>
+
+  <input
+    class="search-input"
+    placeholder="Search students, lessons or topics"
+    value="{{keyword}}"
+    bindinput="inputKeyword"
+    confirm-type="search"
+  />
+
+  <view
+    wx:if="{{keyword}}"
+    class="clear-button"
+    bindtap="clearKeyword"
+  >
+    <view class="icon icon-x"></view>
+  </view>
+
+</view>
+
+
+<!-- 记录数量 -->
+<view
+  wx:if="{{allHistoryList.length > 0}}"
+  class="result-info"
+>
+  {{historyList.length}} feedback records
+</view>
+
+
+<!-- 没有记录 -->
+<view
+  wx:if="{{historyList.length === 0}}"
+  class="empty"
+>
+
+  <view class="empty-icon">
+    <view class="icon icon-file-text"></view>
+  </view>
+
+  <view class="empty-title">
+    {{keyword ? "No matching records" : "No feedback records yet"}}
+  </view>
+
+  <view class="empty-text">
+    {{keyword ? "Try another keyword" : "Saved class feedback will appear here."}}
+  </view>
+
+  <view
+    wx:if="{{keyword}}"
+    class="clear-search"
+    bindtap="clearKeyword"
+  >
+    Clear Search
+  </view>
+
+</view>
+
+
+<!-- 反馈记录 -->
+<view
+  wx:for="{{historyList}}"
+  wx:key="id"
+  class="history-card"
+>
+
+  <view class="history-head">
+
+    <view class="student-area">
+
+      <view class="student-avatar">
+        {{item.student ? item.student.substring(0,1) : "S"}}
+      </view>
+
+      <view class="student-info">
+
+        <view class="student">
+          {{item.student}}
+        </view>
+
+        <view class="student-meta">
+          {{item.grade || "Student"}} · {{item.subject || "Chemistry"}}
+        </view>
+
+      </view>
+
+    </view>
+
+    <view class="time">
+      {{item.displayTime}}
+    </view>
+
+  </view>
+
+
+  <view
+    wx:if="{{item.displayDate}}"
+    class="date"
+  >
+    {{item.displayDate}}
+  </view>
+
+
+  <view
+    wx:if="{{item.topic}}"
+    class="topic"
+  >
+    {{item.topic}}
+  </view>
+
+
+  <view class="lesson">
+    {{item.lesson}}
+  </view>
+
+
+  <view class="content">
+    {{item.content}}
+  </view>
+
+
+  <view class="action-row">
+
+    <button
+      class="copy-button"
+      bindtap="copyHistory"
+      data-index="{{index}}"
+    >
+      Copy Feedback
+    </button>
+
+    <button
+      class="delete-button"
+      bindtap="deleteHistory"
+      data-index="{{index}}"
+    >
+      Delete
+    </button>
+
+  </view>
+
+</view>
+
+</view>

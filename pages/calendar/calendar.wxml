@@ -1,0 +1,725 @@
+<view class="page {{themeClass}} {{viewMode === 'week' ? 'page-fixed' : ''}}">
+
+<!-- =========================
+     视图切换
+========================= -->
+
+<view class="view-switch">
+
+  <view
+    class="view-switch-item {{viewMode === 'month' ? 'active' : ''}}"
+    bindtap="switchView"
+    data-mode="month"
+  >
+    Month
+  </view>
+
+  <view
+    class="view-switch-item {{viewMode === 'week' ? 'active' : ''}}"
+    bindtap="switchView"
+    data-mode="week"
+  >
+    Schedule
+  </view>
+
+</view>
+
+
+<!-- =========================
+     Month视图
+========================= -->
+
+<block wx:if="{{viewMode === 'month'}}">
+
+<view
+  class="calendar-swipe-area"
+  bindtouchstart="onCalendarTouchStart"
+  bindtouchend="onCalendarTouchEnd"
+>
+
+
+<!-- =========================
+     顶部
+========================= -->
+
+<view class="header">
+
+  <view class="header-left">
+
+    <view class="header-title">
+      Calendar
+    </view>
+
+    <view class="header-desc">
+      Courses · Tasks · Projects · Learning
+    </view>
+
+  </view>
+
+  <view class="header-logo">
+    XUNO
+  </view>
+
+</view>
+
+
+<!-- =========================
+     月份信息
+========================= -->
+
+<view class="month-summary">
+
+  <view class="month-summary-left">
+
+    <view class="month-summary-title">
+      {{monthName}} {{year}}
+    </view>
+
+    <view class="month-summary-desc">
+      {{monthEventCount}} items this month
+    </view>
+
+  </view>
+
+  <view
+    class="today-button"
+    bindtap="goToday"
+  >
+    Today
+  </view>
+
+</view>
+
+
+<!-- =========================
+     月份切换
+========================= -->
+
+<view class="month-bar">
+
+  <view
+    class="month-button"
+    bindtap="prevMonth"
+  >
+    <view class="icon icon-chevron-left"></view>
+  </view>
+
+  <view class="month-title">
+    {{monthName}} {{year}}
+  </view>
+
+  <view
+    class="month-button"
+    bindtap="nextMonth"
+  >
+    <view class="icon icon-chevron-right"></view>
+  </view>
+
+</view>
+
+
+<!-- =========================
+     星期
+========================= -->
+
+<view class="week-row">
+
+  <view>Mon</view>
+  <view>Tue</view>
+  <view>Wed</view>
+  <view>Thu</view>
+  <view>Fri</view>
+  <view class="weekend">Sat</view>
+  <view class="weekend">Sun</view>
+
+</view>
+
+
+<!-- =========================
+     Calendar
+========================= -->
+
+<view class="calendar-card">
+
+  <view class="calendar-grid">
+
+    <block
+      wx:for="{{calendarDays}}"
+      wx:key="index"
+    >
+
+      <view
+        class="day {{item.className}}"
+        bindtap="selectDay"
+        data-date="{{item.date}}"
+      >
+
+        <view class="day-number">
+          {{item.day}}
+        </view>
+
+        <!-- 有事项 -->
+
+        <view
+          wx:if="{{item.hasEvent}}"
+          class="course-indicator"
+        >
+
+          <view
+            wx:if="{{item.eventCount > 1}}"
+            class="course-count"
+          >
+            {{item.eventCount}}
+          </view>
+
+          <view
+            wx:else
+            class="course-dot"
+          ></view>
+
+        </view>
+
+      </view>
+
+    </block>
+
+  </view>
+
+</view>
+
+
+<!-- =========================
+     Today
+========================= -->
+
+<view class="section">
+
+  <view class="section-header">
+
+    <view>
+
+      <view class="section-title">
+        Today
+      </view>
+
+      <view class="section-desc">
+        {{overviewText}}
+      </view>
+
+    </view>
+
+    <view
+      class="add-text"
+      bindtap="addSchedule"
+    >
+      + Add
+    </view>
+
+  </view>
+
+
+  <!-- =========================
+       没有安排
+  ========================= -->
+
+  <view
+    wx:if="{{!hasSelectedEvents}}"
+    class="empty-card"
+  >
+
+    <view class="empty-icon">
+      <view class="icon icon-calendar"></view>
+    </view>
+
+    <view class="empty-title">
+      No events today
+    </view>
+
+    <view class="empty-desc">
+      Add tasks or log study from Today
+    </view>
+
+    <view
+      class="empty-button"
+      bindtap="addSchedule"
+    >
+      Add
+    </view>
+
+  </view>
+
+
+  <!-- =========================
+       事件列表
+  ========================= -->
+
+  <block
+    wx:if="{{hasSelectedEvents}}"
+  >
+
+    <!-- =========================
+         今日课程
+    ========================= -->
+
+    <block wx:if="{{hasCourseEvents}}">
+
+      <view class="group-title">Courses</view>
+
+      <view class="timeline">
+        <block
+          wx:for="{{courseEvents}}"
+          wx:for-item="event"
+          wx:key="id"
+        >
+
+          <view class="timeline-item">
+
+            <view class="timeline-time">
+              <view class="timeline-time-start">{{event.startTime}}</view>
+              <view class="timeline-time-end" wx:if="{{event.endTime}}">{{event.endTime}}</view>
+            </view>
+
+            <view class="timeline-axis">
+              <view class="timeline-dot"></view>
+              <view class="timeline-line"></view>
+            </view>
+
+            <view
+              class="timeline-content"
+              bindtap="openCourse"
+              data-id="{{event.sourceId}}"
+            >
+              <view class="timeline-student">{{event.student}}</view>
+              <view class="timeline-topic">{{event.topic}}</view>
+              <view class="timeline-meta">
+                <text wx:if="{{event.grade}}">{{event.grade}} · Chemistry</text>
+                <text wx:if="{{event.grade && event.statusText}}"> · </text>
+                <text>{{event.statusText}}</text>
+                <text wx:if="{{event.repeat}}"> · Weekly</text>
+              </view>
+            </view>
+
+            <view
+              class="timeline-delete"
+              catchtap="deleteCourse"
+              data-id="{{event.sourceId}}"
+            >
+              Delete
+            </view>
+
+          </view>
+
+        </block>
+      </view>
+
+    </block>
+
+
+    <!-- =========================
+         学习记录
+    ========================= -->
+
+    <block wx:if="{{hasLearningEvents}}">
+
+      <view class="group-title">Learning</view>
+
+      <block
+        wx:for="{{learningEvents}}"
+        wx:for-item="event"
+        wx:key="id"
+      >
+
+        <view
+          class="event-card {{event.completed ? 'event-done' : ''}}"
+          bindtap="openEvent"
+          data-type="{{event.type}}"
+          data-id="{{event.sourceId}}"
+        >
+
+          <view class="event-dot event-dot-{{event.type}}"></view>
+
+          <view class="event-main">
+
+            <view class="event-title {{event.completed ? 'event-title-done' : ''}}">
+              {{event.title}}
+            </view>
+
+            <view class="event-desc">
+              {{event.description}}
+            </view>
+
+            <view
+              wx:if="{{event.projectName}}"
+              class="event-project"
+            >
+              Project: {{event.projectName}}
+            </view>
+
+            <view class="event-meta">
+
+              <view class="event-type-tag event-type-{{event.type}}">
+                {{event.typeText}}
+              </view>
+
+              <view
+                wx:if="{{event.time}}"
+                class="event-tag"
+              >
+                {{event.time}}
+              </view>
+
+              <view
+                wx:if="{{event.priorityText}}"
+                class="event-tag"
+              >
+                {{event.priorityText}}
+              </view>
+
+              <view
+                wx:if="{{event.statusText}}"
+                class="event-tag"
+              >
+                {{event.statusText}}
+              </view>
+
+            </view>
+
+          </view>
+
+        </view>
+
+      </block>
+
+    </block>
+
+
+    <!-- =========================
+         任务
+    ========================= -->
+
+    <block wx:if="{{hasTaskEvents}}">
+
+      <view class="group-title">Tasks</view>
+
+      <block
+        wx:for="{{taskEvents}}"
+        wx:for-item="event"
+        wx:key="id"
+      >
+
+        <view
+          class="event-card {{event.completed ? 'event-done' : ''}}"
+          bindtap="openEvent"
+          data-type="{{event.type}}"
+          data-id="{{event.sourceId}}"
+        >
+
+          <view class="event-dot event-dot-{{event.type}}"></view>
+
+          <view class="event-main">
+
+            <view class="event-title {{event.completed ? 'event-title-done' : ''}}">
+              {{event.title}}
+            </view>
+
+            <view class="event-desc">
+              {{event.description}}
+            </view>
+
+            <view
+              wx:if="{{event.projectName}}"
+              class="event-project"
+            >
+              Project: {{event.projectName}}
+            </view>
+
+            <view class="event-meta">
+
+              <view class="event-type-tag event-type-{{event.type}}">
+                {{event.typeText}}
+              </view>
+
+              <view
+                wx:if="{{event.time}}"
+                class="event-tag"
+              >
+                {{event.time}}
+              </view>
+
+              <view
+                wx:if="{{event.priorityText}}"
+                class="event-tag"
+              >
+                {{event.priorityText}}
+              </view>
+
+              <view
+                wx:if="{{event.statusText}}"
+                class="event-tag"
+              >
+                {{event.statusText}}
+              </view>
+
+            </view>
+
+          </view>
+
+        </view>
+
+      </block>
+
+    </block>
+
+
+    <!-- =========================
+         项目
+    ========================= -->
+
+    <block wx:if="{{hasProjectEvents}}">
+
+      <view class="group-title">Projects</view>
+
+      <block
+        wx:for="{{projectEvents}}"
+        wx:for-item="event"
+        wx:key="id"
+      >
+
+        <view
+          class="event-card {{event.completed ? 'event-done' : ''}}"
+          bindtap="openEvent"
+          data-type="{{event.type}}"
+          data-id="{{event.sourceId}}"
+        >
+
+          <view class="event-dot event-dot-{{event.type}}"></view>
+
+          <view class="event-main">
+
+            <view class="event-title {{event.completed ? 'event-title-done' : ''}}">
+              {{event.title}}
+            </view>
+
+            <view class="event-desc">
+              {{event.description}}
+            </view>
+
+            <view
+              wx:if="{{event.projectName}}"
+              class="event-project"
+            >
+              Project: {{event.projectName}}
+            </view>
+
+            <view class="event-meta">
+
+              <view class="event-type-tag event-type-{{event.type}}">
+                {{event.typeText}}
+              </view>
+
+              <view
+                wx:if="{{event.time}}"
+                class="event-tag"
+              >
+                {{event.time}}
+              </view>
+
+              <view
+                wx:if="{{event.priorityText}}"
+                class="event-tag"
+              >
+                {{event.priorityText}}
+              </view>
+
+              <view
+                wx:if="{{event.statusText}}"
+                class="event-tag"
+              >
+                {{event.statusText}}
+              </view>
+
+            </view>
+
+          </view>
+
+        </view>
+
+      </block>
+
+    </block>
+
+  </block>
+
+</view>
+
+
+</view>
+
+
+</block>
+
+<block wx:else>
+
+  <!-- Schedule视图（固定一屏，无滚动） -->
+
+  <view
+    class="schedule-view"
+    bindtouchstart="onScheduleTouchStart"
+    bindtouchend="onScheduleTouchEnd"
+  >
+
+    <!-- 周切换 -->
+    <view class="week-switcher">
+
+      <view
+        class="week-arrow"
+        bindtap="prevWeek"
+      >
+        <view class="icon icon-chevron-left"></view>
+      </view>
+
+      <view class="week-center">
+
+        <view class="week-range">
+          {{weekRangeText}}
+        </view>
+
+        <view
+          class="week-today-btn {{isThisWeek ? 'disabled' : ''}}"
+          bindtap="goThisWeek"
+        >
+          This Week
+        </view>
+
+      </view>
+
+      <view
+        class="week-arrow"
+        bindtap="nextWeek"
+      >
+        <view class="icon icon-chevron-right"></view>
+      </view>
+
+    </view>
+
+
+    <!-- 星期表头（grid，与课程列共用同一列定义） -->
+    <view
+      class="schedule-head"
+      style="width: {{scheduleTotalWidth}}rpx;"
+    >
+
+      <view class="schedule-corner"></view>
+
+      <block
+        wx:for="{{scheduleDayHeaders}}"
+        wx:key="date"
+      >
+
+        <view
+          class="schedule-head-cell {{item.isWeekend ? 'weekend' : ''}} {{item.isToday ? 'today' : ''}}"
+        >
+          <view class="schedule-head-label">{{item.label}}</view>
+          <view class="schedule-head-day">{{item.dayNum}}</view>
+        </view>
+
+      </block>
+
+    </view>
+
+
+    <!-- 主体（课程块定位容器，flex 撑满剩余高度） -->
+    <view
+      class="schedule-body"
+      style="width: {{scheduleTotalWidth}}rpx;"
+    >
+
+      <view class="schedule-canvas">
+
+      <!-- 时间轴（每个整点一个刻度） -->
+      <view
+        class="schedule-gutter"
+        style="width: {{scheduleGutterWidth}}rpx;"
+      >
+
+        <view
+          wx:for="{{scheduleAxis}}"
+          wx:key="no"
+          class="schedule-axis-item {{item.no === 0 ? 'end' : ''}}"
+          style="top: {{item.topPercent}}%;"
+        >
+          <view class="schedule-axis-time">{{item.time}}</view>
+        </view>
+
+      </view>
+
+
+      <!-- 星期列底纹（grid，与表头列定义一致） -->
+      <view class="schedule-columns">
+
+        <view class="schedule-column-gap"></view>
+
+        <view
+          wx:for="{{scheduleDayHeaders}}"
+          wx:key="date"
+          class="schedule-column {{item.isWeekend ? 'weekend' : ''}} {{item.isToday ? 'today' : ''}}"
+        ></view>
+
+      </view>
+
+
+      <!-- 整点横向分隔线 -->
+      <view
+        wx:for="{{scheduleAxis}}"
+        wx:key="no"
+        class="schedule-hour-line"
+        style="left: {{scheduleGutterWidth}}rpx; top: {{item.topPercent}}%; width: {{scheduleTotalWidth - scheduleGutterWidth}}rpx;"
+      ></view>
+
+
+      <!-- 课程块 -->
+      <block
+        wx:for="{{scheduleBlocks}}"
+        wx:key="id"
+      >
+
+        <view
+          class="schedule-block {{item.stateClass}}"
+          style="left: {{item.left}}rpx; top: {{item.topPercent}}%; width: {{item.width}}rpx; height: {{item.heightPercent}}%;"
+          bindtap="openCourse"
+          data-id="{{item.id}}"
+        >
+
+          <view class="schedule-block-student">{{item.student}}</view>
+          <view class="schedule-block-grade">{{item.grade}}</view>
+          <view class="schedule-block-status">{{item.statusLabel}}</view>
+
+        </view>
+
+      </block>
+
+
+      <!-- 空状态 -->
+      <view
+        wx:if="{{!hasScheduleCourses}}"
+        class="schedule-empty"
+      >
+        No classes this week
+      </view>
+
+      </view>
+
+    </view>
+
+  </view>
+
+</block>
+
+
+<!-- =========================
+     底部导航
+========================= -->
+
+<tab-bar active="calendar" />
+
+</view>

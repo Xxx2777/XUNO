@@ -1,0 +1,126 @@
+<view class="page {{themeClass}}">
+
+<!-- 顶部 -->
+<view class="header">
+
+  <view class="header-info">
+    <view class="header-title">
+      Pending Feedback
+    </view>
+
+    <view class="header-desc">
+      Select a lesson to complete its feedback
+    </view>
+  </view>
+
+</view>
+
+
+<!-- 提示 -->
+<view class="tip-card">
+  <view class="tip-icon">
+    <view class="icon icon-message"></view>
+  </view>
+
+  <view class="tip-content">
+    <view class="tip-title">
+      {{courseList.length}} lessons pending
+    </view>
+
+    <view class="tip-desc">
+      Showing completed lessons without feedback
+    </view>
+  </view>
+</view>
+
+
+<!-- 课程列表 -->
+<view
+  wx:if="{{courseList.length > 0}}"
+  class="course-list"
+>
+
+  <view
+    wx:for="{{courseList}}"
+    wx:key="id"
+    class="course-card"
+    bindtap="selectCourse"
+    data-index="{{index}}"
+  >
+
+    <!-- 左侧日期 -->
+    <view class="date-box">
+
+      <view class="date-month">
+        {{item.month}}
+      </view>
+
+      <view class="date-day">
+        {{item.day}}
+      </view>
+
+    </view>
+
+
+    <!-- 中间课程信息 -->
+    <view class="course-info">
+
+      <!-- 第一行：姓名 + 年级 -->
+      <view class="course-student">
+        {{item.studentName}}
+        <text class="separator">·</text>
+        {{item.gradeText || "Grade not set"}}
+      </view>
+
+      <!-- 第二行：上课时间 -->
+      <view class="course-time">
+        {{item.courseTime}}
+      </view>
+
+      <!-- 最后一行：上课内容 -->
+      <view class="course-title">
+        {{item.topic || "Chemistry lesson"}}
+      </view>
+
+    </view>
+
+
+    <!-- 右侧 -->
+    <view class="course-right">
+
+      <view class="status">
+        Completed
+      </view>
+
+      <view class="arrow">
+        <view class="icon icon-chevron-right"></view>
+      </view>
+
+    </view>
+
+  </view>
+
+</view>
+
+
+<!-- 没有待填写课程 -->
+<view
+  wx:else
+  class="empty-card"
+>
+
+  <view class="empty-icon">
+    <view class="icon icon-check"></view>
+  </view>
+
+  <view class="empty-title">
+    No pending feedback
+  </view>
+
+  <view class="empty-desc">
+    All completed lessons have feedback
+  </view>
+
+</view>
+
+</view>

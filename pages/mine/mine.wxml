@@ -1,0 +1,371 @@
+<view class="page {{themeClass}}">
+
+<!-- 顶部 -->
+<view class="header">
+
+  <view class="header-left">
+
+    <view class="welcome">
+      Your personal workspace
+    </view>
+
+    <view class="desc">
+      Work, learning, and daily plans
+    </view>
+
+  </view>
+
+  <view class="logo">
+    XUNO
+  </view>
+
+</view>
+
+
+<!-- 数据概览 -->
+<view class="overview">
+
+  <view class="overview-item">
+    <view class="number">
+      {{courseCount}}
+    </view>
+
+    <view class="label">
+      Courses
+    </view>
+  </view>
+
+  <view class="line"></view>
+
+  <view class="overview-item">
+    <view class="number">
+      {{studentCount}}
+    </view>
+
+    <view class="label">
+      Students
+    </view>
+  </view>
+
+  <view class="line"></view>
+
+  <view class="overview-item">
+    <view class="number">
+      {{recordCount}}
+    </view>
+
+    <view class="label">
+      Feedback
+    </view>
+  </view>
+
+</view>
+
+
+<!-- Work -->
+<view class="section">
+
+  <view class="section-title">
+    Work
+  </view>
+
+
+  <!-- Courses -->
+  <view
+    class="menu-card"
+    bindtap="goCalendar"
+  >
+
+    <view class="menu-icon">
+      <view class="icon icon-book"></view>
+    </view>
+
+    <view class="menu-content">
+
+      <view class="menu-title">
+        Courses
+      </view>
+
+      <view class="menu-desc">
+        View schedule and records
+      </view>
+
+    </view>
+
+    <view class="menu-arrow">
+      <view class="icon icon-chevron-right"></view>
+    </view>
+
+  </view>
+
+
+  <!-- 教学记录 -->
+  <view
+    class="menu-card"
+    bindtap="goTeachingHistory"
+  >
+
+    <view class="menu-icon">
+      <view class="icon icon-clipboard"></view>
+    </view>
+
+    <view class="menu-content">
+
+      <view class="menu-title">
+        Teaching Records
+      </view>
+
+      <view class="menu-desc">
+        View feedback and reviews
+      </view>
+
+    </view>
+
+    <view class="menu-arrow">
+      <view class="icon icon-chevron-right"></view>
+    </view>
+
+  </view>
+
+
+  <!-- Insights -->
+  <view
+    class="menu-card"
+    bindtap="goStatistics"
+  >
+
+    <view class="menu-icon">
+      <view class="icon icon-chart"></view>
+    </view>
+
+    <view class="menu-content">
+
+      <view class="menu-title">
+        Insights
+      </view>
+
+      <view class="menu-desc">
+        View teaching insights
+      </view>
+
+    </view>
+
+    <view class="menu-arrow">
+      <view class="icon icon-chevron-right"></view>
+    </view>
+
+  </view>
+
+</view>
+
+
+<!-- Learning -->
+<view class="section">
+
+  <view class="section-title">
+    Learning
+  </view>
+
+
+  <!-- Learning History -->
+  <view
+    class="menu-card"
+    bindtap="goHistory"
+  >
+
+    <view class="menu-icon">
+      <view class="icon icon-book-open"></view>
+    </view>
+
+    <view class="menu-content">
+
+      <view class="menu-title">
+        Learning History
+      </view>
+
+      <view class="menu-desc">
+        View your learning history
+      </view>
+
+    </view>
+
+    <view class="menu-arrow">
+      <view class="icon icon-chevron-right"></view>
+    </view>
+
+  </view>
+
+
+  <!-- 项目 -->
+  <view
+    class="menu-card"
+    bindtap="goProjects"
+  >
+
+    <view class="menu-icon">
+      <view class="icon icon-folder"></view>
+    </view>
+
+    <view class="menu-content">
+
+      <view class="menu-title">
+        Projects
+      </view>
+
+      <view class="menu-desc">
+        Organize tasks and learning
+      </view>
+
+    </view>
+
+    <view class="menu-arrow">
+      <view class="icon icon-chevron-right"></view>
+    </view>
+
+  </view>
+
+
+  <!-- Tasks -->
+  <view
+    class="menu-card"
+    bindtap="goTodo"
+  >
+
+    <view class="menu-icon">
+      <view class="icon icon-check-square"></view>
+    </view>
+
+    <view class="menu-content">
+
+      <view class="menu-title">
+        Tasks
+      </view>
+
+      <view class="menu-desc">
+        Manage your to-dos
+      </view>
+
+    </view>
+
+    <view class="menu-arrow">
+      <view class="icon icon-chevron-right"></view>
+    </view>
+
+  </view>
+
+
+  <!-- 笔记 -->
+  <view
+    class="menu-card"
+    bindtap="goNotes"
+  >
+
+    <view class="menu-icon">
+      <view class="icon icon-file-text"></view>
+    </view>
+
+    <view class="menu-content">
+
+      <view class="menu-title">
+        Notes
+      </view>
+
+      <view class="menu-desc">
+        Capture ideas and prep
+      </view>
+
+    </view>
+
+    <view class="menu-arrow">
+      <view class="icon icon-chevron-right"></view>
+    </view>
+
+  </view>
+
+
+  <!-- 时间线 -->
+  <view
+    class="menu-card"
+    bindtap="goTimeline"
+  >
+
+    <view class="menu-icon">
+      <view class="icon icon-clock"></view>
+    </view>
+
+    <view class="menu-content">
+
+      <view class="menu-title">
+        Timeline
+      </view>
+
+      <view class="menu-desc">
+        Review recent activity
+      </view>
+
+    </view>
+
+    <view class="menu-arrow">
+      <view class="icon icon-chevron-right"></view>
+    </view>
+
+  </view>
+
+</view>
+
+
+<!-- 快捷入口 -->
+<view class="section">
+
+  <view class="section-title">
+    Quick Actions
+  </view>
+
+  <view class="quick-card">
+
+    <!-- 生成Feedback -->
+    <view
+      class="quick-item"
+      bindtap="goFeedback"
+      hover-class="quick-item-hover"
+      hover-stay-time="80"
+    >
+
+      <view class="quick-icon">
+        <view class="icon icon-message"></view>
+      </view>
+
+      <view class="quick-text">
+        Feedback
+      </view>
+
+    </view>
+
+
+    <!-- Settings -->
+    <view
+      class="quick-item"
+      bindtap="goSettings"
+      hover-class="quick-item-hover"
+      hover-stay-time="80"
+    >
+
+      <view class="quick-icon">
+        <view class="icon icon-settings"></view>
+      </view>
+
+      <view class="quick-text">
+        Settings
+      </view>
+
+    </view>
+
+  </view>
+
+</view>
+
+
+<!-- 底部导航 -->
+<tab-bar active="mine" />
+
+</view>

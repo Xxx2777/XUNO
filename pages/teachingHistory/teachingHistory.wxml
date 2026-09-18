@@ -1,0 +1,483 @@
+<view class="page {{themeClass}}">
+
+<!-- =====================================================
+     顶部 Tab
+     两列等宽
+     无数量
+     无中间竖线
+====================================================== -->
+
+<view class="tab-bar">
+
+  <!-- Class Feedback -->
+  <view
+    class="tab-item {{currentTab === 'feedback' ? 'tab-active' : ''}}"
+    data-tab="feedback"
+    bindtap="switchTab"
+  >
+    <view class="tab-title">
+      Class Feedback
+    </view>
+  </view>
+
+
+  <!-- Homework Review -->
+  <view
+    class="tab-item {{currentTab === 'homework' ? 'tab-active' : ''}}"
+    data-tab="homework"
+    bindtap="switchTab"
+  >
+    <view class="tab-title">
+      Homework Review
+    </view>
+  </view>
+
+</view>
+
+
+<!-- =====================================================
+     内容区域
+====================================================== -->
+
+<view class="content">
+
+  <!-- 搜索框 -->
+  <view class="search-card">
+
+    <view class="search-icon">
+      <view class="icon icon-search"></view>
+    </view>
+
+    <input
+      class="search-input"
+      placeholder="{{currentTab === 'feedback' ? 'Search students or topics' : 'Search students, topics, or homework'}}"
+      value="{{keyword}}"
+      bindinput="inputKeyword"
+      confirm-type="search"
+    />
+
+    <view
+      wx:if="{{keyword}}"
+      class="clear-button"
+      bindtap="clearKeyword"
+    >
+      <view class="icon icon-x"></view>
+    </view>
+
+  </view>
+
+
+  <!-- ===================================================
+       Class Feedback
+  ==================================================== -->
+
+  <block wx:if="{{currentTab === 'feedback'}}">
+
+    <view
+      wx:if="{{allHistoryList.length > 0}}"
+      class="result-info"
+    >
+
+      <view class="result-title">
+        Class Feedback
+      </view>
+
+      <view class="result-count">
+        {{historyList.length}} records
+      </view>
+
+    </view>
+
+
+    <!-- 空状态 -->
+    <view
+      wx:if="{{historyList.length === 0}}"
+      class="empty-card"
+    >
+
+      <view class="empty-icon">
+        <view class="icon icon-book"></view>
+      </view>
+
+      <view class="empty-title">
+        {{keyword ? "No matching records" : "No class feedback yet"}}
+      </view>
+
+      <view class="empty-text">
+        {{keyword ? "Try another student or topic" : "Saved class feedback will appear here."}}
+      </view>
+
+      <view
+        wx:if="{{keyword}}"
+        class="empty-button"
+        bindtap="clearKeyword"
+      >
+        Clear Search
+      </view>
+
+    </view>
+
+
+    <!-- Class Feedback列表 -->
+    <block
+      wx:for="{{historyList}}"
+      wx:key="id"
+      wx:for-item="item"
+      wx:for-index="index"
+    >
+
+      <view class="feedback-card">
+
+        <!-- =================================================
+             学生信息
+             右侧显示填写时间
+        ================================================== -->
+
+        <view class="card-head">
+
+          <view class="student-area">
+
+            <view class="student-avatar">
+              {{item.student ? item.student.substring(0,1) : "S"}}
+            </view>
+
+            <view class="student-info">
+
+              <view class="student-name">
+                {{item.student}}
+              </view>
+
+              <view class="student-meta">
+                {{item.grade || "Student"}}
+                <text> · </text>
+                {{item.subject || "Chemistry"}}
+              </view>
+
+            </view>
+
+          </view>
+
+          <view class="record-time">
+            {{item.displayTime}}
+          </view>
+
+        </view>
+
+
+        <!-- 日期 -->
+        <view
+          wx:if="{{item.displayDate}}"
+          class="record-date"
+        >
+          {{item.displayDate}}
+        </view>
+
+
+        <!-- =================================================
+             Topic
+        ================================================== -->
+
+        <view
+          wx:if="{{item.topic}}"
+          class="topic-box"
+        >
+
+          <view class="box-label">
+            Topic
+          </view>
+
+          <view class="topic-text">
+            {{item.topic}}
+          </view>
+
+        </view>
+
+
+        <!-- Class Feedback -->
+        <view class="feedback-content">
+
+          <view class="box-label">
+            Class Feedback
+          </view>
+
+          <view class="content-text">
+            {{item.content}}
+          </view>
+
+        </view>
+
+
+        <!-- 操作 -->
+        <view class="action-row">
+
+          <button
+            class="copy-button"
+            bindtap="copyHistory"
+            data-index="{{index}}"
+          >
+            Copy Feedback
+          </button>
+
+          <button
+            class="delete-button"
+            bindtap="deleteHistory"
+            data-index="{{index}}"
+          >
+            Delete
+          </button>
+
+        </view>
+
+      </view>
+
+    </block>
+
+
+    <view
+      wx:if="{{historyList.length > 0}}"
+      class="bottom-tip"
+    >
+      All class feedback shown
+    </view>
+
+  </block>
+
+
+  <!-- ===================================================
+       Homework Review
+  ==================================================== -->
+
+  <block wx:if="{{currentTab === 'homework'}}">
+
+    <view
+      wx:if="{{allHomeworkList.length > 0}}"
+      class="result-info"
+    >
+
+      <view class="result-title">
+        Homework Review
+      </view>
+
+      <view class="result-count">
+        {{homeworkList.length}} records
+      </view>
+
+    </view>
+
+
+    <!-- 空状态 -->
+    <view
+      wx:if="{{homeworkList.length === 0}}"
+      class="empty-card"
+    >
+
+      <view class="empty-icon">
+        <view class="icon icon-clipboard"></view>
+      </view>
+
+      <view class="empty-title">
+        {{keyword ? "No matching records" : "No homework reviews yet"}}
+      </view>
+
+      <view class="empty-text">
+        {{keyword ? "Try another student, topic, or homework" : "Completed homework reviews will appear here."}}
+      </view>
+
+      <view
+        wx:if="{{keyword}}"
+        class="empty-button"
+        bindtap="clearKeyword"
+      >
+        Clear Search
+      </view>
+
+    </view>
+
+
+    <!-- Homework Review列表 -->
+    <block
+      wx:for="{{homeworkList}}"
+      wx:key="courseId"
+      wx:for-item="item"
+      wx:for-index="index"
+    >
+
+      <view class="homework-card">
+
+        <!-- =================================================
+             学生信息
+             右侧显示填写时间
+        ================================================== -->
+
+        <view class="card-head">
+
+          <view class="student-area">
+
+            <view class="student-avatar">
+              {{item.student ? item.student.substring(0,1) : "S"}}
+            </view>
+
+            <view class="student-info">
+
+              <view class="student-name">
+                {{item.student || "Student"}}
+              </view>
+
+              <view class="student-meta">
+                {{item.grade || "Student"}}
+                <text> · </text>
+                {{item.subject || "Chemistry"}}
+              </view>
+
+            </view>
+
+          </view>
+
+
+          <!-- 填写时间 -->
+          <view
+            wx:if="{{item.displayTime}}"
+            class="record-time"
+          >
+            {{item.displayTime}}
+          </view>
+
+        </view>
+
+
+        <!-- =================================================
+             Homework Review只显示日期
+             不显示上课时间
+        ================================================== -->
+
+        <view
+          wx:if="{{item.displayDate}}"
+          class="record-date"
+        >
+          {{item.displayDate}}
+        </view>
+
+
+        <!-- =================================================
+             Topic
+        ================================================== -->
+
+        <view
+          wx:if="{{item.topic}}"
+          class="topic-box"
+        >
+
+          <view class="box-label">
+            Topic
+          </view>
+
+          <view class="topic-text">
+            {{item.topic}}
+          </view>
+
+        </view>
+
+
+        <!-- =================================================
+             作业
+        ================================================== -->
+
+        <view class="section-box">
+
+          <view class="box-label">
+            Homework
+          </view>
+
+          <view
+            wx:if="{{item.homework}}"
+            class="box-text"
+          >
+            {{item.homework}}
+          </view>
+
+          <view
+            wx:else
+            class="empty-box-text"
+          >
+            No homework recorded
+          </view>
+
+        </view>
+
+
+        <!-- =================================================
+             成绩
+        ================================================== -->
+
+        <view
+          wx:if="{{item.score}}"
+          class="score-box"
+        >
+
+          <view class="score-label">
+            Score
+          </view>
+
+          <view class="score">
+            {{item.score}}
+            <text>points</text>
+          </view>
+
+        </view>
+
+
+        <!-- =================================================
+             Teacher Review
+        ================================================== -->
+
+        <view class="evaluation-box">
+
+          <view class="box-label">
+            Teacher Review
+          </view>
+
+          <view class="evaluation-text">
+            {{item.evaluation}}
+          </view>
+
+        </view>
+
+
+        <!-- 操作 -->
+        <view class="action-row">
+
+          <button
+            class="copy-button"
+            bindtap="copyHomework"
+            data-index="{{index}}"
+          >
+            Copy Review
+          </button>
+
+          <button
+            class="delete-button"
+            bindtap="deleteHomework"
+            data-index="{{index}}"
+          >
+            Delete
+          </button>
+
+        </view>
+
+      </view>
+
+    </block>
+
+
+    <view
+      wx:if="{{homeworkList.length > 0}}"
+      class="bottom-tip"
+    >
+      All homework reviews shown
+    </view>
+
+  </block>
+
+</view>
+
+</view>

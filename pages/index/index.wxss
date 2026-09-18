@@ -1,0 +1,918 @@
+/* =========================================================
+   今日工作台
+   模式1：经典紫色
+   模式2：蓝紫渐变
+========================================================= */
+
+page {
+  background: var(--theme-background);
+}
+
+.page {
+  min-height: 100vh;
+  padding: 40rpx 32rpx 180rpx;
+  box-sizing: border-box;
+  background: var(--theme-background);
+}
+
+
+/* =========================================================
+   顶部问候
+========================================================= */
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 32rpx;
+}
+
+.header-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.header-brand {
+  flex-shrink: 0;
+  margin-left: 20rpx;
+  margin-top: 8rpx;
+  color: var(--theme-main);
+  font-size: 20rpx;
+  font-weight: 700;
+  letter-spacing: 3rpx;
+}
+
+.greeting {
+  color: var(--theme-text);
+  font-size: var(--font-display);
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.today-text {
+  margin-top: 10rpx;
+  color: var(--theme-subtext);
+  font-size: 24rpx;
+}
+
+
+/* =========================================================
+   顶部滑动区域
+========================================================= */
+
+.top-swiper {
+  width: 100%;
+  height: 334rpx;
+  margin-bottom: 34rpx;
+}
+
+.top-swiper swiper-item {
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   主卡片
+========================================================= */
+
+.purple-card {
+  width: 100%;
+  height: 300rpx;
+
+  padding: 30rpx 30rpx 26rpx;
+  box-sizing: border-box;
+
+  border-radius: 30rpx;
+
+  background: linear-gradient(
+    135deg,
+    #765B91 0%,
+    #806A9A 50%,
+    #9180A8 100%
+  );
+
+  color: #FFFFFF;
+
+  box-shadow:
+    0 16rpx 38rpx
+    rgba(118, 91, 145, 0.15);
+
+  transition:
+    transform 0.12s ease,
+    opacity 0.12s ease;
+}
+
+.card-hover {
+  transform: scale(0.985);
+  opacity: 0.92;
+}
+
+.card-top-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.purple-label {
+  color: rgba(255, 255, 255, 0.74);
+  font-size: 22rpx;
+  line-height: 1.4;
+}
+
+.purple-number {
+  margin-top: 7rpx;
+  color: #FFFFFF;
+  font-size: 46rpx;
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+.purple-number text {
+  margin-left: 7rpx;
+  font-size: 22rpx;
+  font-weight: 400;
+  opacity: 0.84;
+}
+
+
+/* =========================================================
+   卡片图标
+========================================================= */
+
+.purple-icon {
+  width: 68rpx;
+  height: 68rpx;
+
+  border-radius: 21rpx;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(255, 255, 255, 0.16);
+
+  color: #FFFFFF;
+  font-size: 25rpx;
+  font-weight: 600;
+
+  box-shadow:
+    inset 0 1rpx 0
+    rgba(255, 255, 255, 0.18);
+}
+
+
+/* =========================================================
+   学习进度
+========================================================= */
+
+.study-progress {
+  width: 100%;
+  margin-top: 44rpx;
+}
+
+.study-progress-bg {
+  width: 100%;
+  height: 10rpx;
+
+  overflow: hidden;
+  border-radius: 20rpx;
+
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.study-progress-inner {
+  height: 100%;
+
+  border-radius: 20rpx;
+  background: #FFFFFF;
+
+  transition: width 0.3s ease;
+}
+
+.progress-0 {
+  width: 0%;
+}
+
+.progress-1 {
+  width: 10%;
+}
+
+.progress-2 {
+  width: 20%;
+}
+
+.progress-3 {
+  width: 30%;
+}
+
+.progress-4 {
+  width: 40%;
+}
+
+.progress-5 {
+  width: 50%;
+}
+
+.progress-6 {
+  width: 60%;
+}
+
+.progress-7 {
+  width: 70%;
+}
+
+.progress-8 {
+  width: 80%;
+}
+
+.progress-9 {
+  width: 90%;
+}
+
+.progress-10 {
+  width: 100%;
+}
+
+.study-progress-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-top: 10rpx;
+
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 19rpx;
+}
+
+.study-card-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-top: 33rpx;
+
+  color: rgba(255, 255, 255, 0.80);
+  font-size: 20rpx;
+}
+
+.study-card-bottom text {
+  white-space: nowrap;
+}
+
+.study-card-bottom text:first-child {
+  flex-shrink: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.study-card-bottom text:last-child {
+  flex-shrink: 0;
+}
+
+
+/* =========================================================
+   第2页 · 今日概览
+========================================================= */
+
+.overview-card {
+  box-sizing: border-box;
+}
+
+.overview-title {
+  margin-top: 9rpx;
+
+  color: #FFFFFF;
+
+  font-size: 29rpx;
+  font-weight: 700;
+
+  line-height: 1.4;
+}
+
+.overview-stats {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-top: 40rpx;
+}
+
+.overview-stat {
+  flex: 1;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.overview-number {
+  color: #FFFFFF;
+
+  font-size: 34rpx;
+  font-weight: 700;
+
+  line-height: 1.2;
+}
+
+.overview-label {
+  margin-top: 6rpx;
+
+  color: rgba(255, 255, 255, 0.72);
+
+  font-size: 18rpx;
+}
+
+.overview-divider {
+  width: 1rpx;
+  height: 42rpx;
+
+  background: rgba(255, 255, 255, 0.20);
+}
+
+.overview-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-top: 30rpx;
+
+  color: rgba(255, 255, 255, 0.72);
+
+  font-size: 18rpx;
+}
+
+
+/* =========================================================
+   通用区块
+========================================================= */
+
+.section {
+  margin-top: 40rpx;
+}
+
+.section-title {
+  color: #342E3B;
+  font-size: 31rpx;
+  font-weight: 700;
+  margin-bottom: 18rpx;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18rpx;
+}
+
+.section-header .section-title {
+  margin-bottom: 0;
+}
+
+.section-more {
+  color: #9B92A4;
+  font-size: 23rpx;
+}
+
+
+/* =========================================================
+   接下来
+========================================================= */
+
+.next-card {
+  display: flex;
+  align-items: center;
+  padding: 24rpx 24rpx;
+  border-radius: 20rpx;
+  background: var(--theme-card);
+  border-left: 6rpx solid var(--theme-main);
+  box-shadow: 0 6rpx 20rpx var(--theme-shadow-card);
+}
+
+.next-card-hover {
+  opacity: 0.85;
+  transform: scale(0.99);
+}
+
+.next-icon {
+  flex: none;
+  width: 64rpx;
+  height: 64rpx;
+  border-radius: 18rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--theme-main-light);
+  color: var(--theme-main);
+  font-size: 24rpx;
+  font-weight: 700;
+}
+
+.next-content {
+  flex: 1;
+  min-width: 0;
+  margin-left: 20rpx;
+}
+
+.next-title {
+  color: var(--theme-text);
+  font-size: 28rpx;
+  font-weight: 700;
+}
+
+.next-desc {
+  margin-top: 6rpx;
+  color: var(--theme-subtext);
+  font-size: 22rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.next-arrow {
+  margin-left: 12rpx;
+  color: var(--theme-muted);
+  font-size: 32rpx;
+}
+
+
+/* =========================================================
+   今日课程（滑动删除）
+========================================================= */
+
+.course-swipe-wrap {
+  position: relative;
+  height: 132rpx;
+  margin-bottom: 12rpx;
+  overflow: hidden;
+  border-radius: 16rpx;
+  background: #D95F68;
+}
+
+.course-delete-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 140rpx;
+  height: 132rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #D95F68;
+  color: #FFFFFF;
+  font-size: 24rpx;
+  font-weight: 600;
+  z-index: 1;
+}
+
+.course-card {
+  position: relative;
+  height: 132rpx;
+  display: flex;
+  align-items: center;
+  padding: 18rpx 20rpx;
+  box-sizing: border-box;
+  border-radius: 16rpx;
+  background: #FFFFFF;
+  z-index: 2;
+  transform: translateX(0);
+  transition: transform 0.22s ease;
+}
+
+.course-card-open {
+  transform: translateX(-140rpx);
+}
+
+.course-time {
+  width: 92rpx;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.course-time-start {
+  color: var(--theme-main);
+  font-size: 24rpx;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.course-time-end {
+  margin-top: 4rpx;
+  color: var(--theme-muted);
+  font-size: 20rpx;
+  white-space: nowrap;
+}
+
+.course-info {
+  flex: 1;
+  min-width: 0;
+  margin-left: 24rpx;
+}
+
+.course-student {
+  color: var(--theme-text);
+  font-size: 26rpx;
+  font-weight: 700;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.course-topic {
+  margin-top: 6rpx;
+  color: var(--theme-subtext);
+  font-size: 23rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.course-meta {
+  margin-top: 6rpx;
+  color: var(--theme-muted);
+  font-size: 20rpx;
+}
+
+
+/* =========================================================
+   今日任务
+========================================================= */
+
+.task-list {
+  border-radius: 24rpx;
+  background: #FFFFFF;
+  box-shadow: 0 6rpx 20rpx rgba(50, 38, 70, 0.04);
+  overflow: hidden;
+}
+
+.task-item {
+  display: flex;
+  align-items: center;
+  min-height: 88rpx;
+  padding: 18rpx 22rpx;
+  box-sizing: border-box;
+  border-bottom: 1rpx solid #F1EEF4;
+}
+
+.task-item:last-child {
+  border-bottom: none;
+}
+
+.task-check {
+  flex: none;
+  width: 38rpx;
+  height: 38rpx;
+  margin-right: 18rpx;
+  border: 3rpx solid #D8D1DD;
+  border-radius: 50%;
+  box-sizing: border-box;
+}
+
+.task-check.active {
+  background: linear-gradient(135deg, #765B91, #9180A8);
+  border-color: #765B91;
+}
+
+.task-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.task-text {
+  color: #4A4251;
+  font-size: 26rpx;
+  line-height: 1.5;
+  word-break: break-all;
+}
+
+.task-text.completed {
+  color: #AAA3AE;
+  text-decoration: line-through;
+}
+
+.task-meta {
+  margin-top: 8rpx;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.tag {
+  margin-right: 10rpx;
+  padding: 4rpx 13rpx;
+  font-size: 20rpx;
+  border-radius: 999rpx;
+}
+
+.priority-tag.priority-high {
+  background: #F7ECEE;
+  color: #B96B73;
+}
+
+.priority-tag.priority-medium {
+  background: #F8F1E5;
+  color: #B98A4E;
+}
+
+.priority-tag.priority-low {
+  background: #EAF1EC;
+  color: #5E8668;
+}
+
+.deadline-tag {
+  background: #EEE9F4;
+  color: #765B91;
+}
+
+.deadline-tag.overdue {
+  background: #F7ECEE;
+  color: #B96B73;
+}
+
+.overdue-tag {
+  background: #B96B73;
+  color: #FFFFFF;
+}
+
+
+/* =========================================================
+   今日学习
+========================================================= */
+
+/* 今日学习记录 */
+
+.learning-records {
+  border-radius: 20rpx;
+  background: var(--theme-card);
+  overflow: hidden;
+}
+
+.learning-record-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 76rpx;
+  padding: 16rpx 24rpx;
+  box-sizing: border-box;
+  border-bottom: 1rpx solid var(--theme-border);
+}
+
+.learning-record-item:last-child {
+  border-bottom: none;
+}
+
+.learning-record-type {
+  color: var(--theme-text);
+  font-size: 25rpx;
+}
+
+.learning-record-minutes {
+  color: var(--theme-main);
+  font-size: 24rpx;
+  font-weight: 600;
+}
+
+
+/* =========================================================
+   今日笔记
+========================================================= */
+
+.note-list {
+  border-radius: 24rpx;
+  background: #FFFFFF;
+  box-shadow: 0 6rpx 20rpx rgba(50, 38, 70, 0.04);
+  overflow: hidden;
+}
+
+.note-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 84rpx;
+  padding: 18rpx 24rpx;
+  box-sizing: border-box;
+  border-bottom: 1rpx solid #F1EEF4;
+}
+
+.note-item:last-child {
+  border-bottom: none;
+}
+
+.note-title {
+  flex: 1;
+  min-width: 0;
+  color: #4A4251;
+  font-size: 26rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.note-type {
+  flex: none;
+  margin-left: 16rpx;
+  color: #765B91;
+  font-size: 22rpx;
+  font-weight: 600;
+}
+
+
+/* =========================================================
+   待反馈
+========================================================= */
+
+.feedback-card {
+  display: flex;
+  align-items: center;
+  padding: 28rpx 24rpx;
+  border-radius: 24rpx;
+  background: #FFFFFF;
+  box-shadow: 0 8rpx 24rpx rgba(50, 38, 70, 0.05);
+}
+
+.feedback-icon {
+  flex: none;
+  width: 72rpx;
+  height: 72rpx;
+  border-radius: 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #F8EDF3;
+  color: #A26E89;
+  font-size: 26rpx;
+  font-weight: 700;
+}
+
+.feedback-content {
+  flex: 1;
+  min-width: 0;
+  margin-left: 20rpx;
+}
+
+.feedback-title {
+  color: var(--theme-text);
+  font-size: 27rpx;
+  font-weight: 700;
+}
+
+.feedback-desc {
+  margin-top: 6rpx;
+  color: var(--theme-subtext);
+  font-size: 22rpx;
+}
+
+.feedback-arrow {
+  margin-left: 12rpx;
+  color: #B4ACBA;
+  font-size: 32rpx;
+}
+
+
+/* =========================================================
+   快捷操作
+========================================================= */
+
+.quick-grid {
+  display: flex;
+}
+
+.quick-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16rpx 0;
+}
+
+.quick-item + .quick-item {
+  margin-left: 18rpx;
+}
+
+.quick-item-hover {
+  opacity: 0.85;
+  transform: scale(0.98);
+}
+
+.quick-icon {
+  width: 64rpx;
+  height: 64rpx;
+  border-radius: 18rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #EEE9F4;
+  color: #765B91;
+  font-size: 24rpx;
+  font-weight: 700;
+}
+
+.quick-text {
+  margin-top: 12rpx;
+  color: #4A4251;
+  font-size: 23rpx;
+}
+
+
+/* =========================================================
+   空状态
+========================================================= */
+
+.empty-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40rpx 24rpx;
+  border-radius: 24rpx;
+  background: #FFFFFF;
+  box-shadow: 0 6rpx 20rpx rgba(50, 38, 70, 0.04);
+}
+
+.empty-icon {
+  width: 68rpx;
+  height: 68rpx;
+  border-radius: 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #EEE9F4;
+  color: #765B91;
+  font-size: 25rpx;
+  font-weight: 600;
+}
+
+.empty-title {
+  margin-top: 16rpx;
+  color: #3A3342;
+  font-size: 26rpx;
+  font-weight: 700;
+}
+
+.empty-desc {
+  margin-top: 8rpx;
+  color: #AAA2AE;
+  font-size: 21rpx;
+}
+
+
+/* =========================================================
+   主题 2 · 蓝紫
+========================================================= */
+
+.theme-2 .purple-card {
+  background: linear-gradient(
+    135deg,
+    #7D86C9 0%,
+    #8885C4 52%,
+    #9A8FC7 100%
+  );
+  box-shadow: 0 16rpx 38rpx rgba(125, 134, 201, 0.15);
+}
+
+.theme-2 .overview-card {
+  background: linear-gradient(
+    135deg,
+    #7D86C9 0%,
+    #8885C4 52%,
+    #9A8FC7 100%
+  );
+}
+
+.theme-2 .next-icon,
+.theme-2 .empty-icon,
+.theme-2 .quick-icon {
+  background: #EEF0FA;
+  color: #7D86C9;
+}
+
+.theme-2 .note-type {
+  color: #7D86C9;
+}
+
+.theme-2 .deadline-tag {
+  background: #EEF0FA;
+  color: #7D86C9;
+}
+
+.theme-2 .task-check.active {
+  background: linear-gradient(135deg, #7D86C9, #9A8FC7);
+  border-color: #7D86C9;
+}
+
+
+/* =========================================================
+   Icon System — 容器内图标尺寸（currentColor 由容器 color 决定）
+========================================================= */
+
+.purple-icon .icon,
+.next-icon .icon,
+.empty-icon .icon,
+.feedback-icon .icon,
+.quick-icon .icon {
+  width: 32rpx;
+  height: 32rpx;
+}

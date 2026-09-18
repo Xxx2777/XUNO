@@ -1,0 +1,395 @@
+/* =========================================================
+   炫记 · 设置
+========================================================= */
+
+page {
+  background: var(--theme-background);
+}
+
+.page {
+  min-height: 100vh;
+  padding: 38rpx 30rpx 80rpx;
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   模式1
+========================================================= */
+
+.page.theme-1 {
+  background: var(--theme-background);
+}
+
+.page.theme-1 .header-title {
+  color: #332D3A;
+}
+
+.page.theme-1 .header-desc {
+  color: #A29AA9;
+}
+
+.page.theme-1 .section-title {
+  color: #342E3B;
+}
+
+.page.theme-1 .setting-card {
+  background: #FFFFFF;
+  box-shadow:
+    0 7rpx 24rpx
+    rgba(50, 38, 70, 0.045);
+}
+
+.page.theme-1 .setting-icon {
+  background: #EEE9F4;
+  color: #765B91;
+}
+
+.page.theme-1 .setting-title {
+  color: #342D3B;
+}
+
+.page.theme-1 .setting-desc {
+  color: #A099A7;
+}
+
+.page.theme-1 .setting-arrow {
+  color: #A29AA9;
+}
+
+.page.theme-1 .version {
+  color: #AAA2AE;
+}
+
+
+/* =========================================================
+   模式2
+========================================================= */
+
+.page.theme-2 {
+  background: #F6F7FB;
+}
+
+.page.theme-2 .header-title {
+  color: #343844;
+}
+
+.page.theme-2 .header-desc {
+  color: #858B9D;
+}
+
+.page.theme-2 .section-title {
+  color: #343844;
+}
+
+.page.theme-2 .setting-card {
+  background: #FFFFFF;
+  box-shadow:
+    0 7rpx 24rpx
+    rgba(52, 56, 68, 0.06);
+}
+
+.page.theme-2 .setting-icon {
+  background: #EEF0FA;
+  color: #7D86C9;
+}
+
+.page.theme-2 .setting-title {
+  color: #343844;
+}
+
+.page.theme-2 .setting-desc {
+  color: #858B9D;
+}
+
+.page.theme-2 .setting-arrow {
+  color: #8885C4;
+}
+
+.page.theme-2 .version {
+  color: #9DA2B2;
+}
+
+
+/* =========================================================
+   顶部
+========================================================= */
+
+.header {
+  margin-bottom: 42rpx;
+}
+
+.header-title {
+  font-size: 42rpx;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.header-desc {
+  margin-top: 10rpx;
+  font-size: 21rpx;
+}
+
+
+/* =========================================================
+   区域
+========================================================= */
+
+.section {
+  margin-bottom: 38rpx;
+}
+
+.section-title {
+  margin-bottom: 18rpx;
+  font-size: 25rpx;
+  font-weight: 700;
+}
+
+
+/* =========================================================
+   设置卡片
+========================================================= */
+
+.setting-card {
+  width: 100%;
+  min-height: 104rpx;
+  margin-bottom: 14rpx;
+  padding: 20rpx 22rpx;
+  box-sizing: border-box;
+
+  display: flex;
+  align-items: center;
+
+  border-radius: 24rpx;
+
+  transition:
+    transform 0.12s ease,
+    opacity 0.12s ease;
+}
+
+.setting-card:last-child {
+  margin-bottom: 0;
+}
+
+.setting-hover {
+  transform: scale(0.98);
+  opacity: 0.82;
+}
+
+
+/* =========================================================
+   图标
+========================================================= */
+
+.setting-icon {
+  width: 62rpx;
+  height: 62rpx;
+  flex-shrink: 0;
+
+  border-radius: 19rpx;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 24rpx;
+  font-weight: 700;
+}
+
+
+/* =========================================================
+   内容
+========================================================= */
+
+.setting-content {
+  flex: 1;
+  min-width: 0;
+  margin-left: 18rpx;
+}
+
+.setting-title {
+  font-size: 25rpx;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.setting-desc {
+  margin-top: 6rpx;
+  font-size: 20rpx;
+  line-height: 1.4;
+}
+
+
+/* =========================================================
+   箭头
+========================================================= */
+
+.setting-arrow {
+  margin-left: 14rpx;
+  font-size: 34rpx;
+  line-height: 1;
+}
+
+
+/* =========================================================
+   版本
+========================================================= */
+
+.version {
+  margin-top: 54rpx;
+  text-align: center;
+  font-size: 19rpx;
+}
+
+
+/* =========================================================
+   数据管理 · 最近备份
+========================================================= */
+
+.backup-info {
+  margin-bottom: 14rpx;
+  padding: 20rpx 22rpx;
+  border-radius: 24rpx;
+  background: #F4F1F7;
+  color: #765B91;
+  font-size: 22rpx;
+}
+
+.page.theme-2 .backup-info {
+  background: #EEF0FA;
+  color: #7D86C9;
+}
+
+
+/* =========================================================
+   导入面板
+========================================================= */
+
+.import-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.45);
+}
+
+.import-panel {
+  width: 640rpx;
+  padding: 40rpx 32rpx 32rpx;
+  box-sizing: border-box;
+  border-radius: 28rpx;
+  background: #FFFFFF;
+}
+
+.import-title {
+  font-size: 32rpx;
+  font-weight: 700;
+  color: #332D3A;
+}
+
+.import-warn {
+  margin-top: 12rpx;
+  font-size: 22rpx;
+  color: #B96B73;
+}
+
+.import-textarea {
+  width: 100%;
+  height: 300rpx;
+  margin-top: 24rpx;
+  padding: 20rpx;
+  box-sizing: border-box;
+  border-radius: 16rpx;
+  background: #F7F5FB;
+  font-size: 22rpx;
+  color: #35313D;
+}
+
+.import-actions {
+  margin-top: 28rpx;
+  display: flex;
+}
+
+.import-btn {
+  flex: 1;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+  border-radius: 16rpx;
+  font-size: 26rpx;
+  color: #665D75;
+  background: #F0EDF4;
+}
+
+.import-btn + .import-btn {
+  margin-left: 20rpx;
+}
+
+.import-btn-primary {
+  color: #FFFFFF;
+  background: linear-gradient(135deg, #765B91, #9180A8);
+}
+
+.page.theme-2 .import-btn-primary {
+  background: linear-gradient(135deg, #7D86C9, #9A8FC7);
+}
+
+
+/* =========================================================
+   个人资料编辑面板
+========================================================= */
+
+.profile-field {
+  margin-top: 24rpx;
+}
+
+.profile-label {
+  margin-bottom: 12rpx;
+  font-size: 22rpx;
+  font-weight: 600;
+  color: #342D3B;
+}
+
+.page.theme-2 .profile-label {
+  color: #343844;
+}
+
+.profile-input {
+  width: 100%;
+  height: 84rpx;
+  padding: 0 20rpx;
+  box-sizing: border-box;
+  border-radius: 16rpx;
+  background: #F7F5FB;
+  font-size: 24rpx;
+  color: #35313D;
+}
+
+.page.theme-2 .profile-input {
+  background: #F3F4F9;
+  color: #343844;
+}
+
+.profile-target-row {
+  display: flex;
+  align-items: center;
+}
+
+.profile-input-target {
+  flex: 1;
+}
+
+.profile-unit {
+  margin-left: 14rpx;
+  font-size: 22rpx;
+  color: #A099A7;
+}
+
+.page.theme-2 .profile-unit {
+  color: #858B9D;
+}
