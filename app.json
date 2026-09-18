@@ -1,0 +1,39 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/calendar/calendar",
+    "pages/statistics/statistics",
+    "pages/mine/mine",
+    "pages/projects/projects",
+    "pages/projectDetail/projectDetail",
+    "pages/notes/notes",
+    "pages/noteDetail/noteDetail",
+    "pages/timeline/timeline",
+    "pages/create/create",
+    "pages/history/history",
+    "pages/learningDetail/learningDetail",
+    "pages/courseDetail/courseDetail",
+    "pages/feedbackCreate/feedbackCreate",
+    "pages/feedbackList/feedbackList",
+    "pages/homeworkEvaluation/homeworkEvaluation",
+    "pages/study/study",
+    "pages/todo/todo",
+    "pages/taskDetail/taskDetail",
+    "pages/feedbackHistory/feedbackHistory",
+    "pages/teachingHistory/teachingHistory",
+    "pages/settings/settings",
+    "pages/teachingRecords/teachingRecords"
+  ],
+
+  "window": {
+    "navigationBarBackgroundColor": "#765B91",
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "XUNO",
+    "backgroundColor": "#F7F5FA",
+    "backgroundTextStyle": "light"
+  },
+
+  "style": "v2",
+
+  "sitemapLocation": "sitemap.json"
+}
