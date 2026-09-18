@@ -1,0 +1,47 @@
+/* =========================================================
+   公共底部导航
+   统一使用全局 theme 变量，theme-1 / theme-2 自动适配
+========================================================= */
+
+.tabbar {
+  position: fixed;
+  left: 24rpx;
+  right: 24rpx;
+  bottom: 22rpx;
+  height: 108rpx;
+  padding: 0 8rpx;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  border: 1rpx solid var(--theme-border);
+  border-radius: 32rpx;
+  background: var(--theme-tabbar);
+  box-shadow: 0 12rpx 40rpx var(--theme-shadow-tabbar);
+  z-index: 100;
+}
+
+.tab-item {
+  width: 100rpx;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--theme-muted);
+  font-size: 19rpx;
+}
+
+.tab-item.active {
+  color: var(--theme-main);
+}
+
+.tab-icon {
+  width: 40rpx;
+  height: 40rpx;
+  margin-bottom: 5rpx;
+}
+
+.tab-text {
+  font-size: 19rpx;
+}
